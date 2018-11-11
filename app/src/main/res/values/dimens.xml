@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="button_text_size">16.0sp</dimen>
+
+    <dimen name="view_spacing_small">8dp</dimen>
+
+    <dimen name="global_keyline_s">16dp</dimen>
+    <dimen name="global_keyline_m">32dp</dimen>
+    <dimen name="global_keyline_l">72dp</dimen>
+
+    <dimen name="global_spacing_xxs">8dp</dimen>
+    <dimen name="global_spacing_xs">16dp</dimen>
+    <dimen name="global_spacing_s">24dp</dimen>
+    <dimen name="global_spacing_m">32dp</dimen>
+    <dimen name="global_spacing_l">48dp</dimen>
+    <dimen name="global_spacing_xl">56dp</dimen>
+    <dimen name="global_spacing_xxl">72dp</dimen>
+
+    <dimen name="placeholder_image_size">192dp</dimen>
+
+    <dimen name="global_text_size_placeholder">20sp</dimen>
+</resources>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: co.infinum:materialdatetimepicker-support-3.1.3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-support-3.1.3.aar/08166a870792029379a605019bea66a9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialdatetimepicker-support-3.1.3.aar/08166a870792029379a605019bea66a9/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.infinum/materialdatetimepicker-support/3.1.3/89316eb2d1b860fd9e5ebb377d06a82c743a33d0/materialdatetimepicker-support-3.1.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

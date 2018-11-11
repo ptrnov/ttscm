@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/background_container">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ticketCreatorET"
+            android:hint="@string/label_ticket_creator"
+            app:met_floatingLabel="normal"
+            android:maxLines="1"
+            android:visibility="gone"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ticketTypeET"
+            android:hint="@string/label_ticket_type"
+            app:met_floatingLabel="normal"
+            android:singleLine="true"
+            android:layout_below="@id/ticketCreatorET"
+            android:visibility="gone"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ticketStationET"
+            android:hint="@string/label_ticket_station"
+            app:met_floatingLabel="normal"
+            android:singleLine="true"
+            android:layout_below="@id/ticketTypeET"
+            android:visibility="gone"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ticketRemarksET"
+            android:hint="@string/label_ticket_remarks"
+            app:met_floatingLabel="normal"
+            android:layout_below="@id/ticketStationET"/>
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/suspectSpinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ms_baseColor="@color/colorPrimary"
+            app:ms_multiline="false"
+            app:ms_hint="@string/label_ticket_suspect_1"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="true"
+            app:ms_floatingLabelText="@string/label_ticket_suspect_1"
+            app:ms_thickness="0.5dp"
+            app:ms_arrowSize="8dp"
+            android:spinnerMode="dialog"
+            app:ms_errorColor="@color/color_btn_negative"
+            android:layout_below="@id/ticketRemarksET"/>
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/suspectSpinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ms_baseColor="@color/colorPrimary"
+            app:ms_multiline="false"
+            app:ms_hint="@string/label_ticket_suspect_2"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="true"
+            app:ms_floatingLabelText="@string/label_ticket_suspect_2"
+            app:ms_thickness="0.5dp"
+            app:ms_arrowSize="8dp"
+            android:spinnerMode="dialog"
+            app:ms_errorColor="@color/color_btn_negative"
+            android:layout_below="@id/suspectSpinner1"/>
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/suspectSpinner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ms_baseColor="@color/colorPrimary"
+            app:ms_multiline="false"
+            app:ms_hint="@string/label_ticket_suspect_3"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="true"
+            app:ms_floatingLabelText="@string/label_ticket_suspect_3"
+            app:ms_thickness="0.5dp"
+            app:ms_arrowSize="8dp"
+            android:spinnerMode="dialog"
+            app:ms_errorColor="@color/color_btn_negative"
+            android:layout_below="@id/suspectSpinner2"/>
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/severitySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ms_baseColor="@color/colorPrimary"
+            app:ms_multiline="false"
+            app:ms_hint="@string/label_ticket_severity"
+            app:ms_enableFloatingLabel="true"
+            app:ms_enableErrorLabel="true"
+            app:ms_floatingLabelText="@string/label_ticket_severity"
+            app:ms_thickness="0.5dp"
+            app:ms_arrowSize="8dp"
+            android:spinnerMode="dialog"
+            app:ms_errorColor="@color/color_btn_negative"
+            android:layout_below="@id/suspectSpinner3"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_below="@id/severitySpinner">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="6"
+                android:id="@+id/ticketPhotoLL">
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:id="@+id/ticketPhoto1IV"
+                    android:src="@drawable/ic_no_image"
+                    android:background="@color/blue_grey_100"
+                    android:layout_weight="2"
+                    android:layout_margin="2dp"
+                    android:padding="5dp" />
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:id="@+id/ticketPhoto2IV"
+                    android:src="@drawable/ic_no_image"
+                    android:background="@color/blue_grey_100"
+                    android:layout_weight="2"
+                    android:layout_margin="2dp"
+                    android:padding="5dp" />
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:id="@+id/ticketPhoto3IV"
+                    android:src="@drawable/ic_no_image"
+                    android:background="@color/blue_grey_100"
+                    android:layout_weight="2"
+                    android:layout_margin="2dp"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_submit"
+                android:id="@+id/submitNewTicket"
+                android:layout_below="@id/ticketPhotoLL"
+                android:layout_gravity="center_horizontal"
+                style="@style/default_button" />
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

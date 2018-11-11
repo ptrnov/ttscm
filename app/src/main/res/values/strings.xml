@@ -1,0 +1,173 @@
+<resources>
+    <string name="app_name">Trouble Ticket System</string>
+    <string name="app_build">build 2.3</string>
+    <string name="powered_by">powered by www.cudocomm.com</string>
+
+    <string name="label_dashboard_ticket">Ticket List</string>
+    <string name="label_downtime">Down Time</string>
+    <string name="label_gangguan_av">Gangguan AV</string>
+    <string name="label_kerusakan">Kerusakan</string>
+
+    <!--action-->
+    <string name="label_share">Share</string>
+    <string name="label_logout">Logout</string>
+
+    <!--login page-->
+    <string name="login_hint">Please input your username and password</string>
+    <string name="login">Login</string>
+    <string name="label_username">Username</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+
+    <string name="error_email_empty">Email is required</string>
+    <string name="error_email_not_valid">Email is not valid</string>
+    <string name="error_username_empty">Username is required</string>
+    <string name="error_password_empty">Password is required</string>
+    <string name="login_success">Welcome %1$s</string>
+    <string name="login_failed">Username or password not match</string>
+    <!--login page-->
+
+    <!--home page-->
+    <string name="label_user_info"> %1$s | %2$s | %3$s </string>
+    <string name="label_welcome_msg">Hi %1$s, Welcome to "Trouble Ticketing System" \nPlease select menu below and system will records and give you feedback immadiately</string>
+    <string name="label_date_dummy">Wednesday, March 1 2017 09:00</string>
+    <string name="label_menu_name_dummy">Menu Name</string>
+
+    <!--home page-->
+
+    <!--my ticket page-->
+    <string name="label_header_position">Station : %1$s</string>
+    <string name="label_header_position_region">Region : %1$s</string>
+    <string name="label_header_position_department">Department : %1$s</string>
+    <string name="label_header_position_national">Nasional</string>
+    <string name="label_header_date">Status Trouble Ticket per %1$s</string>
+    <!--my ticket page-->
+
+    <!--downtime-->
+    <string name="label_ticket_no">Ticket No.</string>
+    <string name="label_ticket_creator">Creator</string>
+    <string name="label_ticket_type">Ticket Type</string>
+    <string name="label_ticket_station">Station</string>
+    <string name="label_ticket_suspect_1">Suspect 1</string>
+    <string name="label_ticket_suspect_2">Suspect 2</string>
+    <string name="label_ticket_suspect_3">Suspect 3</string>
+    <string name="label_ticket_suspect_4">Suspect 4</string>
+    <string name="label_ticket_severity">Severity</string>
+    <string name="label_ticket_remarks">Remarks</string>
+    <string name="label_ticket_status">Status</string>
+    <string name="label_ticket_aging">Aging</string>
+    <string name="label_ticket_sla">SLA</string>
+    <string name="label_submit">Submit</string>
+    <string name="error_station_empty">Station is required</string>
+    <string name="error_suspect1_empty">Suspect 1 is required</string>
+    <string name="error_suspect2_empty">Suspect 2 is required</string>
+    <string name="error_suspect3_empty">Suspect 3 is required</string>
+    <string name="error_suspect4_empty">Suspect 4 is required</string>
+    <string name="error_severity_empty">Severity is required</string>
+    <string name="error_remarks_empty">Remarks is required</string>
+    <string name="error_remarks_space">Space too long</string>
+    <string name="error_remarks_length">Remarks min 60 character</string>
+    <!--downtime-->
+    <string name="search_by_site_or_region">Search by site or region</string>
+
+    <!--spinner-->
+    <string name="label_spinner_value">Spinner Value</string>
+    <string name="label_spinner_key">Spinner Key</string>
+    <!--spinner-->
+
+    <!--dialog-->
+    <string name="heading_info">Information</string>
+    <string name="label_info">Alert description here</string>
+    <string name="label_back">Back</string>
+    <string name="label_process">Process</string>
+    <!--dialog-->
+
+    <!--ticket detail-->
+    <string name="label_onsite_visit_detail">On Site Visit Detail</string>
+    <string name="label_ticket_info">Ticket Information</string>
+    <string name="label_action_be_done">Action to be done</string>
+    <string name="label_escalation">Escalation</string>
+    <string name="label_assignment">Assignment</string>
+    <string name="label_closed">Close Ticket</string>
+    <string name="label_req_onsite">Request Visit</string>
+    <string name="label_response">Response</string>
+    <string name="label_approve">Approve</string>
+    <string name="label_reject">Reject</string>
+    <string name="label_guidance">Guidance</string>
+    <!--ticket detail-->
+
+    <!--close ticket popup-->
+    <string name="label_close_info">Information</string>
+    <string name="error_close_info">Information is required</string>
+    <string name="error_close_type">Close Type is required</string>
+    <string name="error_close_program">Program is required</string>
+    <string name="error_close_penyebab">Peyebab is required</string>
+    <!--close ticket popup-->
+
+    <!--escalation ticket popup-->
+    <string name="label_escalation_action">Describe action you have done</string>
+    <string name="error_escalation_action">Describe action you have done (min. 60 characters)</string>
+    <string name="label_escalation_require">Explain what you need from your superiors</string>
+    <string name="error_escalation_require">Explain what you need from your superiors  (min. 60 characters)</string>
+    <string name="error_remarks_eng">Describe your remarks (min. 60 characters)</string>
+    <!--escalation ticket popup-->
+
+    <!--escalation ticket popup-->
+    <string name="label_guidance_action">Please insert your guidance.</string>
+    <string name="error_guidance_action">Please insert your guidance. (min. 60 characters)</string>
+    <string name="label_guidance_require">Explain what you need from your superiors</string>
+    <string name="error_guidance_require">Explain what you need from your superiors  (min. 60 characters)</string>
+    <string name="error_guidance_eng">Describe your remarks (min. 60 characters)</string>
+    <!--escalation ticket popup-->
+
+    <!--assignment ticket popup-->
+    <string name="label_assignment_to">Assigned to</string>
+    <string name="label_assignment_type">Support type</string>
+    <string name="label_assignment_date">Assigned date</string>
+    <string name="error_assignment_to">Assigned to is required</string>
+    <string name="error_assignment_type">Support type is required</string>
+    <string name="error_assignment_date">Assigned date is required</string>
+    <string name="label_assignment_action">Please describe your notes</string>
+    <!--assignment ticket popup-->
+
+    <!--reqvisit ticket popup-->
+    <string name="label_reason_req_visit">Reason need visit</string>
+    <string name="error_reason_req_visit">Reason is required</string>
+    <!--reqvisit ticket popup-->
+
+    <!--appreqvisit ticket popup-->
+    <string name="label_notes_for_engineer">Notes for engineer</string>
+    <string name="error_notes_for_engineer">Notes is required</string>
+    <string name="label_date_visit">Visit date</string>
+    <string name="error_label_date_visit">Visit date is required</string>
+    <!--appreqvisit ticket popup-->
+
+    <!--approval popup-->
+    <string name="label_confirm_ticket">Approval Ticket Detail</string>
+    <string name="popup_approval_title">Approval Confirmation</string>
+    <string name="popup_approval_message">You will approved to close %1$s ticket with detail :\nLocation : %2$s \nSuspect : %3$s \nSeverity : %4$s</string>
+    <!--approval popup-->
+
+    <!--closed ticket row-->
+    <string name="row_ticket_no">Ticket No. %1$s</string>
+    <string name="row_ticket_remarks_dummy">Item Malfunction</string>
+    <string name="row_ticket_suspect_dummy">NATURE - LIGHTNING STRIKE - TV TRANSMITTER</string>
+    <string name="row_ticket_close_info_dummy">PROBLEM SOLVED</string>
+    <string name="row_ticket_close_date">%1$s closed by %2$s</string>
+    <!--closed ticket row-->
+
+    <!--dashboard widget-->
+    <string name="widget_trouble_ticket">Trouble Ticket</string>
+    <string name="widget_need_approval_counter">%1$s Critical - %2$s Major - %3$s Minor</string>
+    <string name="widget_need_approval_counter_null">0 Critical - 0 Major - 0 Minor</string>
+    <!--dashboard widget-->
+
+    <string name="placeholder_empty">No record found</string>
+    <string name="placeholder_offline">No Internet connection available</string>
+    <string name="error_fix_type">Close Type is required</string>
+    <string name="label_fix_type">Close Type</string>
+    <string name="error_pr_no">PR No. is required</string>
+    <string name="label_pr_no">PR No.</string>
+
+
+</resources>

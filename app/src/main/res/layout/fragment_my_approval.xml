@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/approvalRootView">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/ticketSwiper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/background_container">
+
+            <include android:id="@+id/positionHeader"
+                layout="@layout/position_header" />
+
+            <LinearLayout
+                android:background="@color/color_home_header"
+                android:id="@+id/infoLayout"
+                android:layout_below="@id/positionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_weight="0.3">
+                    <View
+                        android:layout_gravity="center"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/item_rect_red" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="Critical"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_white"
+                        android:textSize="11sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_weight="0.3">
+                    <View
+                        android:layout_gravity="center"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/item_rect_green" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="Major"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_white"
+                        android:textSize="11sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_weight="0.3">
+                    <View
+                        android:layout_gravity="center"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/item_rect_yellow" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="Minor"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_white"
+                        android:textSize="11sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/approvalTicketListRV"
+                android:background="@color/background_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/infoLayout" />
+
+            <include android:id="@+id/emptyListLayout"
+                layout="@layout/empty_list_layout"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

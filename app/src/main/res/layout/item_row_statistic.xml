@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/grid_menu_state_light"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" android:layout_marginRight="10dp" android:src="@drawable/item_rect_red" />
+        <TextView
+            android:textSize="15sp" android:textColor="@color/text_darkgreen" android:id="@+id/label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DOWN TIME" android:layout_weight="1.0" />
+        <TextView
+            android:textSize="15sp" android:textColor="@color/text_darkgreen" android:id="@+id/textView13" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OPEN" android:drawablePadding="5dp" />
+        <TextView
+            android:textSize="15sp" android:textColor="@color/text_darkgreen"
+            android:id="@+id/value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ON PROGRESS" />
+        <ImageView
+            android:id="@+id/imageView7"
+            android:visibility="gone" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_yes" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+    </LinearLayout>
+<View android:background="@color/background_container" android:layout_width="match_parent" android:layout_height="0.1dp" />
+    </LinearLayout>

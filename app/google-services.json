@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "670241962983",
+    "firebase_url": "https://trouble-ticket-a07d8.firebaseio.com",
+    "project_id": "trouble-ticket-a07d8",
+    "storage_bucket": "trouble-ticket-a07d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670241962983:android:2b801a9abacbb028",
+        "android_client_info": {
+          "package_name": "com.cudocomm.troubleticket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670241962983-qmv8fo7mvs6f64uvhrkmgaoddos0lhcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Dd6_I3wRAQw2NRVrc6lZiNTXr08JTX8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

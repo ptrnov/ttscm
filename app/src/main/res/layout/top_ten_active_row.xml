@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/grid_menu_state_light"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/text_darkgreen"
+            android:id="@+id/stationNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SITUBONDO"
+            android:layout_weight="1.0" />
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/text_darkgreen"
+            android:id="@+id/totalTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+    </LinearLayout>
+    <View android:background="@color/background_container" android:layout_width="match_parent" android:layout_height="0.1dp" />
+</LinearLayout>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_white_1000">
+
+        <RelativeLayout
+            android:id="@+id/statisticLayout"
+            android:layout_below="@id/headerHomeRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/summaryRL"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:padding="10dp">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/status_chart"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/severity_chart"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/summaryRL">
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/all_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_white_1000">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/firstChartHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_darkgreen"
+                android:padding="5dp">
+                <TextView
+                    android:textColor="@color/md_white_1000"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:text="STATUS"/>
+                <TextView
+                    android:textColor="@color/md_white_1000"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:text="SEVERITY"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/firstChart"
+                android:layout_below="@id/firstChartHeader"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/md_white_1000">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/statusChart"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/severityChart"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondChartHeader"
+                android:layout_below="@id/firstChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_darkgreen"
+                android:padding="5dp">
+                <TextView
+                    android:textColor="@color/md_white_1000"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:text="TT OVERVIEW"/>
+            </LinearLayout>
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/ovAllChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:padding="5dp"
+                android:layout_below="@id/secondChartHeader"
+                android:background="@color/md_white_1000"/>
+
+            <LinearLayout
+                android:id="@+id/thirdChartHeader"
+                android:layout_below="@id/ovAllChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_darkgreen"
+                android:padding="5dp">
+                <TextView
+                    android:textColor="@color/md_white_1000"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:text="OPEN/CLOSE OVERVIEW"/>
+            </LinearLayout>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/ocChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:padding="5dp"
+                android:layout_below="@id/thirdChartHeader"
+                android:background="@color/md_white_1000"/>
+
+            <ListView
+                android:id="@+id/chartLV"
+                android:layout_below="@id/ocChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/md_white_1000"
+                android:visibility="gone">
+            </ListView>
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <!--<LinearLayout
+        android:id="@+id/firstChartHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_darkgreen"
+        android:padding="5dp">
+        <TextView
+            android:textColor="@color/md_white_1000"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="STATUS"/>
+        <TextView
+            android:textColor="@color/md_white_1000"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="SEVERITY"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/firstChart"
+        android:layout_below="@id/firstChartHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/md_white_1000">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/statusChart"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:padding="5dp"/>
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/severityChart"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondChartHeader"
+        android:layout_below="@id/firstChart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_darkgreen"
+        android:padding="5dp">
+        <TextView
+            android:textColor="@color/md_white_1000"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="TT OVERVIEW"/>
+    </LinearLayout>
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/ovAllChart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="5dp"
+        android:layout_below="@id/secondChartHeader"
+        android:background="@color/md_white_1000"/>
+
+    <ListView
+        android:id="@+id/chartLV"
+        android:layout_below="@id/ovAllChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_white_1000">
+    </ListView>-->
+
+
+
+</RelativeLayout>

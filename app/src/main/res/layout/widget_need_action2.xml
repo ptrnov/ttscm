@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout android:paddingLeft="10dp"
+        android:paddingTop="0dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/widgetNeedAction"
+            android:background="@color/md_red_800" android:focusable="true" android:clickable="true"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@+id/imageView3"
+                android:background="@color/md_red_700" android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_approval"
+                android:adjustViewBounds="true"
+                android:tint="@color/color_white" />
+            <LinearLayout android:orientation="vertical"
+                android:background="@drawable/btn_red"
+                android:paddingLeft="8dp" android:paddingTop="4dp"
+                android:paddingBottom="4dp" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1.0">
+                <TextView  android:textSize="12sp" android:textColor="@color/color_white"
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Need Your Action / Job Assignment" />
+                <TextView  android:textStyle="bold" android:textColor="@color/color_white"
+                    android:id="@+id/needActionCounterTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="3 CRITICAL - 2 MAJOR - 1 MINOR"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

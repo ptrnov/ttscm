@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View style="@style/timeline_line" />
+        <View android:id="@+id/view_circle_start"
+            style="@style/timeline_point" />
+        <TextView
+            android:id="@+id/timelineTimeTV"
+            android:text="10:13"
+            style="@style/timeline_time" />
+        <TextView
+            android:id="@+id/timelineDateTV"
+            android:layout_below="@id/timelineTimeTV"
+            android:text="18 Feb 2017"
+            style="@style/timeline_date"/>
+        <TextView
+            android:id="@+id/timelineTitleTV"
+            android:text="OPEN TICKET NO. D170001"
+            android:layout_toRightOf="@+id/view_circle_start"
+            android:layout_toEndOf="@+id/view_circle_start"
+            style="@style/timeline_title"
+            />
+        <TextView
+            android:id="@+id/timelineDescTV"
+            android:layout_toRightOf="@+id/view_circle_start"
+            android:layout_toEndOf="@+id/view_circle_start"
+            android:layout_below="@+id/timelineTitleTV"
+            android:text="testpagi..testpagi..testpagi..testpagi..testpagi..testpagi..testpagi..testpagi..testpagi.."
+            style="@style/timeline_desc" />
+
+        <TextView
+            android:id="@+id/timelineUserTV"
+            style="@style/timeline_user"
+            android:layout_toRightOf="@+id/view_circle_start"
+            android:layout_toEndOf="@+id/view_circle_start"
+            android:text="Joko Sungkowo | Technician | Tegal IVM" />
+    </RelativeLayout>
+
+</RelativeLayout>

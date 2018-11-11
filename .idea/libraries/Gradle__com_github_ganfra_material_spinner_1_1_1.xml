@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ganfra:material-spinner-1.1.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-spinner-1.1.1.aar/6d34d0028d0661baf2abc19f13f5ffe5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-spinner-1.1.1.aar/6d34d0028d0661baf2abc19f13f5ffe5/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ganfra/material-spinner/1.1.1/dfedd594fc5f71ab9bd68b5b44d56b1c0a35c4e6/material-spinner-1.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

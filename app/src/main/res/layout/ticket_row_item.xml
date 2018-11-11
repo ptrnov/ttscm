@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/grid_menu_state_light">
+
+    <View
+        android:id="@+id/indicator"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/layout"
+        android:background="@color/color_btn_negative"/>
+
+<LinearLayout
+    android:layout_toRightOf="@id/indicator"
+    android:id="@+id/layout"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp">
+
+
+
+    <LinearLayout android:orientation="vertical"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0">
+        <TextView android:textSize="15sp"
+            android:textColor="@color/text_darkgreen"
+            android:id="@+id/ticketNoTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Medium Text" />
+        <LinearLayout android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView android:textSize="12sp" android:textStyle="bold" android:textColor="@color/text_darkgreen" android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/ticketSuspectTV" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Medium Text" android:layout_weight="1.0" />
+            <TextView android:textSize="13sp" android:textStyle="bold" android:textColor="@color/color_btn" android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/ticketSeverityTV" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="Small Text" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView android:textSize="12sp" android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/ticketDateTV" android:layout_width="match_parent" android:layout_height="match_parent" android:text="Small Text" android:layout_weight="1.0" />
+            <TextView android:textSize="11sp" android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/ticketCreatorTV" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="Small Text" android:capitalize="words" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:tint="@color/text_darkgreen"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_next"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:adjustViewBounds="true" />
+
+</LinearLayout>
+    <View
+        android:layout_toRightOf="@id/indicator"
+        android:layout_below="@id/layout" android:background="#ffc5c5c5" android:layout_width="fill_parent" android:layout_height="0.5dip"  />
+
+</RelativeLayout>

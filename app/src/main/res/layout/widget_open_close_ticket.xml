@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/headerHomeRL"
+    android:layout_above="@id/homeMenuRV"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="0dp">
+
+        <LinearLayout
+            android:id="@+id/iconLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/openIcon"
+                android:layout_width="0dip"
+                android:layout_height="40dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:background="@color/md_red_700"
+                android:padding="8dp"
+                android:src="@drawable/ic_tt_act"
+                android:tint="@color/color_white" />
+
+            <ImageView
+                android:id="@+id/closeIcon"
+                android:layout_width="0dip"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:background="@color/md_green_900"
+                android:padding="8dp"
+                android:src="@drawable/ic_yes"
+                android:tint="@color/color_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/valueLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iconLayout">
+
+            <TextView
+                android:id="@+id/openTV"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:background="@color/md_grey_400"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="0"
+                android:textColor="@color/text_darkgreen"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/closeTV"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:background="@color/md_grey_400"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="0"
+                android:textColor="@color/text_darkgreen"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/severityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/criticalIcon"
+                android:background="@color/md_red_700"
+                android:layout_marginRight="8dp"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="30dp"
+                android:layout_weight="0.3"
+                android:text="CRITICAL"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_white_1000"
+                android:adjustViewBounds="true"
+                android:tint="@color/color_white"/>
+            <TextView android:id="@+id/majorIcon"
+                android:background="@color/md_orange_800"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="30dp"
+                android:layout_weight="0.3"
+                android:text="MAJOR"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_white_1000"
+                android:adjustViewBounds="true"
+                android:tint="@color/color_white" />
+            <TextView
+                android:id="@+id/minorIcon"
+                android:background="@color/md_yellow_800"
+                android:layout_marginLeft="8dp"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="30dp"
+                android:layout_weight="0.3"
+                android:text="MINOR"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_white_1000"
+                android:adjustViewBounds="true"
+                android:tint="@color/color_white" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/value2Layout"
+            android:layout_below="@id/severityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/criticalTV"
+                android:background="@color/md_grey_400"
+                android:layout_marginRight="8dp"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:adjustViewBounds="true"
+                android:text="0"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/text_darkgreen"/>
+            <TextView android:id="@+id/majorTV"
+                android:background="@color/md_grey_400"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:adjustViewBounds="true"
+                android:text="0"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/text_darkgreen"/>
+            <TextView android:id="@+id/minorTV"
+                android:layout_marginLeft="8dp"
+                android:background="@color/md_grey_400"
+                android:padding="8dp"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:adjustViewBounds="true"
+                android:text="0"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/text_darkgreen"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

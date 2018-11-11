@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout android:paddingLeft="10dp" android:paddingTop="0dp"
+        android:paddingRight="10dp" android:paddingBottom="5dp"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/addDeposit"
+            android:background="@color/colorPrimaryDark" android:focusable="true" android:clickable="true"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@+id/imageView3"
+                android:background="@color/colorPrimary" android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_approval"
+                android:adjustViewBounds="true"
+                android:tint="@color/color_white" />
+            <LinearLayout android:orientation="vertical"
+                android:background="@drawable/btn_default_no_radius"
+                android:paddingLeft="8dp" android:paddingTop="4dp"
+                android:paddingBottom="4dp" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1.0">
+                <TextView  android:textSize="12sp" android:textColor="@color/color_white" android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/textView18" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Total Ticket" />
+                <TextView  android:textStyle="bold"
+                    android:textColor="@color/color_white"
+                    android:id="@+id/totalTicketTV" android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:text="3 CRITICAL - 2 MAJOR - 1 MINOR" />
+            </LinearLayout>
+            <!--<ImageView android:id="@+id/imageView13" android:background="@drawable/btn_default_no_radius" android:padding="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_yes" android:scaleType="fitCenter" android:adjustViewBounds="true" android:tint="#ffffff" />-->
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

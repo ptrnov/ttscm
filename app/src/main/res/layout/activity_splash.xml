@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tts_bg_mobile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/tts_logo_IV"
+            android:src="@drawable/tts_logo"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:text="@string/app_name"
+            android:id="@+id/appNameTV"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_below="@+id/tts_logo_IV" />
+
+        <TextView
+            android:text="@string/app_build"
+            android:id="@+id/appBuildTV"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_below="@+id/appNameTV" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/footerRL">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageLL"
+            android:weightSum="12"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView"
+                android:layout_weight="2"
+                android:src="@drawable/ic_indosiar" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="3"
+                android:src="@drawable/ic_sctv" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="3"
+                android:src="@drawable/ic_nexmedia" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="4"
+                android:src="@drawable/ic_ochannel" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/powered_by"
+            android:id="@+id/poweredTV"
+            android:layout_alignParentBottom="false"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:textColor="@color/color_white"
+            android:layout_below="@+id/imageLL"
+            android:layout_marginBottom="10dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

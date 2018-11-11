@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_dashboard_ticket">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/ticketSwiper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/background_container">
+
+            <include android:id="@+id/infoLayout" layout="@layout/ticket_indicator_info" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/searchET"
+                android:layout_below="@id/infoLayout"
+                android:hint="@string/search_by_site_or_region"
+                app:met_floatingLabel="normal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ticketListRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_container"
+                android:layout_below="@id/searchET"/>
+            <include android:id="@+id/emptyListLayout"
+                layout="@layout/empty_list_layout2"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

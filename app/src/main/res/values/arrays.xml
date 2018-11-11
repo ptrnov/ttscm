@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_act_site_detail">
+        <item>Ticket Info</item>
+        <item>History</item>
+    </string-array>
+
+    <string-array name="severity">
+        <item>Critical</item>
+        <item>Minor</item>
+        <item>Major</item>
+    </string-array>
+
+    <string-array name="assign_type">
+        <item>Guidance</item>
+        <item>On Site Visit</item>
+        <!--<item>Remote Pengiriman Barang</item>-->
+    </string-array>
+    <string-array name="assign_date">
+        <item>Now</item>
+        <item>Choose Date</item>
+    </string-array>
+
+
+    <string-array name="menu_array_technician">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>Down Time</item>
+        <item>Kerusakan</item>
+        <item>Gangguan AV</item>
+        <!--<item>Kerusakan</item>-->
+        <item>TT Activity</item>
+    </string-array>
+    <string-array name="menu_array_kst">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>TT Activity</item>
+        <item>Approval Ticket</item>
+        <!--<item>Approval Request</item>-->
+    </string-array>
+    <string-array name="menu_array_korwil">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>TT Activity</item>
+    </string-array>
+    <string-array name="menu_array_kadeptn">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>Down Time</item>
+        <item>Kerusakan</item>
+        <item>TT Activity</item>
+    </string-array>
+    <string-array name="menu_array_kadep_ts">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <!--<item>TT Activity</item>-->
+        <item>Job Assignment</item>
+        <item>Approval Request Visit</item>
+    </string-array>
+    <!--<string-array name="menu_array_kadep_infra">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>Job Assignment</item>
+        <item>Approval Request Visit</item>
+    </string-array>-->
+    <string-array name="menu_array_kadep_infra">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>TT Activity</item>
+    </string-array>
+    <string-array name="menu_array_engineer">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>TT Activity</item>
+        <item>On Site Visit</item>
+        <!--<item>My Performance</item>-->
+    </string-array>
+    <string-array name="menu_array_kadiv">
+        <item>Main Menu</item>
+        <item>Home</item>
+        <item>Statistics</item>
+        <!--<item>Top Ten List</item>-->
+        <item>Newest Ticket</item>
+        <item>AC Nielsen</item>
+        <item>Non-AC Nielsen</item>
+        <item>O Channel</item>
+        <item>Nexmedia</item>
+    </string-array>
+
+    <!--<array name="menu_icon_array_engineer">
+        <item>@null</item>
+        <item>@drawable/ic_stop</item>
+        <item>@drawable/ic_signal</item>
+        <item>@drawable/ic_vinspection</item>
+        <item>@drawable/ic_av</item>
+        <item>@drawable/ic_repair</item>
+        <item>@drawable/ic_tt_act</item>
+    </array>-->
+    <array name="menu_icon_array_technician">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_stop</item>
+        <item>@drawable/ic_repair</item>
+        <item>@drawable/ic_stop</item>
+        <!--<item>@drawable/ic_repair</item>-->
+        <item>@drawable/ic_tt_act</item>
+    </array>
+    <array name="menu_icon_array_kst">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_tt_act</item>
+        <item>@drawable/ic_approval</item>
+    </array>
+
+    <array name="menu_icon_array_korwil">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_tt_act</item>
+    </array>
+    <array name="menu_icon_array_kadeptn">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_stop</item>
+        <item>@drawable/ic_repair</item>
+        <item>@drawable/ic_tt_act</item>
+    </array>
+
+    <array name="menu_icon_array_kadep_ts">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <!--<item>@drawable/ic_tt_act</item>-->
+        <item>@drawable/ic_tt_act</item>
+        <item>@drawable/ic_users</item>
+    </array>
+
+   <!-- <array name="menu_icon_array_kadep_infra">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_tt_act</item>
+        <item>@drawable/ic_users</item>
+    </array>-->
+    <array name="menu_icon_array_kadep_infra">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <!--<item>@drawable/ic_stop</item>-->
+        <!--<item>@drawable/ic_repair</item>-->
+        <item>@drawable/ic_tt_act</item>
+    </array>
+
+    <array name="menu_icon_array_engineer">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_tt_act</item>
+        <item>@drawable/ic_tt_act</item>
+        <!--<item>@drawable/ic_users</item>-->
+    </array>
+    <array name="menu_icon_array_kadiv">
+        <item>@null</item>
+        <item>@drawable/ic_home</item>
+        <item>@mipmap/ic_pie_chart</item>
+        <!--<item>@drawable/ic_top</item>-->
+        <item>@mipmap/ic_new</item>
+        <item>@drawable/ic_ac_nielsen</item>
+        <item>@drawable/ic_non_ac_nielsen</item>
+        <item>@mipmap/ic_o_channel</item>
+        <item>@mipmap/ic_nex_media</item>
+    </array>
+
+    <!--<string-array name="menu_is_title">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>-->
+    <string-array name="menu_is_title_technician">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="menu_is_title_kst">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+
+    </string-array>
+
+    <string-array name="menu_is_title_korwil">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="menu_is_title_kadeptn">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="menu_is_title_kadep_ts">
+        <item>true</item>
+        <item>false</item>
+        <!--<item>false</item>-->
+        <item>false</item>
+        <item>false</item>
+    </string-array>
+
+    <!--<string-array name="menu_is_title_kadep_infra">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+    </string-array>-->
+    <string-array name="menu_is_title_kadep_infra">
+        <item>true</item>
+        <item>false</item>
+        <!--<item>false</item>-->
+        <!--<item>false</item>-->
+        <item>false</item>
+    </string-array>
+
+    <string-array name="menu_is_title_engineer">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <!--<item>false</item>-->
+    </string-array>
+    <string-array name="menu_is_title_kadiv">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <item>false</item>
+        <!--<item>false</item>-->
+    </string-array>
+
+    <array name="close_type_array">
+        <item>Fix Closed</item>
+        <item>Closed by PR</item>
+    </array>
+
+</resources>

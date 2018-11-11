@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_container">
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/photoPreviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="175dp" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_below="@id/photoPreviewLayout"
+            android:background="@color/text_darkgreen"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/contentPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tabLayout"
+            android:layout_above="@+id/actionLayout"/>
+        <RelativeLayout
+            android:id="@+id/actionLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View android:background="#ffc5c5c5" android:layout_width="fill_parent" android:layout_height="0.5dip" android:layout_margin="10dp" />
+
+            <TextView
+                android:id="@+id/actionDescTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_action_be_done"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/actionLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/actionDescTV"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/approveBtn"
+                    android:layout_margin="2dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_approve"
+                    style="@style/default_button"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+</RelativeLayout>
+

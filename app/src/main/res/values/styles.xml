@@ -1,0 +1,150 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="@style/AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+
+        <item name="android:textColor">@color/md_grey_500</item>
+        <item name="android:textColorHint">@color/md_green_700</item>
+        <item name="android:textSize">20sp</item>
+
+        <item name="colorAccent">@color/md_green_700</item>
+        <item name="colorControlNormal">@color/md_grey_500</item>
+        <item name="colorControlActivated">@color/md_green_700</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="progress_dialog_style" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Please wait…</item>
+        <item name="DialogSpotColor">@android:color/holo_orange_dark</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
+
+    <style name="form_label_key">
+        <item name="android:textSize">10.0sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginBottom">3.0dip</item>
+    </style>
+    <style name="form_label_value">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">@color/text_darkgreen</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginBottom">3.0dip</item>
+    </style>
+    <style name="timeline_time">
+        <item name="android:textSize">10.0sp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="timeline_date">
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="timeline_line">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_marginLeft">79dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="timeline_point">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:background">@drawable/item_start</item>
+        <item name="android:layout_marginLeft">70dp</item>
+        <!--<item name="android:layout_marginTop">70dp</item>-->
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="timeline_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+    <style name="timeline_desc">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+    <style name="timeline_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="default_button">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:background">@drawable/btn_default</item>
+        <item name="android:layout_width">120.0dip</item>
+        <item name="android:layout_height">36.0dip</item>
+        <item name="android:layout_marginTop">20.0dip</item>
+    </style>
+    <style name="default_button_2">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:background">@drawable/btn_default_2</item>
+        <item name="android:layout_width">120.0dip</item>
+        <item name="android:layout_height">36.0dip</item>
+        <item name="android:layout_marginTop">20.0dip</item>
+    </style>
+
+    <style name="default_negative_button">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:background">@drawable/btn_default_negative</item>
+        <item name="android:layout_width">120.0dip</item>
+        <item name="android:layout_height">36.0dip</item>
+        <item name="android:layout_marginTop">20.0dip</item>
+    </style>
+
+    <style name="dialog_animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_intent</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_intent</item>
+    </style>
+
+    <!-- Spinner Styles -->
+    <style name="SpinnerStyle" parent="Widget.AppCompat.Spinner">
+    </style>
+
+    <style name="SpinnerStyle.Underlined" parent="Widget.AppCompat.Spinner.Underlined">
+    </style>
+
+    <style name="TextAppearance.CityGuide.Placeholder" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/global_text_size_placeholder</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+</resources>

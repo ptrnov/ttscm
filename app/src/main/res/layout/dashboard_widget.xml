@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_av" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_toRightOf="@id/imageLayout"
+        android:layout_alignBottom="@id/imageLayout"
+        android:layout_alignTop="@id/imageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grid_menu_state"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/labelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_trouble_ticket"
+            android:textColor="@color/color_white"
+            android:textSize="12sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/labelTV"
+            android:layout_alignTop="@id/labelTV"
+            android:layout_above="@+id/valueLayout"
+            android:paddingLeft="5dp">
+            <View
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_white"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/valueLayout"
+            android:layout_below="@id/labelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/valueTV"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="INFO"
+                android:textColor="@color/color_white"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
