@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingRight="5dp">
@@ -7,17 +8,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/timelineTitleTV"
-            android:text="OPEN TICKET NO. D170001"
-            android:layout_toRightOf="@+id/view_circle_start"
+            style="@style/timeline_title"
             android:layout_toEndOf="@+id/view_circle_start"
-            style="@style/timeline_title" />
+            android:layout_toRightOf="@+id/view_circle_start"
+            android:text="OPEN TICKET NO. D170001" />
         <View style="@style/timeline_line"
             android:layout_alignBottom="@+id/timelineUserTV"/>
-        <View android:id="@+id/view_circle_start"
+
+        <View
+            android:id="@+id/view_circle_start"
             style="@style/timeline_point"
-            android:layout_alignBottom="@+id/timelineTitleTV"/>
+            android:layout_alignBottom="@+id/timelineTitleTV" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

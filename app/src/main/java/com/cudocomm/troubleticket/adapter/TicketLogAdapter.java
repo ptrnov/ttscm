@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.cudocomm.troubleticket.R;
 import com.cudocomm.troubleticket.model.TicketLog;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketLogAdapter extends RecyclerView.Adapter<TicketLogAdapter.ViewHolder> {
+    private static final String TAG = "APPROVE TICKET";
 
     private List<TicketLog> mDataset = new ArrayList<>();
 
@@ -31,6 +33,7 @@ public class TicketLogAdapter extends RecyclerView.Adapter<TicketLogAdapter.View
         public TextView timelineTitleTV;
         public TextView timelineDescTV;
         public TextView timelineUserTV;
+        public View timelineBulatTV;
 
         public ViewHolder(View v) {
             super(v);
@@ -39,15 +42,37 @@ public class TicketLogAdapter extends RecyclerView.Adapter<TicketLogAdapter.View
             timelineTitleTV= (TextView) v.findViewById(R.id.timelineTitleTV);
             timelineDescTV= (TextView) v.findViewById(R.id.timelineDescTV);
             timelineUserTV= (TextView) v.findViewById(R.id.timelineUserTV);
+            timelineBulatTV= v.findViewById(R.id.view_circle_start);
         }
 
         public void bind(final TicketLog ticket, final OnItemClickListener listener) {
-
             timelineTimeTV.setText(CommonsUtil.timeToString(ticket.getDate()));
             timelineDateTV.setText(CommonsUtil.dateToString(ticket.getDate()));
             timelineTitleTV.setText(ticket.getTitle());
             timelineDescTV.setText(ticket.getDesc().replace("\\n", "\n"));
             timelineUserTV.setText(ticket.getUser());
+//            timelineBulatTV.setBackgroundColor(0xfff00000);
+            //timelineBulatTV.setBackgroundResource(R.color.md_red_50);
+//            Log.d(TAG, "check_logstt: " + ticket.getLog_status() );
+
+            if (ticket.getLog_status().contentEquals("Open Ticket")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_grey);
+            }else if (ticket.getLog_status().contentEquals("Escalation")){
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_red);
+            } else if (ticket.getLog_status().contentEquals("Guidance")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_blue);
+            }else if (ticket.getLog_status().contentEquals("Assigment")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_orange);
+            }else if (ticket.getLog_status().contentEquals("Report")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_yellow_form);
+            }else if (ticket.getLog_status().contentEquals("re_Assigment")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_orange);
+            }else if (ticket.getLog_status().contentEquals("Close Ticket")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_green);
+            }else{
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_green);
+            }
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

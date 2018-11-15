@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
+import android.util.Log;
 
 import cz.msebera.android.httpclient.Header;
 import okhttp3.FormBody;
@@ -59,7 +60,7 @@ public class MyApproval extends BaseFragment {
     public View rootView;
     public TextView titleTV;
     public TextView statusTV;
-
+    private static final String TAG = "MY APPROVE VISIT";
     public CloseTicketAdapter closeTicketAdapter;
     public RecyclerView approvalTicketListRV;
     public SwipeRefreshLayout ticketSwiper;
@@ -223,6 +224,7 @@ public class MyApproval extends BaseFragment {
                                 .add(Constants.STATION_ID, String.valueOf(preferences.getPreferencesString(Constants.STATION_ID)))
                                 .build());
 
+                Log.d(TAG, "approve2: " +result);
             } catch (IOException e) {
                 e.printStackTrace();
             }

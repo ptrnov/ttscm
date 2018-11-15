@@ -401,7 +401,7 @@ public class LoginActivity extends BaseActivity {
 //                                updateMaster(masterModel);
 //                            };
 
-                            Log.d(TAG,"check_id="+currentUser.getUserId());
+                            Log.d(TAG,"check_id="+masterModel);
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);

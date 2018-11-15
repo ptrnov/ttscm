@@ -149,6 +149,7 @@ public class PopupAssignmentTicket extends DialogFragment implements DatePickerD
           @Override
           public void onClick(View v) {
               Calendar now = Calendar.getInstance();
+              now.add(Calendar.DATE, -1);
               DatePickerDialog dpd = DatePickerDialog.newInstance(
                       PopupAssignmentTicket.this,
                       now.get(Calendar.YEAR),

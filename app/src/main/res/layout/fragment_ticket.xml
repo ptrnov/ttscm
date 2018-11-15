@@ -67,6 +67,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_closed"
                     style="@style/default_button"/>
+                <Button
+                    android:id="@+id/guidanceBtn"
+                    android:layout_margin="2dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_guidance"
+                    style="@style/default_button"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/actionKadepTSLL"

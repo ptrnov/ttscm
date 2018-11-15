@@ -18,6 +18,8 @@ public class TicketLog implements Serializable {
     private String date;
     @SerializedName("user")
     private String user;
+    @SerializedName("log_status")
+    private String log_status;
 
     public String getTitle() {
         return title;
@@ -49,5 +51,13 @@ public class TicketLog implements Serializable {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getLog_status() {
+        return log_status;
+    }
+
+    public void setLog_status(String log_status) {
+        this.user = log_status;
     }
 }

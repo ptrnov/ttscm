@@ -32,6 +32,7 @@ import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupAssignmentTicket;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
 import com.cudocomm.troubleticket.component.PopupEscalationTicket;
+import com.cudocomm.troubleticket.component.PopupGuidanceTicket;
 import com.cudocomm.troubleticket.component.PopupRequestVisitTicket;
 import com.cudocomm.troubleticket.fragment.TicketHistoryFragment;
 import com.cudocomm.troubleticket.fragment.TicketInfoFragment;
@@ -85,18 +86,20 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
     private Button escalatedBtn;
     private Button closedBtn;
     private Button assignmentBtn;
+    private Button reportBtn;
 
     private CustomPopConfirm confDialog;
 //    private PopupCloseTicket popupCloseTicket;
     private PopupCloseTicketCustom popupCloseTicket;
     private PopupEscalationTicket popupResponseTicket;
     private PopupAssignmentTicket popupAssignmentTicket;
+    private PopupGuidanceTicket popupGuidanceTicket;
 
     private PopupRequestVisitTicket popupRequestVisitTicket;
 
     private SpotsDialog progressDialog;
 
-    private String reasonVisit, additionalInfo, actionEng, remarksEng, prNo;
+    private String reasonVisit, additionalInfo, actionEng, remarksEng, prNo,actionDescribe;
     private int closedType = 1;
     private Toolbar toolbar;
     
@@ -128,6 +131,7 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
         responseBtn = (Button) findViewById(R.id.responseBtn);
         escalatedBtn = (Button) findViewById(R.id.escalatedBtn);
         closedBtn = (Button) findViewById(R.id.closedBtn);
+        reportBtn = (Button) findViewById(R.id.reportBtn);
         assignmentBtn = (Button) findViewById(R.id.assignmentBtn);
     }
 
@@ -481,6 +485,105 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
                 popupCloseTicket.show(getFragmentManager(), null);
             }
         });
+
+        // Edit By ptr.nov
+        reportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupGuidanceTicket = PopupGuidanceTicket.newInstance("Report Ticket","Process","Back");
+                popupGuidanceTicket.setBackListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupGuidanceTicket.dismiss();
+                    }
+                });
+                popupGuidanceTicket.setProcessListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        actionDescribe = popupGuidanceTicket.getActionET().getText().toString();
+                        if(TextUtils.isEmpty(actionDescribe) || actionDescribe.length() < 60) {
+                            popupGuidanceTicket.getActionET().requestFocus();
+                            popupGuidanceTicket.getActionET().setError(getResources().getString(R.string.error_guidance_action));
+                        } else {
+                            String title = "Submission Confirmation";
+                            String msg = "You will Report " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
+                                    selectedTicket.getStationName() +
+                                    "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
+                                    "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
+                            confDialog.setBackListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    confDialog.dismiss();
+                                }
+                            });
+                            confDialog.setProcessListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    popupGuidanceTicket.dismiss();
+                                    confDialog.dismiss();
+                                    new GuidanceTicketTask().execute();
+
+                                }
+                            });
+                            confDialog.show(getFragmentManager(), null);
+
+                        }
+                    }
+                });
+                popupGuidanceTicket.show(getFragmentManager(), null);
+            }
+        });
+    }
+
+    class GuidanceTicketTask extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+        String url;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("guidance_to"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("id_updrs", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+//                        .add("from_position_id", String.valueOf(preferences.getPreferencesInt(Constants.POSITION_ID)))
+                        .add("remarks", actionDescribe)
+//                        .add("require", requireSupport)
+                        .build());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+
+            Logcat.i(result);
+            Log.d("Log123123",String.valueOf(result));
+            try {
+                JSONObject object = new JSONObject(result);
+                Log.d("Log123123",String.valueOf(object.get(Constants.RESPONSE_STATUS)));
+                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+                    finish();
+                    progressDialog.dismiss();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void postEngineerResponse() {

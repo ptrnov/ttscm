@@ -93,7 +93,9 @@
     <string name="label_response">Response</string>
     <string name="label_approve">Approve</string>
     <string name="label_reject">Reject</string>
+    <string name="label_return">Return</string>
     <string name="label_guidance">Guidance</string>
+    <string name="label_report">Report</string>
     <!--ticket detail-->
 
     <!--close ticket popup-->
@@ -102,6 +104,15 @@
     <string name="error_close_type">Close Type is required</string>
     <string name="error_close_program">Program is required</string>
     <string name="error_close_penyebab">Peyebab is required</string>
+    <!--close ticket popup-->
+
+    <!--close ticket visitpopup-->
+    <string name="label_closevisit_info">Information</string>
+    <string name="error_closevisit_tgl">Depature date</string>
+    <string name="error_closevisit_vesselno">Vessel No</string>
+    <string name="error_closevisit_type">Close Type is required</string>
+    <string name="error_closevisit_program">Program is required</string>
+    <string name="error_closevisit_penyebab">Peyebab is required</string>
     <!--close ticket popup-->
 
     <!--escalation ticket popup-->
@@ -122,11 +133,13 @@
 
     <!--assignment ticket popup-->
     <string name="label_assignment_to">Assigned to</string>
+    <string name="label_reassignment_to">Reason for re-assignment</string>
     <string name="label_assignment_type">Support type</string>
     <string name="label_assignment_date">Assigned date</string>
     <string name="error_assignment_to">Assigned to is required</string>
     <string name="error_assignment_type">Support type is required</string>
     <string name="error_assignment_date">Assigned date is required</string>
+    <string name="error_rassel_no">VasselNo is required</string>
     <string name="label_assignment_action">Please describe your notes</string>
     <!--assignment ticket popup-->
 

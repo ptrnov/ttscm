@@ -57,6 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_escalation"
+                android:background="@color/escalation"
                 style="@style/default_negative_button"/>
             <Button
                 android:id="@+id/assignmentToBtn2"
@@ -65,6 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_assignment"
+                android:background="@color/assigment"
                 style="@style/default_button_2"/>
             <Button
                 android:id="@+id/closedBtn"
@@ -73,6 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_closed"
+                android:background="@color/closeTicket"
                 style="@style/default_button"/>
             <Button
                 android:id="@+id/guidanceBtn"
@@ -81,6 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_guidance"
+                android:background="@color/guidance"
                 style="@style/default_button"/>
         </LinearLayout>
         <LinearLayout
@@ -98,6 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_assignment"
+                android:background="@color/assigment"
                 style="@style/default_button_2"/>
             <Button
                 android:id="@+id/closedAssignmentBtn"
@@ -106,6 +111,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_closed"
+                android:background="@color/closeTicket"
+                style="@style/default_button"/>
+            <Button
+                android:id="@+id/guidanceBtnKadepTs"
+                android:layout_margin="2dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_guidance"
+                android:background="@color/guidance"
                 style="@style/default_button"/>
         </LinearLayout>
 
@@ -124,6 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_assignment"
+                android:background="@color/assigment"
                 style="@style/default_button_2"/>
         </LinearLayout>
     </RelativeLayout>

@@ -56,7 +56,8 @@
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/label_reject"
+                android:text="@string/label_return"
+                android:background="@color/returnTicket"
                 style="@style/default_negative_button"/>
 
             <Button
@@ -66,6 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_approve"
+                android:background="@color/approve"
                 style="@style/default_button"/>
 
         </LinearLayout>

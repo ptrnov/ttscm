@@ -4,10 +4,10 @@
     android:shape="oval">
 
     <solid
-        android:color="@color/md_yellow_A700"/>
+        android:color="@color/md_yellow_A100"/>
     <stroke
         android:width="0.5dp"
-        android:color="@color/md_white_1000"
+        android:color="@color/md_yellow_A100"
         />
     <size
         android:width="8dp"

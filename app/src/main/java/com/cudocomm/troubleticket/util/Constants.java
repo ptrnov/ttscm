@@ -53,6 +53,7 @@ public class Constants {
     public static final String URL_REQUEST_APPROVE_CLOSE_NEW = "getrequestapproval2";
 //    public static final String URL_SUBMIT_ASSIGNMENT = "assignment_ticket";
     public static final String URL_SUBMIT_ASSIGNMENT = "new_assignment_ticket";
+    public static final String URL_SUBMIT_ASSIGNMENTV2 = "new_assignment_ticketv2";
     public static final String URL_SUBMIT_ASSIGNMENT_TO = "new_assignment_ticket_auto_generate";
 
     public static final String SELECTED_STATION_LAT = "stationLatitude";
@@ -75,6 +76,9 @@ public class Constants {
     public static String PARAM_TICKET_CONFIRM_BY = "ticket_confirmby";
     public static String PARAM_ID = "id";
     public static String PARAM_INFO = "info";
+    public static String PARAM_TGLDAPATURE = "tgldepature";
+    public static String PARAM_VESSELNO = "vesselno";
+
     public static String PARAM_DATE_VISIT = "date_visit";
     public static String PARAM_REASON = "reason";
     public static String PARAM_SECTION = "section";

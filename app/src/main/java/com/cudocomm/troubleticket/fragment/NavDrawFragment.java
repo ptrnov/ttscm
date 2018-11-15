@@ -178,6 +178,8 @@ public class NavDrawFragment extends BaseFragment {
             boolean first_trigger = true;
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // On selecting a spinner item
+                String item = parent.getItemAtPosition(position).toString();
                 if(first_trigger){
                     first_trigger = false;
                 } else {

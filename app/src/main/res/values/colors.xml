@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- STATUS WARNA by ptr.nov & Dody-->
+    <color name="openTiket">#616161</color>
+    <color name="escalation">#D50000</color>
+    <color name="guidance">#90CAF9</color>
+    <color name="assigment">#FF9800</color>
+    <color name="report">#FFEA00</color>
+    <color name="re_Assigment">#FF9800</color>
+    <color name="closeTicket">#00C853</color>
+    <color name="returnTicket">#D50000</color>
+    <color name="approve">#00C853</color>
+
+
     <color name="colorPrimary">#3d916e</color>
     <color name="colorPrimaryDark">#216b68</color>
     <color name="colorAccent">#212121</color>

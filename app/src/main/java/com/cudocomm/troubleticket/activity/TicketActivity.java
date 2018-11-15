@@ -23,6 +23,7 @@ import com.cudocomm.troubleticket.adapter.ViewPagerAdapter;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupAssignToTicket;
 import com.cudocomm.troubleticket.component.PopupAssignmentTicket;
+import com.cudocomm.troubleticket.component.PopupReAssignmentTicket;
 import com.cudocomm.troubleticket.component.PopupCloseTicket;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
 import com.cudocomm.troubleticket.component.PopupCloseTicketV2;
@@ -49,6 +50,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,9 +63,9 @@ import butterknife.Optional;
 import dmax.dialog.SpotsDialog;
 import fr.ganfra.materialspinner.MaterialSpinner;
 import okhttp3.FormBody;
+import java.util.Calendar;
 
-public class TicketActivity extends BaseActivity implements
-        BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class TicketActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     public static final String TAG = TicketActivity.class.getSimpleName();
 
     @BindView(R.id.photoPreviewLayout)
@@ -99,6 +102,8 @@ public class TicketActivity extends BaseActivity implements
     Button assignmentToBtn2;
     @BindView(R.id.guidanceBtn)
     Button guidanceBtn;
+    @BindView(R.id.guidanceBtnKadepTs)
+    Button guidanceBtnKadepTs;
 
     private CustomPopConfirm popConfirm;
     private PopupCloseTicket popupCloseTicket;
@@ -106,6 +111,7 @@ public class TicketActivity extends BaseActivity implements
     private PopupCloseTicketCustom popupCloseTicketCustom;
     private PopupEscalationTicket popupEscalationTicket;
     private PopupAssignmentTicket popupAssignmentTicket;
+    private PopupReAssignmentTicket popupReAssignmentTicket;
     private PopupAssignToTicket popupAssignToTicket;
     private PopupGuidanceTicket popupGuidanceTicket;
 
@@ -121,6 +127,9 @@ public class TicketActivity extends BaseActivity implements
     private String penyebab, program;
     private String startTime, duration;
     private String closedTypes;
+    private int totalSassign;
+    private String sassignSerializer;
+    private String reasonAssign;
 
     private List<UserModel> engineers;
     private CustomPopConfirm confDialog;
@@ -147,7 +156,39 @@ public class TicketActivity extends BaseActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new SpotsDialog(this, R.style.progress_dialog_style);
+            try {
+                sassignSerializer = ApiClient.post(
+                        CommonsUtil.getAbsoluteUrl("cek_total_assign"),
+                        new FormBody.Builder()
+                                .add(Constants.PARAM_TICKET_ID, selectedTicket.getTicketId())
+                                .build());
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(sassignSerializer);
+                    Log.d(TAG, "check_assign: " +obj.getString("assign"));
+                    totalSassign=Integer.parseInt(obj.getString("assign"));
+                    if (totalSassign > 0) {
+                        assignmentBtn.setText("ReAssignment");
+                    }else{
+                        assignmentBtn.setText("Assignment");
+                    }
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//        Date currentTime = Calendar.getInstance().getTime();
+
+//        DateFormat dateFormatter = onNewIntent();
+//        dateFormatter = new SimpleDateFormat("yyyyMMdd hhmmss");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+//        dateFormatter.setLenient(false);
+//        Date today = new Date();
+//        String s = dateFormatter.format(today);
     }
 
     private void updateComponent() {
@@ -159,6 +200,7 @@ public class TicketActivity extends BaseActivity implements
                     actionLL.setVisibility(View.GONE);
                     actionKadepTSLL.setVisibility(View.GONE);
                     actionAssign.setVisibility(View.VISIBLE);
+//                    guidanceBtn.setVisibility(View.GONE);
                 }else {
                     if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
                         actionLayout.setVisibility(View.VISIBLE);
@@ -169,7 +211,13 @@ public class TicketActivity extends BaseActivity implements
                         actionLayout.setVisibility(View.VISIBLE);
                         actionLL.setVisibility(View.VISIBLE);
                         actionKadepTSLL.setVisibility(View.GONE);
-                    } else {
+                    }else if (preferences.getPreferencesInt(Constants.POSITION_ID) == 1){
+                        guidanceBtn.setVisibility(View.GONE);
+                        actionLayout.setVisibility(View.VISIBLE);
+                        actionLL.setVisibility(View.VISIBLE);
+                        actionKadepTSLL.setVisibility(View.GONE);
+                        assignmentToBtn2.setVisibility(View.GONE);
+                    }else {
                         actionLayout.setVisibility(View.VISIBLE);
                         actionLL.setVisibility(View.VISIBLE);
                         actionKadepTSLL.setVisibility(View.GONE);
@@ -272,7 +320,7 @@ public class TicketActivity extends BaseActivity implements
     }
 
     @Optional
-    @OnClick({R.id.closedBtn, R.id.escalatedBtn, R.id.assignmentBtn, R.id.closedAssignmentBtn, R.id.assignmentToBtn, R.id.assignmentToBtn2,R.id.guidanceBtn})
+    @OnClick({R.id.closedBtn, R.id.escalatedBtn, R.id.assignmentBtn, R.id.closedAssignmentBtn, R.id.assignmentToBtn, R.id.assignmentToBtn2,R.id.guidanceBtn, R.id.guidanceBtnKadepTs})
     public void onActionPage(View view) {
         if(view.getId() == R.id.closedBtn) {
             if(selectedTicket.getTicketType() == 1 || selectedTicket.getTicketType() == 2) {
@@ -461,6 +509,8 @@ public class TicketActivity extends BaseActivity implements
             });
             popupEscalationTicket.show(getFragmentManager(), null);
         } else if(view.getId() == R.id.assignmentBtn) {
+            // edit by ptr.nov
+            // Kst - Reason for re-assignment Engginer
             new GetEngineerTask().execute();
 
         } else if(view.getId() == R.id.assignmentToBtn) {
@@ -679,6 +729,52 @@ public class TicketActivity extends BaseActivity implements
 //                popupCloseTicketCustom.show(getFragmentManager(), null);
 //            }
         }else if(view.getId() == R.id.guidanceBtn) {
+            //Editing by ptr.nov guidanceBtnKadepTs
+            popupGuidanceTicket = PopupGuidanceTicket.newInstance("Guidance Ticket","Process","Back");
+            popupGuidanceTicket.setBackListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupGuidanceTicket.dismiss();
+                }
+            });
+            popupGuidanceTicket.setProcessListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    actionDescribe = popupGuidanceTicket.getActionET().getText().toString();
+                    if(TextUtils.isEmpty(actionDescribe) || actionDescribe.length() < 60) {
+                        popupGuidanceTicket.getActionET().requestFocus();
+                        popupGuidanceTicket.getActionET().setError(getResources().getString(R.string.error_guidance_action));
+                    } else {
+                        String title = "Submission Confirmation";
+                        String msg = "You will guidance " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
+                                selectedTicket.getStationName() +
+                                "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
+                                "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                        confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
+                        confDialog.setBackListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                confDialog.dismiss();
+                            }
+                        });
+                        confDialog.setProcessListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                popupGuidanceTicket.dismiss();
+                                confDialog.dismiss();
+                                new GuidanceTicketTask().execute();
+
+                            }
+                        });
+                        confDialog.show(getFragmentManager(), null);
+
+                    }
+                }
+            });
+            popupGuidanceTicket.show(getFragmentManager(), null);
+        }else if(view.getId() == R.id.guidanceBtnKadepTs) {
+            //Editing by ptr.nov
             popupGuidanceTicket = PopupGuidanceTicket.newInstance("Guidance Ticket","Process","Back");
             popupGuidanceTicket.setBackListener(new View.OnClickListener() {
                 @Override
@@ -757,6 +853,7 @@ public class TicketActivity extends BaseActivity implements
             try {
                 result = ApiClient.post(CommonsUtil.getAbsoluteUrl(Constants.URL_TICKET_HISTORY),
                         new FormBody.Builder().add(Constants.PARAM_TICKET_NO, selectedTicket.getTicketNo()).build());
+                Log.d(TAG, "TecketHistory: " +result);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -772,6 +869,7 @@ public class TicketActivity extends BaseActivity implements
             try {
                 JSONObject object = new JSONObject(result);
                 ticketLogs = gson.fromJson(object.getString("data"), type);
+                Log.d(TAG, "TecketHistoryLogs: " +ticketLogs);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -1245,6 +1343,7 @@ public class TicketActivity extends BaseActivity implements
             progressDialog.show();
         }
 
+
         @Override
         protected Void doInBackground(Void... params) {
             try {
@@ -1260,81 +1359,247 @@ public class TicketActivity extends BaseActivity implements
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            try {
-                object = new JSONObject(result);
-                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
-                    Type type = new TypeToken<List<UserModel>>(){}.getType();
-                    try {
-                        engineers = gson.fromJson(object.getString("data"), type);
-                        Logcat.i("engineer_size:" + engineers.size());
+//            try {
+//                sassignSerializer = ApiClient.post(
+//                        CommonsUtil.getAbsoluteUrl("cek_total_assign"),
+//                        new FormBody.Builder()
+//                                .add(Constants.PARAM_TICKET_ID, selectedTicket.getTicketId())
+//                                .build());
+//                JSONObject obj = null;
+//                try {
+//                    obj = new JSONObject(sassignSerializer);
+//                    Log.d(TAG, "check_assign: " +obj.getString("assign"));
+//                    totalSassign=Integer.parseInt(obj.getString("assign"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+////                };
+//            try {
+//                sassignSerializer = ApiClient.post(
+//                        CommonsUtil.getAbsoluteUrl("cek_total_assign"),
+//                        new FormBody.Builder()
+//                                .add(Constants.PARAM_TICKET_ID, selectedTicket.getTicketId())
+//                                .build());
+//                JSONObject obj = null;
+//                try {
+//                    obj = new JSONObject(sassignSerializer);
+//                    Log.d(TAG, "check_assign: " +obj.getString("assign"));
+//                    totalSassign=Integer.parseInt(obj.getString("assign"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
-                        popupAssignmentTicket = PopupAssignmentTicket.newInstance("Assignment Ticket","Process","Back", engineers);
-                        popupAssignmentTicket.setBackListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                popupAssignmentTicket.dismiss();
-                            }
-                        });
-                        popupAssignmentTicket.setProcessListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
-                                assignAction = popupAssignmentTicket.getAssignmentActionET().getText().toString();
-                                if(popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition() == 0) {
-                                    popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
-                                    popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
-                                } else if(popupAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition() == 0) {
-                                    popupAssignmentTicket.getAssignTypeSpinner().getSelectedView().requestFocus();
-                                    popupAssignmentTicket.getAssignTypeSpinner().setError(getResources().getString(R.string.error_assignment_type));
-                                } else if(TextUtils.isEmpty(assignDate)) {
-                                    popupAssignmentTicket.getAssignmentDateET().requestFocus();
-                                    popupAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.error_assignment_date));
-                                } else if(TextUtils.isEmpty(assignAction)) {
-                                    popupAssignmentTicket.getAssignmentActionET().requestFocus();
-                                    popupAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
-                                } else {
-                                    String title = "Submission Confirmation";
-                                    String msg = "You will assign \""+ CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())+ "\" ticket with detail : \nLocation : "+
-                                            selectedTicket.getStationName() +
-                                            "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
-                                            "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity()) +
-                                            "\nto : " + popupAssignmentTicket.getSelectedEngineer().getUserName() +
-                                            "\nfor : " + popupAssignmentTicket.getSelectedAssignType() +
-                                            "\non : " + assignDate +
-                                            "\nnotes : " + assignAction;
-                                    popConfirm = CustomPopConfirm.newInstance(title,msg,"Yes","No");
-                                    popConfirm.setBackListener(new View.OnClickListener() {
+            try{
+                if (totalSassign > 0) {
+//                    popupReAssignmentTicket
+//                    SubmitAssignmentTaskTotalassign
+
+                    object = new JSONObject(result);
+                    if (object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+                        Type type = new TypeToken<List<UserModel>>() {}.getType();
+                        try {
+                            engineers = gson.fromJson(object.getString("data"), type);
+                            Logcat.i("engineer_size:" + engineers.size());
+
+                            popupReAssignmentTicket =
+                                    popupReAssignmentTicket.newInstance(
+                                            "Re-Assignment Ticket", "Process", "Back", engineers);
+                            popupReAssignmentTicket.setBackListener(
+                                    new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            popConfirm.dismiss();
+                                            popupReAssignmentTicket.dismiss();
                                         }
                                     });
-                                    popConfirm.setProcessListener(new View.OnClickListener() {
+                            popupReAssignmentTicket.setProcessListener(
+                                    new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            //okcui
+
+                                            assignDate = popupReAssignmentTicket.getAssignmentDateET().getText().toString();
+                                            assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
+                                            reasonAssign = popupReAssignmentTicket.getReassignToSpinner().getSelectedItem().toString();
+                                            if (popupReAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                                popupReAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                                popupReAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                            } else if (popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()== 0) {
+                                                popupReAssignmentTicket.getAssignTypeSpinner().getSelectedView().requestFocus();
+                                                popupReAssignmentTicket.getAssignTypeSpinner().setError(getResources().getString(R.string.error_assignment_type));
+                                            } else if (TextUtils.isEmpty(assignDate)) {
+                                                popupReAssignmentTicket.getAssignmentDateET().requestFocus();
+                                                popupReAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.error_assignment_date));
+
+                                            } else if (TextUtils.isEmpty(assignAction)) {
+                                                popupReAssignmentTicket.getAssignmentActionET().requestFocus();
+                                                popupReAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
+                                            } else {
+                                                String title = "Submission Confirmation";
+                                                String msg =
+                                                        "You will assign \""
+                                                                + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                                + "\" ticket with detail : \nLocation : "
+                                                                + selectedTicket.getStationName()
+                                                                + "\nSuspect : "
+                                                                + selectedTicket.getSuspect1Name()
+                                                                + " - "
+                                                                + selectedTicket.getSuspect2Name()
+                                                                + " - "
+                                                                + selectedTicket.getSuspect3Name()
+                                                                + "\nSeverity : "
+                                                                + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                                + "\nto : "
+                                                                + popupReAssignmentTicket.getSelectedEngineer().getUserName()
+                                                                + "\nfor : "
+                                                                + popupReAssignmentTicket.getSelectedAssignType()
+                                                                + "\non : "
+                                                                + assignDate
+                                                                + "\nnotes : "
+                                                                + assignAction
+                                                                + "\nreason : "
+                                                                + reasonAssign;
+                                                popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                                popConfirm.setBackListener(
+                                                        new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                popConfirm.dismiss();
+                                                            }
+                                                        });
+                                                popConfirm.setProcessListener(
+                                                        new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                popupReAssignmentTicket.dismiss();
+                                                                popConfirm.dismiss();
+
+                                                                new SubmitAssignmentTaskTotalassign().execute();
+                                                            }
+                                                        });
+                                                popConfirm.show(getFragmentManager(), null);
+                                            }
+                                        }
+                                    });
+
+                            popupReAssignmentTicket.show(getSupportFragmentManager(), null);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    progressDialog.dismiss();
+
+                } else {
+                    assignmentBtn.setText("Assignment");
+                      object = new JSONObject(result);
+                      if (object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+                        Type type = new TypeToken<List<UserModel>>() {}.getType();
+                        try {
+                          engineers = gson.fromJson(object.getString("data"), type);
+                          Logcat.i("engineer_size:" + engineers.size());
+
+                          popupAssignmentTicket =
+                              PopupAssignmentTicket.newInstance(
+                                  "Assignment Ticket", "Process", "Back", engineers);
+                          popupAssignmentTicket.setBackListener(
+                              new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                  popupAssignmentTicket.dismiss();
+                                }
+                              });
+                          popupAssignmentTicket.setProcessListener(
+                              new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                  assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
+                                  assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
+                                  if (popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                    popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                    popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                  } else if (popupAssignmentTicket
+                                          .getAssignTypeSpinner()
+                                          .getSelectedItemPosition()
+                                      == 0) {
+                                    popupAssignmentTicket
+                                        .getAssignTypeSpinner()
+                                        .getSelectedView()
+                                        .requestFocus();
+                                    popupAssignmentTicket
+                                        .getAssignTypeSpinner()
+                                        .setError(getResources().getString(R.string.error_assignment_type));
+                                  } else if (TextUtils.isEmpty(assignDate)) {
+                                    popupAssignmentTicket.getAssignmentDateET().requestFocus();
+                                    popupAssignmentTicket
+                                        .getAssignmentDateET()
+                                        .setError(getResources().getString(R.string.error_assignment_date));
+                                  } else if (TextUtils.isEmpty(assignAction)) {
+                                    popupAssignmentTicket.getAssignmentActionET().requestFocus();
+                                    popupAssignmentTicket
+                                        .getAssignmentActionET()
+                                        .setError(getResources().getString(R.string.label_assignment_action));
+                                  } else {
+                                    String title = "Submission Confirmation";
+                                    String msg =
+                                        "You will assign \""
+                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                            + "\" ticket with detail : \nLocation : "
+                                            + selectedTicket.getStationName()
+                                            + "\nSuspect : "
+                                            + selectedTicket.getSuspect1Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect2Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect3Name()
+                                            + "\nSeverity : "
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                            + "\nto : "
+                                            + popupAssignmentTicket.getSelectedEngineer().getUserName()
+                                            + "\nfor : "
+                                            + popupAssignmentTicket.getSelectedAssignType()
+                                            + "\non : "
+                                            + assignDate
+                                            + "\nnotes : "
+                                            + assignAction;
+                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                    popConfirm.setBackListener(
+                                        new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                            popConfirm.dismiss();
+                                          }
+                                        });
+                                    popConfirm.setProcessListener(
+                                        new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
                                             popupAssignmentTicket.dismiss();
                                             popConfirm.dismiss();
 
                                             new SubmitAssignmentTask().execute();
-                                        }
-                                    });
+                                          }
+                                        });
                                     popConfirm.show(getFragmentManager(), null);
+                                  }
                                 }
-                            }
-                        });
+                              });
 
-                        popupAssignmentTicket.show(getSupportFragmentManager(), null);
+                          popupAssignmentTicket.show(getSupportFragmentManager(), null);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                        } catch (JSONException e) {
+                          e.printStackTrace();
+                        }
+                      }
+                        progressDialog.dismiss();
+                  }
 
-
-                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            progressDialog.dismiss();
+
 //            popupAssignmentTicket.show(getFragmentManager(), null);
 
         }
@@ -1575,6 +1840,69 @@ public class TicketActivity extends BaseActivity implements
                         .build());
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            try {
+                object = new JSONObject(result);
+                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            progressDialog.dismiss();
+
+        }
+    }
+
+    private class SubmitAssignmentTaskTotalassign extends AsyncTask<Void, Void, Void> {
+
+        String result;
+        JSONObject object;
+        String engineerID_UPDRS;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+            int i = 0;
+            for (UserModel model:engineers) {
+                if (String.valueOf(popupReAssignmentTicket.getSelectedEngineer().getUserId())
+                        .equals(String.valueOf(engineers.get(i).getUserId()))){
+                    engineerID_UPDRS = String.valueOf(engineers.get(i).getId_updrs());
+                }
+                i++;
+            }
+
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl(Constants.URL_SUBMIT_ASSIGNMENTV2), new FormBody.Builder()
+                        .add(Constants.PARAM_TICKET_ID, selectedTicket.getTicketId())
+                        .add("from_user_id", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+//                        .add("to_user_id", String.valueOf(popupAssignmentTicket.getSelectedEngineer().getUserId()))
+                        .add("to_user_id", String.valueOf(engineerID_UPDRS))
+                        .add("date", assignDate)
+                        .add("action_id", String.valueOf(CommonsUtil.assignTypeToInt(popupReAssignmentTicket.getSelectedAssignType())))
+                        .add("info", assignAction)
+                        .add("onsite", "0")
+                        .add("req_remarks", "")
+//                        .add("reason_assign", "reasonAssign")
+                        .add("reason_assign", reasonAssign)
+                        .build());
+                Log.d(TAG, "chek_api: " + reasonAssign);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d(TAG, "chek_api: " + result);
             }
             return null;
         }
