@@ -48,7 +48,7 @@ public class PopupCloseTicketCustom extends DialogFragment {
   private View.OnClickListener processListener;
 
   private MaterialSpinner fixTypeSpinner;
-  private EditText ticketInfoET;
+  public EditText ticketInfoET;
   private EditText prNoET;
 
   String[] closeTypes;
@@ -93,7 +93,6 @@ public class PopupCloseTicketCustom extends DialogFragment {
     ticketInfoET = (EditText) rootView.findViewById(R.id.ticketInfoET);
     fixTypeSpinner = (MaterialSpinner) rootView.findViewById(R.id.fixTypeSpinner);
     prNoET = (MaterialEditText) rootView.findViewById(R.id.prNoET);
-
     closeTypes = getResources().getStringArray(R.array.close_type_array);
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(TTSApplication.getContext(), R.layout.spiner_dropdown_item, closeTypes);
     fixTypeSpinner.setAdapter(adapter);
@@ -106,8 +105,10 @@ public class PopupCloseTicketCustom extends DialogFragment {
         closedTypes = String.valueOf(fixTypeSpinner.getSelectedItem());
         if (closedTypes.equals("Fix Closed")) {
           prNoET.setVisibility(View.GONE);
+          ticketInfoET.setHint("Information");
         } else {
           prNoET.setVisibility(View.VISIBLE);
+          ticketInfoET.setHint("Information title and description PR");
         }
       }
 

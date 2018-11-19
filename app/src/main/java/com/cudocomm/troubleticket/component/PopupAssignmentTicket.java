@@ -113,7 +113,7 @@ public class PopupAssignmentTicket extends DialogFragment implements DatePickerD
     assignToSpinner = (MaterialSpinner) rootView.findViewById(R.id.assignToSpinner);
     assignTypeSpinner = (MaterialSpinner) rootView.findViewById(R.id.assignTypeSpinner);
       assignmentDateET = (EditText) rootView.findViewById(R.id.assignmentDateET);
-      assignmentActionET = (EditText) rootView.findViewById(R.id.actionET);
+    assignmentActionET = (EditText) rootView.findViewById(R.id.actionET);
 
 //    actionET = (EditText) rootView.findViewById(R.id.actionET);
 //    requireET = (EditText) rootView.findViewById(R.id.requireET);
@@ -136,12 +136,24 @@ public class PopupAssignmentTicket extends DialogFragment implements DatePickerD
     assignTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedAssignType = (String) parent.getSelectedItem();
+//        selectedAssignType = (String) parent.getSelectedItem();
+        selectedAssignType = String.valueOf(assignTypeSpinner.getSelectedItem());
+        if (selectedAssignType.equals("Guidance")) {
+          assignmentDateET.setVisibility(View.GONE);
+          assignmentActionET.setText("");
+          assignmentActionET.setError(null);
+        } else if (selectedAssignType.equals("On Site Visit")) {
+          assignmentDateET.setVisibility(View.VISIBLE);
+          assignmentActionET.setText("");
+          assignmentActionET.setError(null);
+//          ticketInfoET.setHint("Information title and description PR");
+        }
       }
 
       @Override
       public void onNothingSelected(AdapterView<?> parent) {
-        parent.setSelection(0);
+//        parent.setSelection(0);
+        resetEdT();
       }
     });
 
@@ -149,13 +161,14 @@ public class PopupAssignmentTicket extends DialogFragment implements DatePickerD
           @Override
           public void onClick(View v) {
               Calendar now = Calendar.getInstance();
-              now.add(Calendar.DATE, -1);
+//              now.add(Calendar.DATE, -1);
               DatePickerDialog dpd = DatePickerDialog.newInstance(
                       PopupAssignmentTicket.this,
                       now.get(Calendar.YEAR),
                       now.get(Calendar.MONTH),
                       now.get(Calendar.DAY_OF_MONTH)
               );
+              dpd.setMinDate(Calendar.getInstance());
               dpd.show(getActivity().getSupportFragmentManager(), null);
           }
       });
@@ -179,6 +192,14 @@ public class PopupAssignmentTicket extends DialogFragment implements DatePickerD
 //                        selectedEngineer.setUserName(hSpinner.spinnerValueTV.getText().toString());
       }
     });
+  }
+
+  public void resetEdT(){
+    assignmentDateET.setText("");
+    assignmentDateET.setError(null);
+    assignmentActionET.setText("");
+    assignmentActionET.setError(null);
+    assignToSpinner.clearFocus();
   }
 
   public View.OnClickListener getBackListener() {

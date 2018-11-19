@@ -6,8 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="check_logstt" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="CMakeSettings">
@@ -17,46 +16,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b7e554-3a61-49e6-bb14-fb2f4405e821" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/circle_blue.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticketvisit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/popup_reassignment_ticket.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/timeline_create_ticket_bckp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/circle_abu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_common_1_0_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_common_1_0_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_common_1_0_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_common_1_0_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_26_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_26_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_nineoldandroids_library_2_4_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_nineoldandroids_library_2_4_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/tt_scm.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/tt_scm.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/EngineerAssignmentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/EngineerAssignmentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MyVisitDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MyVisitDetailActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/TicketLogAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/TicketLogAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupApprovalRequestVisitTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupApprovalRequestVisitTicket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/MyApproval.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/MyApproval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/TicketLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/TicketLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow_form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow_form.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_approval_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_approval_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_engineer_assignment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_engineer_assignment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ticket.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/timeline_create_ticket.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/timeline_create_ticket.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ServiceGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ServiceGlobal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_my_visit_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_my_visit_detail.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
@@ -80,43 +62,239 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="205" column="35" selection-start-line="205" selection-start-column="35" selection-end-line="205" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopupCloseTicketCustom.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketCustom.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="901">
+              <caret line="105" column="10" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="10" />
+              <folding>
+                <element signature="e#4173#4174#0" expanded="true" />
+                <element signature="e#4201#4202#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TicketActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1374">
+              <caret line="1561" column="117" selection-start-line="1561" selection-start-column="117" selection-end-line="1561" selection-end-column="117" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#14435#14695#0" expanded="true" />
+                <element signature="e#14694#14695#0" expanded="true" />
+                <element signature="e#14762#17238#0" expanded="true" />
+                <element signature="e#15256#15307#0" expanded="true" />
+                <element signature="e#16188#16502#0" expanded="true" />
+                <element signature="e#16501#16502#0" expanded="true" />
+                <element signature="e#16575#17048#0" expanded="true" />
+                <element signature="e#17047#17048#0" expanded="true" />
+                <element signature="e#17237#17238#0" expanded="true" />
+                <element signature="e#17730#17996#0" expanded="true" />
+                <element signature="e#17995#17996#0" expanded="true" />
+                <element signature="e#18069#24908#0" expanded="true" />
+                <element signature="e#19262#19313#0" expanded="true" />
+                <element signature="e#19567#19618#0" expanded="true" />
+                <element signature="e#19814#19860#0" expanded="true" />
+                <element signature="e#21082#21141#0" expanded="true" />
+                <element signature="e#21436#21494#0" expanded="true" />
+                <element signature="e#21834#21885#0" expanded="true" />
+                <element signature="e#24907#24908#0" expanded="true" />
+                <element signature="e#25248#25433#0" expanded="true" />
+                <element signature="e#25432#25433#0" expanded="true" />
+                <element signature="e#25489#28062#0" expanded="true" />
+                <element signature="e#26019#26077#0" expanded="true" />
+                <element signature="e#26460#26519#0" expanded="true" />
+                <element signature="e#27276#27510#0" expanded="true" />
+                <element signature="e#27509#27510#0" expanded="true" />
+                <element signature="e#27567#27936#0" expanded="true" />
+                <element signature="e#27935#27936#0" expanded="true" />
+                <element signature="e#28061#28062#0" expanded="true" />
+                <element signature="e#28786#28972#0" expanded="true" />
+                <element signature="e#28971#28972#0" expanded="true" />
+                <element signature="e#29029#32470#0" expanded="true" />
+                <element signature="e#30027#30078#0" expanded="true" />
+                <element signature="e#30284#30335#0" expanded="true" />
+                <element signature="e#30483#30529#0" expanded="true" />
+                <element signature="e#30755#30813#0" expanded="true" />
+                <element signature="e#31053#31112#0" expanded="true" />
+                <element signature="e#31845#31896#0" expanded="true" />
+                <element signature="e#32469#32470#0" expanded="true" />
+                <element signature="e#42554#42737#0" expanded="true" />
+                <element signature="e#42736#42737#0" expanded="true" />
+                <element signature="e#42791#44813#0" expanded="true" />
+                <element signature="e#43219#43275#0" expanded="true" />
+                <element signature="e#44030#44264#0" expanded="true" />
+                <element signature="e#44263#44264#0" expanded="true" />
+                <element signature="e#44321#44687#0" expanded="true" />
+                <element signature="e#44686#44687#0" expanded="true" />
+                <element signature="e#44812#44813#0" expanded="true" />
+                <element signature="e#45126#45309#0" expanded="true" />
+                <element signature="e#45308#45309#0" expanded="true" />
+                <element signature="e#45363#47385#0" expanded="true" />
+                <element signature="e#45791#45847#0" expanded="true" />
+                <element signature="e#46602#46836#0" expanded="true" />
+                <element signature="e#46835#46836#0" expanded="true" />
+                <element signature="e#46893#47259#0" expanded="true" />
+                <element signature="e#47258#47259#0" expanded="true" />
+                <element signature="e#47384#47385#0" expanded="true" />
+                <element signature="e#71342#71649#0" expanded="true" />
+                <element signature="e#71648#71649#0" expanded="true" />
+                <element signature="e#71760#87430#0" expanded="true" />
+                <element signature="e#74661#74715#0" expanded="true" />
+                <element signature="e#75215#75265#0" expanded="true" />
+                <element signature="e#75592#75648#0" expanded="true" />
+                <element signature="e#75970#76014#0" expanded="true" />
+                <element signature="e#76347#76405#0" expanded="true" />
+                <element signature="e#79092#79526#0" expanded="true" />
+                <element signature="e#79525#79526#0" expanded="true" />
+                <element signature="e#79680#80343#0" expanded="true" />
+                <element signature="e#80342#80343#0" expanded="true" />
+                <element signature="e#81345#81399#0" expanded="true" />
+                <element signature="e#81887#81937#0" expanded="true" />
+                <element signature="e#82983#83041#0" expanded="true" />
+                <element signature="e#85616#86030#0" expanded="true" />
+                <element signature="e#86029#86030#0" expanded="true" />
+                <element signature="e#86176#86811#0" expanded="true" />
+                <element signature="e#86810#86811#0" expanded="true" />
+                <element signature="e#87245#87301#0" expanded="true" />
+                <element signature="e#87429#87430#0" expanded="true" />
+                <element signature="e#88531#88796#0" expanded="true" />
+                <element signature="e#88795#88796#0" expanded="true" />
+                <element signature="e#88897#101725#0" expanded="true" />
+                <element signature="e#90763#90817#0" expanded="true" />
+                <element signature="e#91610#91666#0" expanded="true" />
+                <element signature="e#92014#92070#0" expanded="true" />
+                <element signature="e#92417#92461#0" expanded="true" />
+                <element signature="e#92815#92873#0" expanded="true" />
+                <element signature="e#95116#95500#0" expanded="true" />
+                <element signature="e#95499#95500#0" expanded="true" />
+                <element signature="e#95642#96218#0" expanded="true" />
+                <element signature="e#96217#96218#0" expanded="true" />
+                <element signature="e#101561#101617#0" expanded="true" />
+                <element signature="e#101724#101725#0" expanded="true" />
+                <element signature="e#104453#104507#0" expanded="true" />
+                <element signature="e#104772#104830#0" expanded="true" />
+                <element signature="e#109767#109821#0" expanded="true" />
+                <element signature="e#110086#110144#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DownTimeActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="737" column="84" selection-start-line="737" selection-start-column="69" selection-end-line="737" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup_reassignment_ticket.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_reassignment_ticket.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="47" column="45" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="45" />
+              <folding>
+                <element signature="e#2650#2681#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopupAssignmentTicket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="143" column="44" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5277#5835#0" expanded="true" />
+                <element signature="e#5834#5835#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopupReAssignmentTicket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="151" column="60" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+              <folding>
+                <element signature="e#5338#5339#0" expanded="true" />
+                <element signature="e#8257#8258#0" expanded="true" />
+                <element signature="e#8290#8291#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup_assignment_ticket.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_assignment_ticket.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="45" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="45" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>approve1</find>
-      <find>URL_TICKET_HISTORY</find>
-      <find>e.printStackTrace();</find>
-      <find>ticketLogs</find>
-      <find>data</find>
-      <find>TicketLog</find>
-      <find>log_id</find>
-      <find>view_circle_start</find>
-      <find>timelineTitleTV</find>
-      <find>updateComponent</find>
-      <find>getR</find>
-      <find>getResources</find>
-      <find>setUser</find>
-      <find>title</find>
-      <find>LOG</find>
-      <find>setDesc</find>
-      <find>TAG</find>
-      <find>mp3</find>
-      <find>md_grey_700</find>
-      <find>md_red_A700</find>
-      <find>md_blue_200</find>
-      <find>md_orange_500</find>
-      <find>md_yellow_A400</find>
-      <find>md_green_A700</find>
-      <find>actionKadepTSLL</find>
-      <find>positio</find>
-      <find>posi</find>
+      <find>PopupCloseTicketCustom</find>
+      <find>prNoET</find>
+      <find>onsi</find>
+      <find>PopupGuidanceTicket</find>
+      <find>GuidanceTicketTask</find>
+      <find>popupGuidanceTicket</find>
+      <find>prNo</find>
       <find>assignmentBtn</find>
+      <find>GetAssignToTask2</find>
+      <find>ClosedTicketTask</find>
+      <find>ticketInfoETProperties</find>
+      <find>MaterialSpinner</find>
+      <find>resetEdT</find>
+      <find>tit</find>
+      <find>dcrip</find>
+      <find>getAbsoluteUrl</find>
+      <find>argTitle</find>
+      <find>resetEdTticketInfoET</find>
+      <find>popupCloseTicketCustom</find>
+      <find>setTicketInfoET</find>
+      <find>Bismillah</find>
+      <find>ClosedTicketTaskKERUSAKAN_WITHPR</find>
+      <find>ticketInfoET</find>
+      <find>closedBtn</find>
       <find>GetEngineerTask</find>
-      <find>totalSassign</find>
+      <find>close</find>
+      <find>if</find>
+      <find>assignmentDateET</find>
+      <find>getAssignmentDateET</find>
+      <find>SubmitDownTimeTask</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
+    <option name="EXPORT_PRIVATE_KEY" value="false" />
     <option name="KEY_STORE_PATH" value="E:\ionicProject\MP_Dashboard\apk_key\tt_scm\com.cudocomm.troubleticket.jks" />
     <option name="KEY_ALIAS" value="tt_scm" />
     <option name="BUILD_TARGET_KEY" value="apk" />
@@ -3562,7 +3740,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupGuidanceTicket.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_guidance_ticket.xml" />
         <option value="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/butterknife/R.java" />
@@ -3579,31 +3756,40 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MasterModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseMessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticketvisit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/MyApproval.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/MyReAssignmentDetail.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_reassignment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/ReAssignmentFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_reassignment_ticket.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/EngineerAssignmentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/timeline_create_ticket.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/TicketHistoryFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/TicketLog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/circle_blue.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow_form.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/TicketLogAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_ticket.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_approval_ticket.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_reassignment_ticket.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/circle_abu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/TicketLogAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ServiceGlobal.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseMessagingService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupApprovalRequestVisitTicket.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_my_visit_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/EngineerAssignmentActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticket.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticket_custom.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketCustom.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MyVisitDetailActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_assignment_ticket.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java" />
       </list>
     </option>
@@ -3622,9 +3808,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -3652,36 +3836,14 @@
             </path>
             <path>
               <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="troubleticket" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3691,7 +3853,7 @@
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
     <property name="android.sdk.path" value="C:/androidSdk" />
-    <property name="device.picker.selection" value="94b710ed" />
+    <property name="device.picker.selection" value="H1AXGY06E099M9G" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../TT_PM" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -3873,19 +4035,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" sideWeight="0.49129447" weight="0.43633276" />
       <window_info id="Build Variants" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.28160486" side_tool="true" weight="0.26994908" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.335352" side_tool="true" weight="0.30899832" />
       <window_info anchor="right" id="Viewer" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.7183952" weight="0.26994908" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.8803936" weight="0.013582343" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.668433" weight="0.30899832" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.664648" visible="true" weight="0.30899832" />
       <window_info id="Structure" order="1" sideWeight="0.30465117" side_tool="true" weight="0.21650265" />
-      <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
+      <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" weight="0.329296" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4981075" weight="0.39898133" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.48750946" weight="0.29711375" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.48523846" weight="0.29711375" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -3893,10 +4056,9 @@
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7077971" weight="0.4091681" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4928085" weight="0.040747028" />
       <window_info anchor="right" id="Drawable Viewer" order="3" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.8932627" visible="true" weight="0.34634975" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.8925057" weight="0.34634975" />
       <window_info id="Captures" order="2" weight="0.24981076" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.69534886" visible="true" weight="0.21650265" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4996215" weight="0.4787776" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.69534886" visible="true" weight="0.23996972" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -3907,7 +4069,43 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4996215" weight="0.4787776" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.665405" weight="0.30899832" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Drawable Viewer" order="3" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7077971" weight="0.4091681" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" sideWeight="0.49129447" weight="0.43633276" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Captures" order="6" weight="0.24981076" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.334595" side_tool="true" weight="0.30899832" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.48523846" weight="0.29711375" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
+      <window_info anchor="right" id="Assistant" order="11" weight="0.329296" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.8803936" weight="0.013582343" />
+      <window_info anchor="right" id="Viewer" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4928085" weight="0.040747028" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.8925057" weight="0.34634975" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.69534886" visible="true" weight="0.20893262" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Image Layers" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info id="Structure" order="1" sideWeight="0.30465117" side_tool="true" weight="0.21650265" />
+      <window_info anchor="right" id="Preview" order="10" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4996215" weight="0.4787776" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4981075" weight="0.39898133" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -3926,305 +4124,68 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/trouble/TrobleServcice.java">
+    <entry file="file://C:/androidSdk/sources/android-25/android/content/ContextWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/trouble/TroubleApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-641">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/GpsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="105">
+          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/RestarterService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/XYMarkerView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManagerGPS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Preferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/PieChartItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/OnMenuSelected.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/MyAxisValueFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Logcat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/LineChartItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/DetectFake.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/DayAxisValueFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+        <state relative-caret-position="-125">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/CommonsUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        <state relative-caret-position="101">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/CheckGPSValidation.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="-30">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/ChartItem.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="385" column="37" selection-start-line="385" selection-start-column="37" selection-end-line="385" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseInstanceIDService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/AssignmentFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="14" column="70" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+        <state relative-caret-position="-2021">
+          <caret line="161" column="41" lean-forward="true" selection-start-line="161" selection-start-column="41" selection-end-line="161" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-10.0.1.aar/c8c1af6d4497fb690796153ea2ceba36/jars/classes.jar!/com/google/firebase/iid/FirebaseInstanceId.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticketvisit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="102" column="59" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-common-10.0.1.aar/4501d206595db8d28d2479a78dfb4500/jars/classes.jar!/com/google/firebase/FirebaseApp.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5969">
-          <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/NotificationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ConnectivityChangeReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/BootUpReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-335">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/ApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/BarChartItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/TicketHistoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="71" column="62" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
+        <state relative-caret-position="313">
+          <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2510#2545#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_red.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/circle_blue.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_grey.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_orange.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_yellow_form.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_green_form.xml">
-      <provider selected="true" editor-type-id="text-editor">
+      <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circle_green.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/TicketLogAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="68" column="78" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="104" column="17" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_approval_ticket.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
-          <folding>
-            <element signature="e#2393#2415#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-588" />
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
@@ -4232,132 +4193,132 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_approval_ticket.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+        <state relative-caret-position="174">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/CustomPopConfirm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="295" column="57" selection-start-line="295" selection-start-column="53" selection-end-line="295" selection-end-column="57" />
+        <state relative-caret-position="-1480">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupApprovalRequestVisitTicket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="172" column="53" selection-start-line="172" selection-start-column="53" selection-end-line="172" selection-end-column="53" />
+        <state relative-caret-position="238">
+          <caret line="109" column="82" selection-start-line="109" selection-start-column="82" selection-end-line="109" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignToTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1258">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupEscalationTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="115" column="82" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketV2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupRequestVisitTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="112" selection-start-line="112" selection-end-line="112" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spiner_dropdown_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupGuidanceTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#14052#14312#0" expanded="true" />
-            <element signature="e#14311#14312#0" expanded="true" />
-            <element signature="e#14379#16855#0" expanded="true" />
-            <element signature="e#14873#14924#0" expanded="true" />
-            <element signature="e#15805#16119#0" expanded="true" />
-            <element signature="e#16118#16119#0" expanded="true" />
-            <element signature="e#16192#16665#0" expanded="true" />
-            <element signature="e#16664#16665#0" expanded="true" />
-            <element signature="e#16854#16855#0" expanded="true" />
-            <element signature="e#17347#17613#0" expanded="true" />
-            <element signature="e#17612#17613#0" expanded="true" />
-            <element signature="e#17686#23440#0" expanded="true" />
-            <element signature="e#18779#18830#0" expanded="true" />
-            <element signature="e#19084#19135#0" expanded="true" />
-            <element signature="e#19331#19377#0" expanded="true" />
-            <element signature="e#20366#20417#0" expanded="true" />
-            <element signature="e#23439#23440#0" expanded="true" />
-            <element signature="e#23780#23965#0" expanded="true" />
-            <element signature="e#23964#23965#0" expanded="true" />
-            <element signature="e#24021#26594#0" expanded="true" />
-            <element signature="e#24551#24609#0" expanded="true" />
-            <element signature="e#24992#25051#0" expanded="true" />
-            <element signature="e#25808#26042#0" expanded="true" />
-            <element signature="e#26041#26042#0" expanded="true" />
-            <element signature="e#26099#26468#0" expanded="true" />
-            <element signature="e#26467#26468#0" expanded="true" />
-            <element signature="e#26593#26594#0" expanded="true" />
-            <element signature="e#27282#27468#0" expanded="true" />
-            <element signature="e#27467#27468#0" expanded="true" />
-            <element signature="e#27525#30398#0" expanded="true" />
-            <element signature="e#28474#28525#0" expanded="true" />
-            <element signature="e#28731#28782#0" expanded="true" />
-            <element signature="e#28930#28976#0" expanded="true" />
-            <element signature="e#29771#29822#0" expanded="true" />
-            <element signature="e#30397#30398#0" expanded="true" />
-            <element signature="e#40482#40665#0" expanded="true" />
-            <element signature="e#40664#40665#0" expanded="true" />
-            <element signature="e#40719#42741#0" expanded="true" />
-            <element signature="e#41147#41203#0" expanded="true" />
-            <element signature="e#41958#42192#0" expanded="true" />
-            <element signature="e#42191#42192#0" expanded="true" />
-            <element signature="e#42249#42615#0" expanded="true" />
-            <element signature="e#42614#42615#0" expanded="true" />
-            <element signature="e#42740#42741#0" expanded="true" />
-            <element signature="e#43054#43237#0" expanded="true" />
-            <element signature="e#43236#43237#0" expanded="true" />
-            <element signature="e#43291#45313#0" expanded="true" />
-            <element signature="e#43719#43775#0" expanded="true" />
-            <element signature="e#44530#44764#0" expanded="true" />
-            <element signature="e#44763#44764#0" expanded="true" />
-            <element signature="e#44821#45187#0" expanded="true" />
-            <element signature="e#45186#45187#0" expanded="true" />
-            <element signature="e#45312#45313#0" expanded="true" />
-            <element signature="e#69290#69597#0" expanded="true" />
-            <element signature="e#69596#69597#0" expanded="true" />
-            <element signature="e#69708#75688#0" expanded="true" />
-            <element signature="e#70654#70708#0" expanded="true" />
-            <element signature="e#71079#71135#0" expanded="true" />
-            <element signature="e#71439#71495#0" expanded="true" />
-            <element signature="e#71806#71864#0" expanded="true" />
-            <element signature="e#74328#74722#0" expanded="true" />
-            <element signature="e#74721#74722#0" expanded="true" />
-            <element signature="e#74860#75467#0" expanded="true" />
-            <element signature="e#75466#75467#0" expanded="true" />
-            <element signature="e#75687#75688#0" expanded="true" />
-            <element signature="e#76732#76997#0" expanded="true" />
-            <element signature="e#76996#76997#0" expanded="true" />
-            <element signature="e#77098#82256#0" expanded="true" />
-            <element signature="e#77775#77829#0" expanded="true" />
-            <element signature="e#78490#78546#0" expanded="true" />
-            <element signature="e#78894#78950#0" expanded="true" />
-            <element signature="e#79304#79362#0" expanded="true" />
-            <element signature="e#81193#81497#0" expanded="true" />
-            <element signature="e#81496#81497#0" expanded="true" />
-            <element signature="e#81607#82071#0" expanded="true" />
-            <element signature="e#82070#82071#0" expanded="true" />
-            <element signature="e#82255#82256#0" expanded="true" />
-            <element signature="e#84130#84373#0" expanded="true" />
-            <element signature="e#84372#84373#0" expanded="true" />
-            <element signature="e#84439#87385#0" expanded="true" />
-            <element signature="e#84984#85038#0" expanded="true" />
-            <element signature="e#85303#85361#0" expanded="true" />
-            <element signature="e#86399#86693#0" expanded="true" />
-            <element signature="e#86692#86693#0" expanded="true" />
-            <element signature="e#86762#87212#0" expanded="true" />
-            <element signature="e#87211#87212#0" expanded="true" />
-            <element signature="e#87384#87385#0" expanded="true" />
-            <element signature="e#89444#89687#0" expanded="true" />
-            <element signature="e#89686#89687#0" expanded="true" />
-            <element signature="e#89753#92699#0" expanded="true" />
-            <element signature="e#90298#90352#0" expanded="true" />
-            <element signature="e#90617#90675#0" expanded="true" />
-            <element signature="e#91713#92007#0" expanded="true" />
-            <element signature="e#92006#92007#0" expanded="true" />
-            <element signature="e#92076#92526#0" expanded="true" />
-            <element signature="e#92525#92526#0" expanded="true" />
-            <element signature="e#92698#92699#0" expanded="true" />
+            <element signature="e#3860#3861#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ticket.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/MyVisitDetail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="187">
+          <caret line="91" column="62" selection-start-line="91" selection-start-column="62" selection-end-line="91" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_my_visit_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612" />
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="105" column="34" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_engineer_assignment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_engineer_assignment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="78" column="47" selection-start-line="71" selection-start-column="11" selection-end-line="78" selection-end-column="47" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -4366,8 +4327,248 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_ticket.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="140" column="48" selection-start-line="140" selection-start-column="48" selection-end-line="140" selection-end-column="48" />
+        <state relative-caret-position="-2040" />
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ticket.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ServiceGlobal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="468" column="43" selection-start-line="468" selection-start-column="42" selection-end-line="468" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/NotificationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseMessagingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="116" column="35" selection-start-line="116" selection-start-column="35" selection-end-line="116" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseInstanceIDService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ConnectivityChangeReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_my_visit_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="70" column="46" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="46" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/GpsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/BootUpReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_visit_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/EngineerAssignmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-107">
+          <caret line="483" column="56" selection-start-line="483" selection-start-column="40" selection-end-line="483" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="80" column="51" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticket.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="51" />
+          <folding>
+            <element signature="e#695#717#0" expanded="true" />
+            <element signature="e#1307#1333#0" expanded="true" />
+            <element signature="e#1766#1786#0" expanded="true" />
+            <element signature="e#1972#1995#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MyVisitDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2791">
+          <caret line="327" column="101" selection-start-line="327" selection-start-column="101" selection-end-line="327" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9871#13310#0" expanded="true" />
+            <element signature="e#10127#10330#0" expanded="true" />
+            <element signature="e#10329#10330#0" expanded="true" />
+            <element signature="e#10388#13214#0" expanded="true" />
+            <element signature="e#10891#10949#0" expanded="true" />
+            <element signature="e#11170#11222#0" expanded="true" />
+            <element signature="e#12016#12270#0" expanded="true" />
+            <element signature="e#12269#12270#0" expanded="true" />
+            <element signature="e#12331#12791#0" expanded="true" />
+            <element signature="e#12790#12791#0" expanded="true" />
+            <element signature="e#13213#13214#0" expanded="true" />
+            <element signature="e#13309#13310#0" expanded="true" />
+            <element signature="e#14964#19886#0" expanded="true" />
+            <element signature="e#15210#15410#0" expanded="true" />
+            <element signature="e#15409#15410#0" expanded="true" />
+            <element signature="e#15465#19787#0" expanded="true" />
+            <element signature="e#17065#17114#0" expanded="true" />
+            <element signature="e#17309#17355#0" expanded="true" />
+            <element signature="e#17552#17610#0" expanded="true" />
+            <element signature="e#17820#17879#0" expanded="true" />
+            <element signature="e#18103#18154#0" expanded="true" />
+            <element signature="e#18941#19195#0" expanded="true" />
+            <element signature="e#19194#19195#0" expanded="true" />
+            <element signature="e#19256#19645#0" expanded="true" />
+            <element signature="e#19644#19645#0" expanded="true" />
+            <element signature="e#19786#19787#0" expanded="true" />
+            <element signature="e#19885#19886#0" expanded="true" />
+            <element signature="e#19921#22672#0" expanded="true" />
+            <element signature="e#20171#20374#0" expanded="true" />
+            <element signature="e#20373#20374#0" expanded="true" />
+            <element signature="e#20432#22576#0" expanded="true" />
+            <element signature="e#20884#20940#0" expanded="true" />
+            <element signature="e#21725#21979#0" expanded="true" />
+            <element signature="e#21978#21979#0" expanded="true" />
+            <element signature="e#22040#22434#0" expanded="true" />
+            <element signature="e#22433#22434#0" expanded="true" />
+            <element signature="e#22575#22576#0" expanded="true" />
+            <element signature="e#22671#22672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/ApprovalTicketActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4450">
+          <caret line="355" column="119" selection-start-line="355" selection-start-column="114" selection-end-line="355" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticket_custom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="e#2428#2454#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_assignment_ticket.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="205" column="35" selection-start-line="205" selection-start-column="35" selection-end-line="205" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupCloseTicketCustom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="105" column="10" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="10" />
+          <folding>
+            <element signature="e#4173#4174#0" expanded="true" />
+            <element signature="e#4201#4202#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="151" column="60" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+          <folding>
+            <element signature="e#5338#5339#0" expanded="true" />
+            <element signature="e#8257#8258#0" expanded="true" />
+            <element signature="e#8290#8291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupAssignmentTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="143" column="44" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5277#5835#0" expanded="true" />
+            <element signature="e#5834#5835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_reassignment_ticket.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="e#2650#2681#0" expanded="true" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -4376,37 +4577,121 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="89" column="46" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="46" />
+        <state relative-caret-position="112">
+          <caret line="141" column="18" selection-start-line="141" selection-start-column="18" selection-end-line="141" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="76" column="55" selection-start-line="76" selection-start-column="55" selection-end-line="76" selection-end-column="55" />
+        <state relative-caret-position="210">
+          <caret line="737" column="84" selection-start-line="737" selection-start-column="69" selection-end-line="737" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticketvisit.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480" />
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/MyFirebaseMessagingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="50" column="49" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/service/ServiceGlobal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1812">
-          <caret line="230" column="24" selection-start-line="230" selection-start-column="24" selection-end-line="230" selection-end-column="24" />
+        <state relative-caret-position="-1374">
+          <caret line="1561" column="117" selection-start-line="1561" selection-start-column="117" selection-end-line="1561" selection-end-column="117" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14435#14695#0" expanded="true" />
+            <element signature="e#14694#14695#0" expanded="true" />
+            <element signature="e#14762#17238#0" expanded="true" />
+            <element signature="e#15256#15307#0" expanded="true" />
+            <element signature="e#16188#16502#0" expanded="true" />
+            <element signature="e#16501#16502#0" expanded="true" />
+            <element signature="e#16575#17048#0" expanded="true" />
+            <element signature="e#17047#17048#0" expanded="true" />
+            <element signature="e#17237#17238#0" expanded="true" />
+            <element signature="e#17730#17996#0" expanded="true" />
+            <element signature="e#17995#17996#0" expanded="true" />
+            <element signature="e#18069#24908#0" expanded="true" />
+            <element signature="e#19262#19313#0" expanded="true" />
+            <element signature="e#19567#19618#0" expanded="true" />
+            <element signature="e#19814#19860#0" expanded="true" />
+            <element signature="e#21082#21141#0" expanded="true" />
+            <element signature="e#21436#21494#0" expanded="true" />
+            <element signature="e#21834#21885#0" expanded="true" />
+            <element signature="e#24907#24908#0" expanded="true" />
+            <element signature="e#25248#25433#0" expanded="true" />
+            <element signature="e#25432#25433#0" expanded="true" />
+            <element signature="e#25489#28062#0" expanded="true" />
+            <element signature="e#26019#26077#0" expanded="true" />
+            <element signature="e#26460#26519#0" expanded="true" />
+            <element signature="e#27276#27510#0" expanded="true" />
+            <element signature="e#27509#27510#0" expanded="true" />
+            <element signature="e#27567#27936#0" expanded="true" />
+            <element signature="e#27935#27936#0" expanded="true" />
+            <element signature="e#28061#28062#0" expanded="true" />
+            <element signature="e#28786#28972#0" expanded="true" />
+            <element signature="e#28971#28972#0" expanded="true" />
+            <element signature="e#29029#32470#0" expanded="true" />
+            <element signature="e#30027#30078#0" expanded="true" />
+            <element signature="e#30284#30335#0" expanded="true" />
+            <element signature="e#30483#30529#0" expanded="true" />
+            <element signature="e#30755#30813#0" expanded="true" />
+            <element signature="e#31053#31112#0" expanded="true" />
+            <element signature="e#31845#31896#0" expanded="true" />
+            <element signature="e#32469#32470#0" expanded="true" />
+            <element signature="e#42554#42737#0" expanded="true" />
+            <element signature="e#42736#42737#0" expanded="true" />
+            <element signature="e#42791#44813#0" expanded="true" />
+            <element signature="e#43219#43275#0" expanded="true" />
+            <element signature="e#44030#44264#0" expanded="true" />
+            <element signature="e#44263#44264#0" expanded="true" />
+            <element signature="e#44321#44687#0" expanded="true" />
+            <element signature="e#44686#44687#0" expanded="true" />
+            <element signature="e#44812#44813#0" expanded="true" />
+            <element signature="e#45126#45309#0" expanded="true" />
+            <element signature="e#45308#45309#0" expanded="true" />
+            <element signature="e#45363#47385#0" expanded="true" />
+            <element signature="e#45791#45847#0" expanded="true" />
+            <element signature="e#46602#46836#0" expanded="true" />
+            <element signature="e#46835#46836#0" expanded="true" />
+            <element signature="e#46893#47259#0" expanded="true" />
+            <element signature="e#47258#47259#0" expanded="true" />
+            <element signature="e#47384#47385#0" expanded="true" />
+            <element signature="e#71342#71649#0" expanded="true" />
+            <element signature="e#71648#71649#0" expanded="true" />
+            <element signature="e#71760#87430#0" expanded="true" />
+            <element signature="e#74661#74715#0" expanded="true" />
+            <element signature="e#75215#75265#0" expanded="true" />
+            <element signature="e#75592#75648#0" expanded="true" />
+            <element signature="e#75970#76014#0" expanded="true" />
+            <element signature="e#76347#76405#0" expanded="true" />
+            <element signature="e#79092#79526#0" expanded="true" />
+            <element signature="e#79525#79526#0" expanded="true" />
+            <element signature="e#79680#80343#0" expanded="true" />
+            <element signature="e#80342#80343#0" expanded="true" />
+            <element signature="e#81345#81399#0" expanded="true" />
+            <element signature="e#81887#81937#0" expanded="true" />
+            <element signature="e#82983#83041#0" expanded="true" />
+            <element signature="e#85616#86030#0" expanded="true" />
+            <element signature="e#86029#86030#0" expanded="true" />
+            <element signature="e#86176#86811#0" expanded="true" />
+            <element signature="e#86810#86811#0" expanded="true" />
+            <element signature="e#87245#87301#0" expanded="true" />
+            <element signature="e#87429#87430#0" expanded="true" />
+            <element signature="e#88531#88796#0" expanded="true" />
+            <element signature="e#88795#88796#0" expanded="true" />
+            <element signature="e#88897#101725#0" expanded="true" />
+            <element signature="e#90763#90817#0" expanded="true" />
+            <element signature="e#91610#91666#0" expanded="true" />
+            <element signature="e#92014#92070#0" expanded="true" />
+            <element signature="e#92417#92461#0" expanded="true" />
+            <element signature="e#92815#92873#0" expanded="true" />
+            <element signature="e#95116#95500#0" expanded="true" />
+            <element signature="e#95499#95500#0" expanded="true" />
+            <element signature="e#95642#96218#0" expanded="true" />
+            <element signature="e#96217#96218#0" expanded="true" />
+            <element signature="e#101561#101617#0" expanded="true" />
+            <element signature="e#101724#101725#0" expanded="true" />
+            <element signature="e#104453#104507#0" expanded="true" />
+            <element signature="e#104772#104830#0" expanded="true" />
+            <element signature="e#109767#109821#0" expanded="true" />
+            <element signature="e#110086#110144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

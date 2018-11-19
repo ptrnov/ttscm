@@ -107,6 +107,7 @@ public class PopupApprovalRequestVisitTicket extends DialogFragment implements D
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        dpd.setMinDate(Calendar.getInstance()); //validasi sidable tangal kemarin.
         dpd.show(getActivity().getSupportFragmentManager(), null);
       }
     });

@@ -100,6 +100,7 @@
 
     <!--close ticket popup-->
     <string name="label_close_info">Information</string>
+    <!--<string name="label_close_info">Information title and description PR</string>-->
     <string name="error_close_info">Information is required</string>
     <string name="error_close_type">Close Type is required</string>
     <string name="error_close_program">Program is required</string>
@@ -125,6 +126,8 @@
 
     <!--escalation ticket popup-->
     <string name="label_guidance_action">Please insert your guidance.</string>
+    <string name="error_prNo_action_digit">Please insert your PR.No. (min and max. 9 digit)</string>
+    <string name="error_prNo_action_number">Please insert Number.</string>
     <string name="error_guidance_action">Please insert your guidance. (min. 60 characters)</string>
     <string name="label_guidance_require">Explain what you need from your superiors</string>
     <string name="error_guidance_require">Explain what you need from your superiors  (min. 60 characters)</string>
@@ -137,10 +140,13 @@
     <string name="label_assignment_type">Support type</string>
     <string name="label_assignment_date">Assigned date</string>
     <string name="error_assignment_to">Assigned to is required</string>
+    <string name="error_reason_to">Reason ReAssigned to is required</string>
     <string name="error_assignment_type">Support type is required</string>
     <string name="error_assignment_date">Assigned date is required</string>
     <string name="error_rassel_no">VasselNo is required</string>
+    <string name="error_dapature">Date Depature is required</string>
     <string name="label_assignment_action">Please describe your notes</string>
+    <string name="out_dated">your date is out dated </string>
     <!--assignment ticket popup-->
 
     <!--reqvisit ticket popup-->

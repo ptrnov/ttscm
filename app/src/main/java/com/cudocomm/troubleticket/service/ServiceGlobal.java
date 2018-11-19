@@ -412,7 +412,7 @@ public class ServiceGlobal extends Service {
                 PendingIntent.FLAG_ONE_SHOT);
         String RESOURCE_PATH = ContentResolver.SCHEME_ANDROID_RESOURCE + "://";
 
-        String path = RESOURCE_PATH + getPackageName() + "/raw/emergency_alert";
+        String path = RESOURCE_PATH + getPackageName() + "/raw/reminder_tiket";
         Uri defaultSoundUri = Uri.parse(path);
         Bitmap icon = BitmapFactory.decodeResource(getResources(),
                 R.mipmap.ic_launcher);
@@ -444,7 +444,7 @@ public class ServiceGlobal extends Service {
 //        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         String RESOURCE_PATH = ContentResolver.SCHEME_ANDROID_RESOURCE + "://";
 
-        String path = RESOURCE_PATH + getPackageName() + "/raw/emergency_alert";
+        String path = RESOURCE_PATH + getPackageName() + "/raw/reminder_tiket";
         Uri defaultSoundUri = Uri.parse(path);
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)

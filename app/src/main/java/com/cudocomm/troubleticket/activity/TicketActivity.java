@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -51,6 +52,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +65,7 @@ import butterknife.Optional;
 import dmax.dialog.SpotsDialog;
 import fr.ganfra.materialspinner.MaterialSpinner;
 import okhttp3.FormBody;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class TicketActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -130,6 +133,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     private int totalSassign;
     private String sassignSerializer;
     private String reasonAssign;
+//    private String ticketInfoET;
+    private EditText ticketInfoET;
 
     private List<UserModel> engineers;
     private CustomPopConfirm confDialog;
@@ -251,7 +256,6 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 textSliderView.bundle(new Bundle());
                 textSliderView.getBundle()
                         .putString("extra", desc);
-
                 photoPreviewLayout.addSlider(textSliderView);
             }
         }
@@ -270,7 +274,6 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 textSliderView.bundle(new Bundle());
                 textSliderView.getBundle()
                         .putString("extra", desc);
-
                 photoPreviewLayout.addSlider(textSliderView);
             }
         }
@@ -294,8 +297,6 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
             }
         }
 
-
-
         photoPreviewLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         photoPreviewLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         photoPreviewLayout.setCustomAnimation(new DescriptionAnimation());
@@ -313,7 +314,6 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
         viewPagerAdapter.addFragment(new TicketInfoFragment().newInstance(selectedTicket), "Ticket Info");
         viewPagerAdapter.addFragment(new TicketHistoryFragment().newInstance(maps), "History");
-
 
         contentPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(contentPager);
@@ -390,6 +390,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 //
                                     Log.d("addt11111",String.valueOf(prNo));
                                     if (closedTypes.equals("Close Type")) {
+//                                        popupCloseTicketCustom.setTicketInfoETHint("test piter");
                                         popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
                                         popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
                                     }else if (closedTypes.equals("Closed by PR")) {
@@ -401,12 +402,23 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                         }
 
                                         if (!prNo.equals("") && !additionalInfo.equals("")) {
-                                            popupCloseTicketCustom.dismiss();
-                                            Log.d("berhasil", "close");
-                                            Log.d("param111",selectedTicket.getTicketId()+","
-                                                     +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
-                                                     +additionalInfo+","+closedTypes+","+prNo);
-                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                            String regexStr = "^[0-9]*$";
+                                            if(prNo.length()==9 ){
+                                                if(prNo.trim().matches(regexStr)){
+                                                    popupCloseTicketCustom.dismiss();
+                                                    Log.d("berhasil", "close");
+                                                    Log.d("param111",selectedTicket.getTicketId()+","
+                                                            +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
+                                                            +additionalInfo+","+closedTypes+","+prNo);
+                                                    new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                                }else{
+                                                    popupCloseTicketCustom.getPrNoET().requestFocus();
+                                                    popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                                                }
+                                            }else{
+                                                popupCloseTicketCustom.getPrNoET().requestFocus();
+                                                popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                                            }
                                         }
                                     }else if (closedTypes.equals("Fix Closed")) {
                                         if (additionalInfo.equals("")) {
@@ -520,7 +532,10 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
             new GetAssignToTask2().execute();
 
         } else if(view.getId() == R.id.closedAssignmentBtn) {
+
+            // Kadep TS - ptr.nov
             popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket","Process","Back");
+
             popupCloseTicketCustom.setBackListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -536,8 +551,10 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 //                                    program = String.valueOf(popupCloseTicketV2.getProgramET());
 //                                    closedTypes = String.valueOf(popupCloseTicketV2.getPrNoET());
                     prNo = popupCloseTicketCustom.getPrNoET().getText().toString();
-//
                     Log.d("addt11111",String.valueOf(prNo));
+
+                    String regexStr = "^[0-9]*$";
+
                     if (closedTypes.equals("Close Type")) {
                         popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
                         popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
@@ -548,14 +565,21 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         if (prNo.equals("")) {
                             popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
                         }
-
-                        if (!prNo.equals("") && !additionalInfo.equals("")) {
-                            popupCloseTicketCustom.dismiss();
+                        if(prNo.length()!=9){
+                            popupCloseTicketCustom.getPrNoET().requestFocus();
+                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                        }
+                        if(!prNo.trim().matches(regexStr)){
+                            popupCloseTicketCustom.getPrNoET().requestFocus();
+                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                        }else{
+                           popupCloseTicketCustom.dismiss();
                             Log.d("berhasil", "close");
                             Log.d("param111",selectedTicket.getTicketId()+","
                                     +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
                                     +additionalInfo+","+closedTypes+","+prNo);
-                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                        new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+
                         }
                     }else if (closedTypes.equals("Fix Closed")) {
                         if (additionalInfo.equals("")) {
@@ -568,9 +592,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                     +additionalInfo+","+closedTypes+","+prNo);
                             new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
                         }
-
                     }
-
                 }
             });
             popupCloseTicketCustom.show(getFragmentManager(), null);
@@ -1418,69 +1440,155 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                     new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            //okcui
+                                            if(popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==2){
+                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                    Calendar c = Calendar.getInstance();
+                                                    String tglNow = sdf.format(c.getTime());
 
-                                            assignDate = popupReAssignmentTicket.getAssignmentDateET().getText().toString();
-                                            assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
-                                            reasonAssign = popupReAssignmentTicket.getReassignToSpinner().getSelectedItem().toString();
-                                            if (popupReAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
-                                                popupReAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
-                                                popupReAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
-                                            } else if (popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()== 0) {
+                                                    Date testDate;
+                                                    Date testDate1;
+                                                    Date testDate3;
+                                                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                                    assignDate = popupReAssignmentTicket.getAssignmentDateET().getText().toString();
+                                                    assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
+                                                    reasonAssign = popupReAssignmentTicket.getReassignToSpinner().getSelectedItem().toString();
+                                                    try{
+                                                        testDate = df.parse(assignDate);
+                                                        testDate1 = df.parse(tglNow);
+        //                                                if (testDate1.after(testDate)) {
+        //                                                    popupReAssignmentTicket.getAssignmentDateET().requestFocus();
+        ////                                                        popupReAssignmentTicket.getAssignmentDateET().setError(df.format(testDate));
+        //                                                    popupReAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.out_dated));
+        //                                                }else{
+        //                                                    return;
+        //                                                }
+                                                        assignDate = popupReAssignmentTicket.getAssignmentDateET().getText().toString();
+                                                        assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
+                                                    if (popupReAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                                        popupReAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                                        popupReAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                                    //
+                                                    }else if (popupReAssignmentTicket.getReassignToSpinner().getSelectedItemPosition()== 0) {
+                                                        popupReAssignmentTicket.getReassignToSpinner().getSelectedView().requestFocus();
+                                                        popupReAssignmentTicket.getReassignToSpinner().setError(getResources().getString(R.string.error_reason_to));
+                                                    }else if (TextUtils.isEmpty(assignDate)) {
+                                                        popupReAssignmentTicket.getAssignmentDateET().requestFocus();
+                                                        popupReAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.error_assignment_date));
+                                                    }else if (testDate1.after(testDate)){
+                                                        popupReAssignmentTicket.getAssignmentDateET().requestFocus();
+                                                        popupReAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.out_dated));
+                                                    }else if (TextUtils.isEmpty(assignAction)) {
+                                                        popupReAssignmentTicket.getAssignmentActionET().requestFocus();
+                                                        popupReAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
+                                                    }else {
+                                                        String title = "Submission Confirmation";
+                                                        String msg =
+                                                                "You will assign \""
+                                                                        + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                                        + "\" ticket with detail : \nLocation : "
+                                                                        + selectedTicket.getStationName()
+                                                                        + "\nSuspect : "
+                                                                        + selectedTicket.getSuspect1Name()
+                                                                        + " - "
+                                                                        + selectedTicket.getSuspect2Name()
+                                                                        + " - "
+                                                                        + selectedTicket.getSuspect3Name()
+                                                                        + "\nSeverity : "
+                                                                        + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                                        + "\nto : "
+                                                                        + popupReAssignmentTicket.getSelectedEngineer().getUserName()
+                                                                        + "\nfor : "
+                                                                        + popupReAssignmentTicket.getSelectedAssignType()
+                                                                        + "\non : "
+                                                                        + assignDate
+                                                                        + "\nnotes : "
+                                                                        + assignAction
+                                                                        + "\nreason : "
+                                                                        + reasonAssign;
+                                                        popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                                        popConfirm.setBackListener(
+                                                                new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View v) {
+                                                                        popConfirm.dismiss();
+                                                                    }
+                                                                });
+                                                        popConfirm.setProcessListener(
+                                                                new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View v) {
+                                                                        popupReAssignmentTicket.dismiss();
+                                                                        popConfirm.dismiss();
+
+                                                                        new SubmitAssignmentTaskTotalassign().execute();
+                                                                    }
+                                                                });
+                                                        popConfirm.show(getFragmentManager(), null);
+                                                    }
+
+                                                    } catch (ParseException e) {
+                                                        e.printStackTrace();
+                                                    };
+                                            }else if(popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==1){
+                                                assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
+                                                if (popupReAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                                    popupReAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                                    popupReAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                                    //
+                                                }else if (popupReAssignmentTicket.getReassignToSpinner().getSelectedItemPosition()== 0) {
+                                                    popupReAssignmentTicket.getReassignToSpinner().getSelectedView().requestFocus();
+                                                    popupReAssignmentTicket.getReassignToSpinner().setError(getResources().getString(R.string.error_reason_to));
+                                                }else if (TextUtils.isEmpty(assignAction)) {
+                                                    popupReAssignmentTicket.getAssignmentActionET().requestFocus();
+                                                    popupReAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
+                                                }else {
+                                                    String title = "Submission Confirmation";
+                                                    String msg =
+                                                            "You will assign \""
+                                                                    + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                                    + "\" ticket with detail : \nLocation : "
+                                                                    + selectedTicket.getStationName()
+                                                                    + "\nSuspect : "
+                                                                    + selectedTicket.getSuspect1Name()
+                                                                    + " - "
+                                                                    + selectedTicket.getSuspect2Name()
+                                                                    + " - "
+                                                                    + selectedTicket.getSuspect3Name()
+                                                                    + "\nSeverity : "
+                                                                    + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                                    + "\nto : "
+                                                                    + popupReAssignmentTicket.getSelectedEngineer().getUserName()
+                                                                    + "\nfor : "
+                                                                    + popupReAssignmentTicket.getSelectedAssignType()
+                                                                    + "\nnotes : "
+                                                                    + assignAction
+                                                                    + "\nreason : "
+                                                                    + reasonAssign;
+                                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                                    popConfirm.setBackListener(
+                                                            new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    popConfirm.dismiss();
+                                                                }
+                                                            });
+                                                    popConfirm.setProcessListener(
+                                                            new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    popupReAssignmentTicket.dismiss();
+                                                                    popConfirm.dismiss();
+
+                                                                    new SubmitAssignmentTaskTotalassign().execute();
+                                                                }
+                                                            });
+                                                    popConfirm.show(getFragmentManager(), null);
+                                                }
+                                            }else{
                                                 popupReAssignmentTicket.getAssignTypeSpinner().getSelectedView().requestFocus();
                                                 popupReAssignmentTicket.getAssignTypeSpinner().setError(getResources().getString(R.string.error_assignment_type));
-                                            } else if (TextUtils.isEmpty(assignDate)) {
-                                                popupReAssignmentTicket.getAssignmentDateET().requestFocus();
-                                                popupReAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.error_assignment_date));
-
-                                            } else if (TextUtils.isEmpty(assignAction)) {
-                                                popupReAssignmentTicket.getAssignmentActionET().requestFocus();
-                                                popupReAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
-                                            } else {
-                                                String title = "Submission Confirmation";
-                                                String msg =
-                                                        "You will assign \""
-                                                                + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
-                                                                + "\" ticket with detail : \nLocation : "
-                                                                + selectedTicket.getStationName()
-                                                                + "\nSuspect : "
-                                                                + selectedTicket.getSuspect1Name()
-                                                                + " - "
-                                                                + selectedTicket.getSuspect2Name()
-                                                                + " - "
-                                                                + selectedTicket.getSuspect3Name()
-                                                                + "\nSeverity : "
-                                                                + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
-                                                                + "\nto : "
-                                                                + popupReAssignmentTicket.getSelectedEngineer().getUserName()
-                                                                + "\nfor : "
-                                                                + popupReAssignmentTicket.getSelectedAssignType()
-                                                                + "\non : "
-                                                                + assignDate
-                                                                + "\nnotes : "
-                                                                + assignAction
-                                                                + "\nreason : "
-                                                                + reasonAssign;
-                                                popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
-                                                popConfirm.setBackListener(
-                                                        new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View v) {
-                                                                popConfirm.dismiss();
-                                                            }
-                                                        });
-                                                popConfirm.setProcessListener(
-                                                        new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View v) {
-                                                                popupReAssignmentTicket.dismiss();
-                                                                popConfirm.dismiss();
-
-                                                                new SubmitAssignmentTaskTotalassign().execute();
-                                                            }
-                                                        });
-                                                popConfirm.show(getFragmentManager(), null);
                                             }
+
                                         }
                                     });
 
@@ -1515,76 +1623,160 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                               new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                  assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
-                                  assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
-                                  if (popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
-                                    popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
-                                    popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
-                                  } else if (popupAssignmentTicket
-                                          .getAssignTypeSpinner()
-                                          .getSelectedItemPosition()
-                                      == 0) {
-                                    popupAssignmentTicket
-                                        .getAssignTypeSpinner()
-                                        .getSelectedView()
-                                        .requestFocus();
-                                    popupAssignmentTicket
-                                        .getAssignTypeSpinner()
-                                        .setError(getResources().getString(R.string.error_assignment_type));
-                                  } else if (TextUtils.isEmpty(assignDate)) {
-                                    popupAssignmentTicket.getAssignmentDateET().requestFocus();
-                                    popupAssignmentTicket
-                                        .getAssignmentDateET()
-                                        .setError(getResources().getString(R.string.error_assignment_date));
-                                  } else if (TextUtils.isEmpty(assignAction)) {
-                                    popupAssignmentTicket.getAssignmentActionET().requestFocus();
-                                    popupAssignmentTicket
-                                        .getAssignmentActionET()
-                                        .setError(getResources().getString(R.string.label_assignment_action));
-                                  } else {
-                                    String title = "Submission Confirmation";
-                                    String msg =
-                                        "You will assign \""
-                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
-                                            + "\" ticket with detail : \nLocation : "
-                                            + selectedTicket.getStationName()
-                                            + "\nSuspect : "
-                                            + selectedTicket.getSuspect1Name()
-                                            + " - "
-                                            + selectedTicket.getSuspect2Name()
-                                            + " - "
-                                            + selectedTicket.getSuspect3Name()
-                                            + "\nSeverity : "
-                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
-                                            + "\nto : "
-                                            + popupAssignmentTicket.getSelectedEngineer().getUserName()
-                                            + "\nfor : "
-                                            + popupAssignmentTicket.getSelectedAssignType()
-                                            + "\non : "
-                                            + assignDate
-                                            + "\nnotes : "
-                                            + assignAction;
-                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
-                                    popConfirm.setBackListener(
-                                        new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                            popConfirm.dismiss();
-                                          }
-                                        });
-                                    popConfirm.setProcessListener(
-                                        new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                            popupAssignmentTicket.dismiss();
-                                            popConfirm.dismiss();
 
-                                            new SubmitAssignmentTask().execute();
-                                          }
-                                        });
-                                    popConfirm.show(getFragmentManager(), null);
-                                  }
+                                    if(popupAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==2){
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                            Calendar c = Calendar.getInstance();
+                                            String tglNow = sdf.format(c.getTime());
+
+                                            Date testDate;
+                                            Date testDate1;
+                                            Date testDate3;
+                                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                            assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
+                                            assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
+                                            try{
+                                                testDate = df.parse(assignDate);
+                                                testDate1 = df.parse(tglNow);
+
+        //                                      assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
+        //                                      assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
+                                              if (popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                                popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                                popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                              } else if (popupAssignmentTicket
+                                                      .getAssignTypeSpinner()
+                                                      .getSelectedItemPosition()
+                                                  == 0) {
+                                                popupAssignmentTicket
+                                                    .getAssignTypeSpinner()
+                                                    .getSelectedView()
+                                                    .requestFocus();
+                                                popupAssignmentTicket
+                                                    .getAssignTypeSpinner()
+                                                    .setError(getResources().getString(R.string.error_assignment_type));
+                                              }
+                                              else if (TextUtils.isEmpty(assignDate)) {
+                                                popupAssignmentTicket.getAssignmentDateET().requestFocus();
+                                                popupAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.error_assignment_date));
+                                              }
+                                              else if (testDate1.after(testDate)){
+                                                  popupAssignmentTicket.getAssignmentDateET().requestFocus();
+                                                  popupAssignmentTicket.getAssignmentDateET().setError(getResources().getString(R.string.out_dated));
+                                              }
+                                              else if (TextUtils.isEmpty(assignAction)) {
+                                                popupAssignmentTicket.getAssignmentActionET().requestFocus();
+                                                popupAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
+                                              } else {
+                                                    String title = "Submission Confirmation";
+                                                    String msg =
+                                                        "You will assign \""
+                                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                            + "\" ticket with detail : \nLocation : "
+                                                            + selectedTicket.getStationName()
+                                                            + "\nSuspect : "
+                                                            + selectedTicket.getSuspect1Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect2Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect3Name()
+                                                            + "\nSeverity : "
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                            + "\nto : "
+                                                            + popupAssignmentTicket.getSelectedEngineer().getUserName()
+                                                            + "\nfor : "
+                                                            + popupAssignmentTicket.getSelectedAssignType()
+                                                            + "\non : "
+                                                            + assignDate
+                                                            + "\nnotes : "
+                                                            + assignAction;
+                                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                                    popConfirm.setBackListener(
+                                                        new View.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(View v) {
+                                                            popConfirm.dismiss();
+                                                          }
+                                                        });
+                                                    popConfirm.setProcessListener(
+                                                        new View.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(View v) {
+                                                            popupAssignmentTicket.dismiss();
+                                                            popConfirm.dismiss();
+
+                                                            new SubmitAssignmentTask().execute();
+                                                          }
+                                                        });
+                                                    popConfirm.show(getFragmentManager(), null);
+                                                  }
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            };
+
+                                    } else if(popupAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==1){
+                                        assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
+
+                                        if (popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
+                                            popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
+                                            popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
+                                        }
+//                                        else if (popupAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()== 0) {
+//                                            popupAssignmentTicket.getAssignTypeSpinner().getSelectedView().requestFocus();
+//                                            popupAssignmentTicket.getAssignTypeSpinner().setError(getResources().getString(R.string.error_assignment_type));
+//                                        }
+                                        else if (TextUtils.isEmpty(assignAction)) {
+                                            popupAssignmentTicket.getAssignmentActionET().requestFocus();
+                                            popupAssignmentTicket.getAssignmentActionET().setError(getResources().getString(R.string.label_assignment_action));
+                                        } else {
+                                            String title = "Submission Confirmation";
+                                            String msg =
+                                                    "You will assign \""
+                                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                            + "\" ticket with detail : \nLocation : "
+                                                            + selectedTicket.getStationName()
+                                                            + "\nSuspect : "
+                                                            + selectedTicket.getSuspect1Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect2Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect3Name()
+                                                            + "\nSeverity : "
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                            + "\nto : "
+                                                            + popupAssignmentTicket.getSelectedEngineer().getUserName()
+                                                            + "\nfor : "
+                                                            + popupAssignmentTicket.getSelectedAssignType()
+                                                            + "\nnotes : "
+                                                            + assignAction;
+                                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                            popConfirm.setBackListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popConfirm.dismiss();
+                                                        }
+                                                    });
+                                            popConfirm.setProcessListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popupAssignmentTicket.dismiss();
+                                                            popConfirm.dismiss();
+
+                                                            new SubmitAssignmentTask().execute();
+                                                        }
+                                                    });
+                                            popConfirm.show(getFragmentManager(), null);
+                                        };
+
+                                    } else {
+                                        popupAssignmentTicket.getAssignTypeSpinner().getSelectedView().requestFocus();
+                                        popupAssignmentTicket.getAssignTypeSpinner().setError(getResources().getString(R.string.error_assignment_type));
+                                    }
                                 }
+
+
                               });
 
                           popupAssignmentTicket.show(getSupportFragmentManager(), null);

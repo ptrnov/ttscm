@@ -138,7 +138,14 @@ public class PopupReAssignmentTicket extends DialogFragment implements DatePicke
     assignTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedAssignType = (String) parent.getSelectedItem();
+//        selectedAssignType = (String) parent.getSelectedItem();
+        selectedAssignType = String.valueOf(assignTypeSpinner.getSelectedItem());
+        if (selectedAssignType.equals("Guidance")) {
+          assignmentDateET.setVisibility(View.GONE);
+        } else if (selectedAssignType.equals("On Site Visit")) {
+          assignmentDateET.setVisibility(View.VISIBLE);
+//          ticketInfoET.setHint("Information title and description PR");
+        }
       }
 
       @Override
@@ -158,10 +165,7 @@ public class PopupReAssignmentTicket extends DialogFragment implements DatePicke
                       now.get(Calendar.MONTH),
                       now.get(Calendar.DAY_OF_MONTH)
               );
-
-
-
-//              dpd.getMinDate(System.currentTimeMillis() - 1000);
+              dpd.setMinDate(Calendar.getInstance()); //validasi sidable tangal kemarin.
               dpd.show(getActivity().getSupportFragmentManager(), null);
           }
       });
@@ -169,7 +173,7 @@ public class PopupReAssignmentTicket extends DialogFragment implements DatePicke
     UserAdapter userAdapter = new UserAdapter(getActivity(), engineers);
     assignToSpinner.setAdapter(userAdapter);
 
-    String[] reassign={"Incapable", "Slow Response", "Sick", "Rearange Enginner"};
+    String[] reassign={"Incapable", "Slow Response", "Sick", "Re-arrange Engineer"};
     ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity(),
             R.layout.support_simple_spinner_dropdown_item, reassign);
     reassignToSpinner.setAdapter(adapterSpinner);

@@ -43,6 +43,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -406,57 +410,75 @@ public class ApprovalTicketActivity extends AppCompatActivity implements BaseSli
                   new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                      additionalInfo =
-                          popupConfirmTicketvisit.getTicketInfoET().getText().toString();
-                      requireTglDapature =popupConfirmTicketvisit.getTicketTglDepature().getText().toString();
-                      requireVasselNo =popupConfirmTicketvisit.getTicketVasselNo().getText().toString();
-//                      if (TextUtils.isEmpty(requireVasselNo)) {
-//                            popupConfirmTicketvisit.getTicketVasselNo().requestFocus();
-//                            popupConfirmTicketvisit.getTicketVasselNo().setError(getResources().getString(R.string.error_rassel_no));
-//                      }
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Calendar c = Calendar.getInstance();
+                        String tglNow = sdf.format(c.getTime());
 
-                      if (TextUtils.isEmpty(additionalInfo)) {
-                        popupConfirmTicketvisit.getTicketInfoET().requestFocus();
-                        popupConfirmTicketvisit
-                            .getTicketInfoET()
-                            .setError(getResources().getString(R.string.error_close_info));
-                      } else if (TextUtils.isEmpty(requireVasselNo)) {
-                          popupConfirmTicketvisit.getTicketVasselNo().requestFocus();
-                          popupConfirmTicketvisit.getTicketVasselNo().setError(getResources().getString(R.string.error_rassel_no));
-                      } else {
-                        String title = "Submission Confirmation";
-                        String msg =
-                            "You will approved "
-                                + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
-                                + " incident with detail : \nLocation : "
-                                + selectedTicket.getStationName()
-                                + "\nSuspect : "
-                                + selectedTicket.getSuspect1Name()
-                                + " - "
-                                + selectedTicket.getSuspect2Name()
-                                + " - "
-                                + selectedTicket.getSuspect3Name()
-                                + "\nSeverity : "
-                                + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
-                        confDialog = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
-                        confDialog.setBackListener(
-                            new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-                                confDialog.dismiss();
+                        Date testDate;
+                        Date testDate1;
+                        Date testDate3;
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+                        additionalInfo =popupConfirmTicketvisit.getTicketInfoET().getText().toString();
+                        requireTglDapature =popupConfirmTicketvisit.getTicketTglDepature().getText().toString();
+                        requireVasselNo =popupConfirmTicketvisit.getTicketVasselNo().getText().toString();
+                        try{
+                            testDate = df.parse(requireTglDapature);
+                            testDate1 = df.parse(tglNow);
+
+                              if (TextUtils.isEmpty(additionalInfo)) {
+                                popupConfirmTicketvisit.getTicketInfoET().requestFocus();
+                                popupConfirmTicketvisit.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                              }else if (TextUtils.isEmpty(requireTglDapature)) {
+                                  popupConfirmTicketvisit.getTicketTglDepature().requestFocus();
+                                  popupConfirmTicketvisit.getTicketTglDepature().setError(getResources().getString(R.string.error_dapature));
+                              }else if (testDate1.after(testDate)){
+                                  popupConfirmTicketvisit.getTicketTglDepature().requestFocus();
+                                  popupConfirmTicketvisit.getTicketTglDepature().setError(getResources().getString(R.string.out_dated));
+                              }else if (TextUtils.isEmpty(requireVasselNo)) {
+                                  popupConfirmTicketvisit.getTicketVasselNo().requestFocus();
+                                  popupConfirmTicketvisit.getTicketVasselNo().setError(getResources().getString(R.string.error_rassel_no));
+                              }  else {
+                                String title = "Submission Confirmation";
+                                String msg =
+                                    "You will approved "
+                                        + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                        + " incident with detail : \nLocation : "
+                                        + selectedTicket.getStationName()
+                                        + "\nSuspect : "
+                                        + selectedTicket.getSuspect1Name()
+                                        + " - "
+                                        + selectedTicket.getSuspect2Name()
+                                        + " - "
+                                        + selectedTicket.getSuspect3Name()
+                                        + "\nSeverity : "
+                                        + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                        + "\nDate Depature : "
+                                         + requireTglDapature
+                                        + "\nVassel.No : "
+                                        + requireVasselNo;
+                                confDialog = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                confDialog.setBackListener(
+                                    new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                        confDialog.dismiss();
+                                      }
+                                    });
+                                confDialog.setProcessListener(
+                                    new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                        popupConfirmTicketvisit.dismiss();
+                                        confDialog.dismiss();
+                                        new ApproveClosedTicketvisitTask().execute();
+                                      }
+                                    });
+                                confDialog.show(getFragmentManager(), null);
                               }
-                            });
-                        confDialog.setProcessListener(
-                            new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-                                popupConfirmTicketvisit.dismiss();
-                                confDialog.dismiss();
-                                new ApproveClosedTicketvisitTask().execute();
-                              }
-                            });
-                        confDialog.show(getFragmentManager(), null);
-                      }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        };
                     }
                   });
               popupConfirmTicketvisit.show(getSupportFragmentManager(), null);
@@ -613,28 +635,28 @@ public class ApprovalTicketActivity extends AppCompatActivity implements BaseSli
             return null;
         }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            try {
-                JSONObject object = new JSONObject(result);
-                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
-
-                    Type counterType = new TypeToken<CounterModel>(){}.getType();
-                    CounterModel myTaskCounter = gsona.fromJson(object.getString("needapproval"), counterType);
-                    if(myTaskCounter != null)
-                        preferences.savePreferences(Constants.COUNTER_NEED_APPROVAL, getResources().getString(R.string.widget_need_approval_counter, myTaskCounter.getCritical(), myTaskCounter.getMajor(), myTaskCounter.getMinor()));
-                    else
-                        preferences.savePreferences(Constants.COUNTER_NEED_APPROVAL, getResources().getString(R.string.widget_need_approval_counter_null));
-
-
-                    finish();
-                    progressDialog.dismiss();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            try {
+//                JSONObject object = new JSONObject(result);
+//                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+//
+//                    Type counterType = new TypeToken<CounterModel>(){}.getType();
+//                    CounterModel myTaskCounter = gsona.fromJson(object.getString("needapproval"), counterType);
+//                    if(myTaskCounter != null)
+//                        preferences.savePreferences(Constants.COUNTER_NEED_APPROVAL, getResources().getString(R.string.widget_need_approval_counter, myTaskCounter.getCritical(), myTaskCounter.getMajor(), myTaskCounter.getMinor()));
+//                    else
+//                        preferences.savePreferences(Constants.COUNTER_NEED_APPROVAL, getResources().getString(R.string.widget_need_approval_counter_null));
+//
+//
+//                    finish();
+//                    progressDialog.dismiss();
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
 }

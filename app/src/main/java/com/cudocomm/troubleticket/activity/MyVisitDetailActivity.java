@@ -37,6 +37,7 @@ import com.cudocomm.troubleticket.adapter.ViewPagerAdapter;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
 import com.cudocomm.troubleticket.component.PopupEscalationTicket;
+import com.cudocomm.troubleticket.component.PopupGuidanceTicket;
 import com.cudocomm.troubleticket.fragment.TicketHistoryFragment;
 import com.cudocomm.troubleticket.fragment.TicketInfoFragment;
 import com.cudocomm.troubleticket.model.Assignment;
@@ -93,9 +94,11 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private LinearLayout actionLL;
     private Button closedBtn;
     private Button responseBtn;
+    private Button reportBtn;
 
 //    private PopupCloseTicket popupCloseTicket;
     private PopupCloseTicketCustom popupCloseTicket;
+    private PopupGuidanceTicket popupGuidanceTicket;
     private SpotsDialog progressDialog;
 
     private String additionalInfo, actionEng, remarksEng, prNo;
@@ -103,6 +106,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private boolean isResume = false;
 
     private Toolbar toolbar;
+    private String actionDescribe;
 
     private PopupEscalationTicket popupResponseTicket;
     private CustomPopConfirm confDialog;
@@ -143,6 +147,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         actionLL = (LinearLayout) findViewById(R.id.actionLL);
         closedBtn = (Button) findViewById(R.id.closedBtn);
         responseBtn = (Button) findViewById(R.id.responseBtn);
+        reportBtn = (Button) findViewById(R.id.reportBtn);
 
         new MyAssignmentDetailTask().execute();
     }
@@ -350,11 +355,20 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
 
                             }
                         });
-
-                        if(popupCloseTicket.getFixTypeSpinner().getSelectedItemPosition() == 0) {
+                        String regexStr = "^[0-9]*$";
+                        if (popupCloseTicket.getFixTypeSpinner().getSelectedItemPosition() == 0) {
                             popupCloseTicket.getFixTypeSpinner().getSelectedView().requestFocus();
                             popupCloseTicket.getFixTypeSpinner().setError(getResources().getString(R.string.error_fix_type));
-                        } else if(TextUtils.isEmpty(additionalInfo)) {
+                        }else if (prNo.equals("")) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
+                        }else if (prNo.length()!=9 ) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                        }else if (!prNo.trim().matches(regexStr)) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                        }else if(TextUtils.isEmpty(additionalInfo)) {
                             popupCloseTicket.getTicketInfoET().requestFocus();
                             popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         } else {
@@ -390,6 +404,104 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
             }
         });
 
+        reportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupGuidanceTicket = PopupGuidanceTicket.newInstance("Report Ticket","Process","Back");
+                popupGuidanceTicket.setBackListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupGuidanceTicket.dismiss();
+                    }
+                });
+                popupGuidanceTicket.setProcessListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        actionDescribe = popupGuidanceTicket.getActionET().getText().toString();
+                        if(TextUtils.isEmpty(actionDescribe) || actionDescribe.length() < 60) {
+                            popupGuidanceTicket.getActionET().requestFocus();
+                            popupGuidanceTicket.getActionET().setError(getResources().getString(R.string.error_guidance_action));
+                        } else {
+                            String title = "Submission Confirmation";
+                            String msg = "You will Report " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
+                                    selectedTicket.getStationName() +
+                                    "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
+                                    "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
+                            confDialog.setBackListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    confDialog.dismiss();
+                                }
+                            });
+                            confDialog.setProcessListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    popupGuidanceTicket.dismiss();
+                                    confDialog.dismiss();
+                                    new GuidanceTicketTask().execute();
+
+                                }
+                            });
+                            confDialog.show(getFragmentManager(), null);
+
+                        }
+                    }
+                });
+                popupGuidanceTicket.show(getFragmentManager(), null);
+            }
+        });
+
+    }
+
+    class GuidanceTicketTask extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+        String url;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("guidance_to"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("id_updrs", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+//                        .add("from_position_id", String.valueOf(preferences.getPreferencesInt(Constants.POSITION_ID)))
+                        .add("remarks", actionDescribe)
+//                        .add("require", requireSupport)
+                        .build());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+
+            Logcat.i(result);
+            Log.d("Log123123",String.valueOf(result));
+            try {
+                JSONObject object = new JSONObject(result);
+                Log.d("Log123123",String.valueOf(object.get(Constants.RESPONSE_STATUS)));
+                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+                    finish();
+                    progressDialog.dismiss();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -544,67 +656,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         }
     }*/
 
-    class ClosedTicketTask extends AsyncTask<Void, Void, Void> {
 
-        String result = "";
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        Gson gsona = this.gsonBuilder.create();
-
-        JSONObject jsonObject;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_engineer"), new FormBody.Builder()
-                        .add("ticket_id", selectedTicket.getTicketId())
-                        .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
-                        .add("additional_info", additionalInfo)
-                        .add("closed_type", String.valueOf(closedType))
-                        .add("pr_no", prNo)
-                        .build());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            try {
-                JSONObject object = new JSONObject(result);
-                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
-//                    returnTicket = gsona.fromJson(object.getString("data").toString(), Ticket.class);
-                    returnTicket = gsona.fromJson(object.getString("data"), Ticket.class);
-                    String title = returnTicket.getTicketId() + " - " + CommonsUtil.severityToString(returnTicket.getTicketSeverity()) + " - " + CommonsUtil.ticketTypeToString(returnTicket.getTicketType());
-                    String content = "Down Time on site " + returnTicket.getStationName() + " has been solved.";
-                    NotificationManager mgr=
-                            (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                    NotificationCompat.Builder mBuilder =
-                            new NotificationCompat.Builder(getApplicationContext())
-                                    .setSmallIcon(R.mipmap.ic_launcher)
-                                    .setContentTitle(title)
-                                    .setContentText(content);
-
-                    Notification note = mBuilder.build();
-
-                    mgr.notify(NotificationManager.IMPORTANCE_HIGH, note);
-
-                    finish();
-                    progressDialog.dismiss();
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
@@ -667,6 +719,68 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
             updateComponent();
 
             progressDialog.dismiss();
+        }
+    }
+
+    class ClosedTicketTask extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gsona = this.gsonBuilder.create();
+
+        JSONObject jsonObject;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_engineer"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+                        .add("additional_info", additionalInfo)
+                        .add("closed_type", String.valueOf(closedType))
+                        .add("pr_no", prNo)
+                        .build());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            try {
+                JSONObject object = new JSONObject(result);
+                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+//                    returnTicket = gsona.fromJson(object.getString("data").toString(), Ticket.class);
+                    returnTicket = gsona.fromJson(object.getString("data"), Ticket.class);
+                    String title = returnTicket.getTicketId() + " - " + CommonsUtil.severityToString(returnTicket.getTicketSeverity()) + " - " + CommonsUtil.ticketTypeToString(returnTicket.getTicketType());
+                    String content = "Down Time on site " + returnTicket.getStationName() + " has been solved.";
+                    NotificationManager mgr=
+                            (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle(title)
+                                    .setContentText(content);
+
+                    Notification note = mBuilder.build();
+
+                    mgr.notify(NotificationManager.IMPORTANCE_HIGH, note);
+
+                    finish();
+                    progressDialog.dismiss();
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

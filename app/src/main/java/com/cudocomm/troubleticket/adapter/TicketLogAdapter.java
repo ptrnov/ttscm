@@ -69,6 +69,8 @@ public class TicketLogAdapter extends RecyclerView.Adapter<TicketLogAdapter.View
                 timelineBulatTV.setBackgroundResource(R.drawable.circle_orange);
             }else if (ticket.getLog_status().contentEquals("Close Ticket")) {
                 timelineBulatTV.setBackgroundResource(R.drawable.circle_green);
+            }else if (ticket.getLog_status().contentEquals("Respon")) {
+                timelineBulatTV.setBackgroundResource(R.drawable.circle_abu);
             }else{
                 timelineBulatTV.setBackgroundResource(R.drawable.circle_green);
             }

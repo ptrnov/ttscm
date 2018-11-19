@@ -440,17 +440,25 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
                                 }
 
                             }
-
                             @Override
                             public void onNothingSelected(AdapterView<?> parent) {
-
                             }
                         });
 
-                        if(popupCloseTicket.getFixTypeSpinner().getSelectedItemPosition() == 0) {
+                        String regexStr = "^[0-9]*$";
+                        if (popupCloseTicket.getFixTypeSpinner().getSelectedItemPosition() == 0) {
                             popupCloseTicket.getFixTypeSpinner().getSelectedView().requestFocus();
                             popupCloseTicket.getFixTypeSpinner().setError(getResources().getString(R.string.error_fix_type));
-                        } else if(TextUtils.isEmpty(additionalInfo)) {
+                        }else if (prNo.equals("")) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
+                        }else if (prNo.length()!=9 ) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                        }else if (!prNo.trim().matches(regexStr)) {
+                            popupCloseTicket.getPrNoET().requestFocus();
+                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                        }else if(TextUtils.isEmpty(additionalInfo)) {
                             popupCloseTicket.getTicketInfoET().requestFocus();
                             popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         } else {

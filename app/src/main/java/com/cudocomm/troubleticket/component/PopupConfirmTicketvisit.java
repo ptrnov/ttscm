@@ -106,14 +106,16 @@ public class PopupConfirmTicketvisit extends DialogFragment implements DatePicke
       @Override
       public void onClick(View v) {
         Calendar now = Calendar.getInstance();
-        now.add(Calendar.DATE, -1);
+//        now.add(Calendar.DATE, -1);
         DatePickerDialog dpd = DatePickerDialog.newInstance(
                 PopupConfirmTicketvisit.this,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        dpd.setMinDate(Calendar.getInstance()); //validasi sidable tangal kemarin.
         dpd.show(getActivity().getSupportFragmentManager(), null);
+
       }
     });
 
