@@ -12,6 +12,8 @@ public class ISuspect implements Serializable {
     private String suspectName;
     @SerializedName("parent_id")
     private String parentId;
+//    @SerializedName("level")
+//    private String level;
 
     public String getSuspectId() {
         return suspectId;
@@ -36,4 +38,11 @@ public class ISuspect implements Serializable {
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
+//    public String getLevel() {
+//        return level;
+//    }
+//
+//    public void setLevel(String parentId) {
+//        this.level = level;
+//    }
 }

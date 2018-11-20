@@ -250,10 +250,10 @@ public class KerusakanActivity extends BaseActivity {
                     ticketRemarksET.setError(getResources().getString(R.string.error_remarks_length));
                 }
 
-                else if(severitySpinnerModel.getSelectedItemPosition() == 0) {
-                    severitySpinnerModel.getSelectedView().requestFocus();
-                    severitySpinnerModel.setError(getResources().getString(R.string.error_severity_empty));
-                }
+//                else if(severitySpinnerModel.getSelectedItemPosition() == 0) {
+//                    severitySpinnerModel.getSelectedView().requestFocus();
+//                    severitySpinnerModel.setError(getResources().getString(R.string.error_severity_empty));
+//                }
 
                 else if(suspect1Spinner.getSelectedItemPosition() == 0) {
                     suspect1Spinner.getSelectedView().requestFocus();
@@ -487,6 +487,9 @@ public class KerusakanActivity extends BaseActivity {
                 if(photo3 != null)
                     builder.addFormDataPart("ticket_photo_3", photo3.getName(), RequestBody.create(MEDIA_TYPE_PNG, photo3));
 
+//                builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
+//                        .addFormDataPart("ticket_status", "1");
+                //edit by ptr.nov
                 builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
                         .addFormDataPart("ticket_status", "1");
 

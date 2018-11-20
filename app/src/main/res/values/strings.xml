@@ -100,7 +100,8 @@
 
     <!--close ticket popup-->
     <string name="label_close_info">Information</string>
-    <!--<string name="label_close_info">Information title and description PR</string>-->
+    <!--<string name="label_close_info">Information title and description PR </string>-->
+    <string name="label_close_info_pr">PR TITLE</string>
     <string name="error_close_info">Information is required</string>
     <string name="error_close_type">Close Type is required</string>
     <string name="error_close_program">Program is required</string>
@@ -127,7 +128,11 @@
     <!--escalation ticket popup-->
     <string name="label_guidance_action">Please insert your guidance.</string>
     <string name="error_prNo_action_digit">Please insert your PR.No. (min and max. 9 digit)</string>
+    <string name="error_prNo_action_digit_min">Please insert your PR.No. (min. 9 digit)</string>
+    <string name="error_prNo_action_digit_max">Please insert your PR.No. (max. 9 digit)</string>
     <string name="error_prNo_action_number">Please insert Number.</string>
+    <string name="error_prNo_action_requered">PR.No is required</string>
+    <string name="error_prNo_action_empty"></string>
     <string name="error_guidance_action">Please insert your guidance. (min. 60 characters)</string>
     <string name="label_guidance_require">Explain what you need from your superiors</string>
     <string name="error_guidance_require">Explain what you need from your superiors  (min. 60 characters)</string>

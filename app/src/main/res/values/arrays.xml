@@ -102,7 +102,7 @@
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_stop</item>
         <item>@drawable/ic_repair</item>
-        <item>@drawable/ic_stop</item>
+        <item>@drawable/ic_tv</item>
         <!--<item>@drawable/ic_repair</item>-->
         <item>@drawable/ic_tt_act</item>
     </array>

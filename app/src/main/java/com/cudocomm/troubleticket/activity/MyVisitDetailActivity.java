@@ -36,6 +36,7 @@ import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.adapter.ViewPagerAdapter;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
+import com.cudocomm.troubleticket.component.PopupCloseTicket;
 import com.cudocomm.troubleticket.component.PopupEscalationTicket;
 import com.cudocomm.troubleticket.component.PopupGuidanceTicket;
 import com.cudocomm.troubleticket.fragment.TicketHistoryFragment;
@@ -84,6 +85,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private TabLayout tabLayout;
     private ViewPager contentPager;
     private ViewPagerAdapter viewPagerAdapter;
+    private CustomPopConfirm popConfirm;
 
     private Assignment selectedAssignment;
     private Ticket selectedTicket;
@@ -96,8 +98,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private Button responseBtn;
     private Button reportBtn;
 
-//    private PopupCloseTicket popupCloseTicket;
-    private PopupCloseTicketCustom popupCloseTicket;
+    private PopupCloseTicket popupCloseTicket;
     private PopupGuidanceTicket popupGuidanceTicket;
     private SpotsDialog progressDialog;
 
@@ -121,12 +122,12 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         selectedAssignment = (Assignment) bundle.getSerializable(Constants.SELECTED_ASSIGNMENT);
         selectedTicket = selectedAssignment.getTicket();
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+//                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         initComponent();
 //        updateComponent();
@@ -325,7 +326,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         closedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popupCloseTicket = PopupCloseTicketCustom.newInstance("Close Ticket","Process","Back");
+                popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket","Process","Back");
                 popupCloseTicket.setBackListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -336,66 +337,45 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
                     @Override
                     public void onClick(View v) {
                         additionalInfo = popupCloseTicket.getTicketInfoET().getText().toString();
-                        prNo = popupCloseTicket.getPrNoET().getText().toString();
-                        popupCloseTicket.getFixTypeSpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                if(popupCloseTicket.getFixTypeSpinner().getSelectedItem().toString().equals("Closed by PR")) {
-                                    popupCloseTicket.getPrNoET().setVisibility(View.VISIBLE);
-                                    closedType = 2;
-                                } else {
-                                    popupCloseTicket.getPrNoET().setVisibility(View.GONE);
-                                    closedType = 1;
-                                }
-
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        });
-                        String regexStr = "^[0-9]*$";
-                        if (popupCloseTicket.getFixTypeSpinner().getSelectedItemPosition() == 0) {
-                            popupCloseTicket.getFixTypeSpinner().getSelectedView().requestFocus();
-                            popupCloseTicket.getFixTypeSpinner().setError(getResources().getString(R.string.error_fix_type));
-                        }else if (prNo.equals("")) {
-                            popupCloseTicket.getPrNoET().requestFocus();
-                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
-                        }else if (prNo.length()!=9 ) {
-                            popupCloseTicket.getPrNoET().requestFocus();
-                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
-                        }else if (!prNo.trim().matches(regexStr)) {
-                            popupCloseTicket.getPrNoET().requestFocus();
-                            popupCloseTicket.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
-                        }else if(TextUtils.isEmpty(additionalInfo)) {
+                        if(TextUtils.isEmpty(additionalInfo)) {
                             popupCloseTicket.getTicketInfoET().requestFocus();
                             popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         } else {
 
-
                             String title = "Submission Confirmation";
-                            String msg = "You will closed " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
-                                    selectedTicket.getStationName() +
-                                    "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
-                                    "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
-                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
-                            confDialog.setBackListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    confDialog.dismiss();
-                                }
-                            });
-                            confDialog.setProcessListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    popupCloseTicket.dismiss();
-                                    confDialog.dismiss();
-                                    new ClosedTicketTask().execute();
+                            String msg =
+                                    "You will Close \""
+                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                            + "\" ticket with detail : \nLocation : "
+                                            + selectedTicket.getStationName() //Location station
+                                            + "\nSuspect : "
+                                            + selectedTicket.getSuspect1Name()  //suspect
+                                            + " - "
+                                            + selectedTicket.getSuspect2Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect3Name()
+                                            + "\nSeverity : "
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
 
-                                }
-                            });
-                            confDialog.show(getFragmentManager(), null);
+                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                            popConfirm.setBackListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popConfirm.dismiss();
+                                        }
+                                    });
+                            popConfirm.setProcessListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popupCloseTicket.dismiss();
+                                            popConfirm.dismiss();
+
+                                            new ClosedTicketTask().execute();
+                                        }
+                                    });
+                            popConfirm.show(getFragmentManager(), null);
                         }
 
                     }

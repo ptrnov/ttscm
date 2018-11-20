@@ -5,7 +5,9 @@ import android.app.DialogFragment;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.text.TextWatcher;
+import android.app.AlertDialog;
 
 import com.cudocomm.troubleticket.R;
 import com.cudocomm.troubleticket.TTSApplication;
@@ -105,10 +109,12 @@ public class PopupCloseTicketCustom extends DialogFragment {
         closedTypes = String.valueOf(fixTypeSpinner.getSelectedItem());
         if (closedTypes.equals("Fix Closed")) {
           prNoET.setVisibility(View.GONE);
-          ticketInfoET.setHint("Information");
+//          ticketInfoET.setHint("Information");
+          ticketInfoET.setHint(getResources().getString(R.string.label_close_info));
         } else {
           prNoET.setVisibility(View.VISIBLE);
-          ticketInfoET.setHint("Information title and description PR");
+//          ticketInfoET.setHint("Information title and description PR");
+          ticketInfoET.setHint(getResources().getString(R.string.label_close_info_pr));
         }
       }
 
@@ -118,7 +124,106 @@ public class PopupCloseTicketCustom extends DialogFragment {
       }
     });
 
+      prNoET.addTextChangedListener(new TextWatcher(){
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+//              if (prNoET.length()!=9) {
+//                  prNoET.setError(getResources().getString(R.string.error_prNo_action_digit));
+//                  prNoET.requestFocus();
+//              } else {
+//                  prNoET.setEnabled(true);
+//              }
+//              if (prNoET.equals("")) {
+//                  prNoET.setError(getResources().getString(R.string.error_prNo_action_requered));
+//                  prNoET.setEnabled(true);
+//              }
+          }
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//              if (prNoET.equals("")) {
+////                  prNoET.setError(getResources().getString(R.string.error_prNo_action_number));
+//                  prNoET.setEnabled(true);
+//              }
+          }
+
+          @Override
+          public void afterTextChanged(Editable s) {
+              String regexStr = "^[0-9]*$";
+                if (prNoET.length()==0) {
+                    prNoET.setError(getResources().getString(R.string.error_prNo_action_requered));
+                }else if(!prNoET.getText().toString().matches(regexStr) && prNoET.length()>9) {
+                  prNoET.setError(getResources().getString(R.string.error_prNo_action_digit));
+                  prNoET.requestFocus();
+                }else if(!prNoET.getText().toString().trim().matches(regexStr)) {
+                    prNoET.setError(getResources().getString(R.string.error_prNo_action_number));
+                    prNoET.requestFocus();
+                }else if(prNoET.length()>9){
+                    prNoET.setError(getResources().getString(R.string.error_prNo_action_digit_max));
+                    prNoET.requestFocus();
+                }else if(prNoET.length()<9){
+                    prNoET.setError(getResources().getString(R.string.error_prNo_action_digit_min));
+                    prNoET.requestFocus();
+                }else{
+                    prNoET.setError(getResources().getString(R.string.error_prNo_action_empty));
+                    prNoET.setEnabled(true);
+                    prNoET.requestFocus();
+
+
+                }
+          }
+      });
+
+    //    prNoET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    //      @Override
+    //      public void onFocusChange(View v, boolean hasFocus) {
+    ////        if (prNoET.length() == 9) {
+    //            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(v.getContext());
+    //            alertDialogBuilder.setMessage("Are you sure, You wanted to make decision");
+    //            alertDialogBuilder.show();
+    ////            Dialog dialog = new Dialog(v.getContext());
+    ////            dialog.setTitle("Payment Options");
+    ////        }
+    //      }
+    //    });
+    //      prNoET.setOnTouchListener(new OnTouchListener(){
+    //
+    //      });
+    //    prNoET.setOnClickListener(
+    //        new View.OnClickListener() {
+    //          @Override
+    //          public void onClick(View v) {
+    //            if (prNoET.length() == 9) {
+    //              AlertDialog.Builder alertDialogBuilder = new
+    // AlertDialog.Builder(v.getContext());
+    //              alertDialogBuilder.setMessage("Are you sure, You wanted to make decision");
+    //              alertDialogBuilder.show();
+    //            }
+    //          }
+    //        });
+    prNoET.setOnKeyListener(
+        new EditText.OnKeyListener() {
+
+          @Override
+          public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (prNoET.length() == 9) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(v.getContext());
+                alertDialogBuilder.setTitle("WARNINNG");
+                alertDialogBuilder.setMessage("Max PR.No is  9 digit");
+                alertDialogBuilder.show();
+
+//                prNoET.getText().setFilters(new InputFilter.LengthFilter(maxLength));
+//                prNoET.setLeft(9);
+//                EditText editText = new EditText(v.getContext());
+//                int maxLength = 9;
+//                prNoET.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+            }
+            return false;
+          }
+        });
   }
+
+
 
   public void resetEdT(){
     ticketInfoET.setText("");
@@ -160,8 +265,11 @@ public class PopupCloseTicketCustom extends DialogFragment {
     this.processListener = processListener;
   }
 
-  public String getStringSpinnerItem(){
-    return fixTypeSpinner.getSelectedItem().toString();
+//  public String getStringSpinnerItem(){
+//    return fixTypeSpinner.getSelectedItem().toString();
+//  }
+  public MaterialSpinner getStringSpinnerItem(){
+    return fixTypeSpinner;
   }
 
   public static PopupCloseTicketCustom newInstance(String argTitle, String argDone, String argClose) {

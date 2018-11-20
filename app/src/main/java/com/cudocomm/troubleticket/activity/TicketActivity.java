@@ -382,56 +382,119 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                 @Override
                                 public void onClick(View v) {
                                     additionalInfo = popupCloseTicketCustom.getTicketInfoET().getText().toString();
-                                    closedTypes = popupCloseTicketCustom.getStringSpinnerItem();
+//                                    closedTypes = popupCloseTicketCustom.getStringSpinnerItem();
 //                                    penyebab = String.valueOf(popupCloseTicketV2.getPenyebabET());
 //                                    program = String.valueOf(popupCloseTicketV2.getProgramET());
 //                                    closedTypes = String.valueOf(popupCloseTicketV2.getPrNoET());
                                     prNo = popupCloseTicketCustom.getPrNoET().getText().toString();
 //
+                                    String regexStr = "^[0-9]*$";
                                     Log.d("addt11111",String.valueOf(prNo));
-                                    if (closedTypes.equals("Close Type")) {
-//                                        popupCloseTicketCustom.setTicketInfoETHint("test piter");
-                                        popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
-                                        popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
-                                    }else if (closedTypes.equals("Closed by PR")) {
+//                                    if (closedTypes.equals("Closed by PR")) {
+                                    if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==2) {
                                         if (additionalInfo.equals("")) {
                                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
-                                        }
-                                        if (prNo.equals("")) {
-                                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
-                                        }
+                                        }else if(prNo.length()!=9){
+                                            popupCloseTicketCustom.getPrNoET().requestFocus();
+                                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                                        }else if(!prNo.trim().matches(regexStr)){
+                                            popupCloseTicketCustom.getPrNoET().requestFocus();
+                                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                                        }else{
+//                                            popupCloseTicketCustom.dismiss();
+////                                                    Log.d("berhasil", "close");
+////                                                    Log.d("param111",selectedTicket.getTicketId()+","
+////                                                            +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
+////                                                            +additionalInfo+","+closedTypes+","+prNo);
+//                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                            String title = "Submission Confirmation";
+                                            String msg =
+                                                    "You will Close \""
+                                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                            + "\" ticket with detail : \nLocation : "
+                                                            + selectedTicket.getStationName()
+                                                            + "\nSuspect : "
+                                                            + selectedTicket.getSuspect1Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect2Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect3Name()
+                                                            + "\nSeverity : "
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
 
-                                        if (!prNo.equals("") && !additionalInfo.equals("")) {
-                                            String regexStr = "^[0-9]*$";
-                                            if(prNo.length()==9 ){
-                                                if(prNo.trim().matches(regexStr)){
-                                                    popupCloseTicketCustom.dismiss();
-                                                    Log.d("berhasil", "close");
-                                                    Log.d("param111",selectedTicket.getTicketId()+","
-                                                            +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
-                                                            +additionalInfo+","+closedTypes+","+prNo);
-                                                    new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
-                                                }else{
-                                                    popupCloseTicketCustom.getPrNoET().requestFocus();
-                                                    popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
-                                                }
-                                            }else{
-                                                popupCloseTicketCustom.getPrNoET().requestFocus();
-                                                popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
-                                            }
+                                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                            popConfirm.setBackListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popConfirm.dismiss();
+                                                        }
+                                                    });
+                                            popConfirm.setProcessListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popupCloseTicketCustom.dismiss();
+                                                            popConfirm.dismiss();
+
+                                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                                        }
+                                                    });
+                                            popConfirm.show(getFragmentManager(), null);
+
                                         }
-                                    }else if (closedTypes.equals("Fix Closed")) {
+//                                    }else if (closedTypes.equals("Fix Closed")) {
+                                    }else if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==1) {
                                         if (additionalInfo.equals("")) {
                                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                                         }else {
-                                            popupCloseTicketCustom.dismiss();
-                                            Log.d("berhasil", "close");
-                                            Log.d("param111",selectedTicket.getTicketId()+","
-                                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
-                                                    +additionalInfo+","+closedTypes+","+prNo);
+//                                            popupCloseTicketCustom.dismiss();
+//                                            Log.d("berhasil", "close");
+//                                            Log.d("param111",selectedTicket.getTicketId()+","
+//                                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
+//                                                    +additionalInfo+","+closedTypes+","+prNo);
+//                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                            String title = "Submission Confirmation";
+                                            String msg =
+                                                    "You will Close \""
+                                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                            + "\" ticket with detail : \nLocation : "
+                                                            + selectedTicket.getStationName()
+                                                            + "\nSuspect : "
+                                                            + selectedTicket.getSuspect1Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect2Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect3Name()
+                                                            + "\nSeverity : "
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+
+                                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                            popConfirm.setBackListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popConfirm.dismiss();
+                                                        }
+                                                    });
+                                            popConfirm.setProcessListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popupCloseTicketCustom.dismiss();
+                                                            popConfirm.dismiss();
+
                                             new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+
+                                                        }
+                                                    });
+                                            popConfirm.show(getFragmentManager(), null);
                                         }
 
+                                    } else {
+//                                        popupCloseTicketCustom.setTicketInfoETHint("test piter");
+                                        popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
+                                        popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
                                     }
 //
 //                                    else if(TextUtils.isEmpty(additionalInfo)) {
@@ -467,6 +530,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                 }
                             });
                             popupCloseTicketCustom.show(getFragmentManager(), null);
+
                     }
             }
 
@@ -534,7 +598,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
         } else if(view.getId() == R.id.closedAssignmentBtn) {
 
             // Kadep TS - ptr.nov
-            popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket","Process","Back");
+            popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket1","Process","Back");
 
             popupCloseTicketCustom.setBackListener(new View.OnClickListener() {
                 @Override
@@ -546,7 +610,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 @Override
                 public void onClick(View v) {
                     additionalInfo = popupCloseTicketCustom.getTicketInfoET().getText().toString();
-                    closedTypes = popupCloseTicketCustom.getStringSpinnerItem();
+//                    closedTypes = popupCloseTicketCustom.getStringSpinnerItem();
 //                                    penyebab = String.valueOf(popupCloseTicketV2.getPenyebabET());
 //                                    program = String.valueOf(popupCloseTicketV2.getProgramET());
 //                                    closedTypes = String.valueOf(popupCloseTicketV2.getPrNoET());
@@ -555,43 +619,110 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
                     String regexStr = "^[0-9]*$";
 
-                    if (closedTypes.equals("Close Type")) {
-                        popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
-                        popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
-                    }else if (closedTypes.equals("Closed by PR")) {
+//                    if (closedTypes.equals("Closed by PR")) {
+
+                    if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==2) {
                         if (additionalInfo.equals("")) {
                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
-                        }
-                        if (prNo.equals("")) {
+                        }else if (prNo.equals("")) {
                             popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
-                        }
-                        if(prNo.length()!=9){
+                        }else if(prNo.length()!=9){
                             popupCloseTicketCustom.getPrNoET().requestFocus();
                             popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
-                        }
-                        if(!prNo.trim().matches(regexStr)){
+                        }else if(!prNo.trim().matches(regexStr)){
                             popupCloseTicketCustom.getPrNoET().requestFocus();
                             popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
                         }else{
-                           popupCloseTicketCustom.dismiss();
-                            Log.d("berhasil", "close");
-                            Log.d("param111",selectedTicket.getTicketId()+","
-                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
-                                    +additionalInfo+","+closedTypes+","+prNo);
-                                        new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+//                           popupCloseTicketCustom.dismiss();
+//                            Log.d("berhasil", "close");
+//                            Log.d("param111",selectedTicket.getTicketId()+","
+//                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
+//                                    +additionalInfo+","+closedTypes+","+prNo);
+//                                        new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                            String title = "Submission Confirmation";
+                            String msg =
+                                    "You will Close \""
+                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                            + "\" ticket with detail : \nLocation : "
+                                            + selectedTicket.getStationName()
+                                            + "\nSuspect : "
+                                            + selectedTicket.getSuspect1Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect2Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect3Name()
+                                            + "\nSeverity : "
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+
+                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                            popConfirm.setBackListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popConfirm.dismiss();
+                                        }
+                                    });
+                            popConfirm.setProcessListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popupCloseTicketCustom.dismiss();
+                                            popConfirm.dismiss();
+
+                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                        }
+                                    });
+                            popConfirm.show(getFragmentManager(), null);
 
                         }
-                    }else if (closedTypes.equals("Fix Closed")) {
+                    }else if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==1) {
                         if (additionalInfo.equals("")) {
                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         }else {
-                            popupCloseTicketCustom.dismiss();
-                            Log.d("berhasil", "close");
-                            Log.d("param111",selectedTicket.getTicketId()+","
-                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
-                                    +additionalInfo+","+closedTypes+","+prNo);
-                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+//                            popupCloseTicketCustom.dismiss();
+//                            Log.d("berhasil", "close");
+//                            Log.d("param111",selectedTicket.getTicketId()+","
+//                                    +String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS))+","
+//                                    +additionalInfo+","+closedTypes+","+prNo);
+//                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                            String title = "Submission Confirmation";
+                            String msg =
+                                    "You will Close \""
+                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                            + "\" ticket with detail : \nLocation : "
+                                            + selectedTicket.getStationName()
+                                            + "\nSuspect : "
+                                            + selectedTicket.getSuspect1Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect2Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect3Name()
+                                            + "\nSeverity : "
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+
+                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                            popConfirm.setBackListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popConfirm.dismiss();
+                                        }
+                                    });
+                            popConfirm.setProcessListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popupCloseTicketCustom.dismiss();
+                                            popConfirm.dismiss();
+
+                                            new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
+                                        }
+                                    });
+                            popConfirm.show(getFragmentManager(), null);
                         }
+                    }else {
+                        popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
+                        popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
                     }
                 }
             });
@@ -1201,7 +1332,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         .add("ticket_id", selectedTicket.getTicketId())
                         .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("additional_info", additionalInfo)
-                        .add("closed_type", closedTypes)
+//                        .add("closed_type", closedTypes)
                         .add("pr_no", prNo)
                         .build());
             } catch (IOException e) {
