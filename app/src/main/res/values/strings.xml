@@ -57,6 +57,9 @@
     <string name="label_ticket_status">Status</string>
     <string name="label_ticket_aging">Aging</string>
     <string name="label_ticket_sla">SLA</string>
+    <string name="label_severity_critical">CRITICAL</string>
+    <string name="label_severity_major">MAJOR</string>
+    <string name="label_severity_minor">MINOR</string>
     <string name="label_submit">Submit</string>
     <string name="error_station_empty">Station is required</string>
     <string name="error_suspect1_empty">Suspect 1 is required</string>

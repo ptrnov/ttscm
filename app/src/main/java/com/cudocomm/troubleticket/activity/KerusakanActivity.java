@@ -42,6 +42,7 @@ import com.cudocomm.troubleticket.util.Constants;
 import com.cudocomm.troubleticket.util.Logcat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,12 +54,14 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import fr.ganfra.materialspinner.MaterialSpinner;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class KerusakanActivity extends BaseActivity {
 
+    private static final String TAG = "Kerusakan";
     private Toolbar toolbar;
     private SpotsDialog progressDialog;
 
@@ -70,6 +73,8 @@ public class KerusakanActivity extends BaseActivity {
     private Button submitNewTicket;
 
     private String remarks;
+    private String severityRslt;
+    private String spc1,spc2,spc3,spc4;
     private File photo1, photo2, photo3;
 
     private TakeImage takeImage;
@@ -90,7 +95,7 @@ public class KerusakanActivity extends BaseActivity {
     private Suspect2Adapter suspect2Adapter;
     private Suspect3Adapter suspect3Adapter;
     private Suspect4Adapter suspect4Adapter;
-
+    private EditText ambilSeverity;
     List<SeverityModel> severityModels;
     SeverityModel selectedSeverityModel;
     private MaterialSpinner severitySpinnerModel;
@@ -199,9 +204,8 @@ public class KerusakanActivity extends BaseActivity {
         suspect2Spinner = (MaterialSpinner) findViewById(R.id.suspect2Spinner);
         suspect3Spinner = (MaterialSpinner) findViewById(R.id.suspect3Spinner);
         suspect4Spinner = (MaterialSpinner) findViewById(R.id.suspect4Spinner);
-
         severitySpinnerModel = (MaterialSpinner) findViewById(R.id.severitySpinnerModel);
-
+        severitySpinnerModel.setEnabled(false);
         progressDialog = new SpotsDialog(this, R.style.progress_dialog_style);
         ticketRemarksET = (EditText) findViewById(R.id.ticketRemarksET);
         ticketPhoto1IV = (ImageView) findViewById(R.id.ticketPhoto1IV);
@@ -335,6 +339,27 @@ public class KerusakanActivity extends BaseActivity {
 
                         loadSuspect2Models(selectedSuspect1Model.getSuspectId());
 //                        suspect2Spinner.setVisibility(View.VISIBLE);
+//                        severitySpinnerModel.setSelection(2);
+                        spc1=selectedSuspect1Model.getSuspectId().toString();
+                        Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() + ";sp1="+selectedSuspect1Model.getSuspectId());
+//                        spc1=selectedSuspect1Model.getSuspectId().toString();
+                        try {
+                            severityRslt = ApiClient.post(
+                                    CommonsUtil.getAbsoluteUrl("cek_severity"),
+                                    new FormBody.Builder()
+                                            .add("spc1",selectedSuspect1Model.getSuspectId().toString())
+                                            .build());
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(severityRslt);
+                                Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         resetSuspect4Model();
                         resetSuspect3Model();
@@ -361,6 +386,27 @@ public class KerusakanActivity extends BaseActivity {
                         selectedSuspect2Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
                         loadSuspect3Models(selectedSuspect2Model.getSuspectId());
 //                        suspect3Spinner.setVisibility(View.VISIBLE);
+//                        severitySpinnerModel.setSelection(1);
+                        spc2=selectedSuspect2Model.getSuspectId().toString();
+                        Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() +";sp1="+selectedSuspect1Model.getSuspectId()+"; sp2="+selectedSuspect2Model.getSuspectId());
+                        try {
+                            severityRslt = ApiClient.post(
+                                    CommonsUtil.getAbsoluteUrl("cek_severity"),
+                                    new FormBody.Builder()
+                                            .add("spc1",spc1)
+                                            .add("spc2",selectedSuspect2Model.getSuspectId().toString())
+                                            .build());
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(severityRslt);
+                                Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         resetSuspect4Model();
                         resetSuspect3Model();
@@ -384,6 +430,27 @@ public class KerusakanActivity extends BaseActivity {
                         selectedSuspect3Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                         selectedSuspect3Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
                         loadSuspect4Models(selectedSuspect3Model.getSuspectId());
+//                        severitySpinnerModel.setSelection(3);
+                        spc3=selectedSuspect3Model.getSuspectId().toString();
+                        try {
+                            severityRslt = ApiClient.post(
+                                    CommonsUtil.getAbsoluteUrl("cek_severity"),
+                                    new FormBody.Builder()
+                                            .add("spc1",spc1)
+                                            .add("spc2",spc2)
+                                            .add("spc3",selectedSuspect3Model.getSuspectId().toString())
+                                            .build());
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(severityRslt);
+                                Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         resetSuspect4Model();
                         resetSuspect3Model();
@@ -404,6 +471,27 @@ public class KerusakanActivity extends BaseActivity {
                         HSpinner hSpinner = new HSpinner(view);
                         selectedSuspect4Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                         selectedSuspect4Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
+//                        severitySpinnerModel.setSelection(1);
+                        try {
+                            severityRslt = ApiClient.post(
+                                    CommonsUtil.getAbsoluteUrl("cek_severity"),
+                                    new FormBody.Builder()
+                                            .add("spc1",spc1)
+                                            .add("spc2",spc2)
+                                            .add("spc3",spc3)
+                                            .add("spc4",selectedSuspect4Model.getSuspectId().toString())
+                                            .build());
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(severityRslt);
+                                Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         resetSuspect4Model();
                     }

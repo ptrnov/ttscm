@@ -75,10 +75,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String RESOURCE_PATH = ContentResolver.SCHEME_ANDROID_RESOURCE + "://";
 
-        String path = RESOURCE_PATH + getPackageName() + "/raw/emergency_alert";
-        Uri defaultSoundUri = Uri.parse(path);
+        String path1 = RESOURCE_PATH + getPackageName() + "/raw/udivice_login";         //Login
+        String path2 = RESOURCE_PATH + getPackageName() + "/raw/remainder_ticket";      //
+        String path3 = RESOURCE_PATH + getPackageName() + "/raw/emergency_alert";
+        Uri defaultSoundUri1 = Uri.parse(path1);
+        Uri defaultSoundUri2 = Uri.parse(path2);
+        Uri defaultSoundUri3 = Uri.parse(path3);
 
-        if (tag != null && tag.equalsIgnoreCase("image")) {
+        if (title.equals("Notification of new Device Login")) {
             notificationBuilder = new Builder(this)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle(title)
@@ -86,17 +90,61 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setStyle(new NotificationCompat.BigPictureStyle()
                             .bigPicture(img))
                     .setAutoCancel(true)
-                    .setSound(defaultSoundUri)
+                    .setSound(defaultSoundUri1)
                     .setContentIntent(pendingIntent);
-        } else {
+        }else if(title.equals("Escalation ticket")){
             notificationBuilder = new Builder(this)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle(title)
                     .setContentText(messageBody)
                     .setAutoCancel(true)
-                    .setSound(defaultSoundUri)
+                    .setSound(defaultSoundUri3)
+                    .setContentIntent(pendingIntent);
+        }else if(title.equals("Do Action")){
+            notificationBuilder = new Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri2)
+                    .setContentIntent(pendingIntent);
+        }else if(title.equals("Ticket Need Your Confirm")){
+            notificationBuilder = new Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri2)
+                    .setContentIntent(pendingIntent);
+        }else{
+            notificationBuilder = new Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri3)
                     .setContentIntent(pendingIntent);
         }
+
+//        if (tag != null && tag.equalsIgnoreCase("image")) {
+//            notificationBuilder = new Builder(this)
+//                    .setSmallIcon(R.mipmap.ic_launcher)
+//                    .setContentTitle(title)
+//                    .setContentText(messageBody)
+//                    .setStyle(new NotificationCompat.BigPictureStyle()
+//                            .bigPicture(img))
+//                    .setAutoCancel(true)
+//                    .setSound(defaultSoundUri)
+//                    .setContentIntent(pendingIntent);
+//        } else {
+//            notificationBuilder = new Builder(this)
+//                    .setSmallIcon(R.mipmap.ic_launcher)
+//                    .setContentTitle(title)
+//                    .setContentText(messageBody)
+//                    .setAutoCancel(true)
+//                    .setSound(defaultSoundUri1)
+//                    .setContentIntent(pendingIntent);
+//        }
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

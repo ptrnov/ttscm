@@ -77,6 +77,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -112,6 +113,8 @@ public class DownTimeActivity extends BaseActivity {
 
     private String remarks;
     private File photo1, photo2, photo3;
+    private String severityRslt;
+    private String spc1,spc2,spc3,spc4;
 
     private TakeImage takeImage;
     private int RESIZE_PHOTO_PIXELS_PERCENTAGE = 80;
@@ -187,6 +190,8 @@ public class DownTimeActivity extends BaseActivity {
         selectedSuspect4Model = new Suspect4Model();
 
         selectedSeverityModel = new SeverityModel();
+        severitySpinnerModel = (MaterialSpinner) findViewById(R.id.severitySpinnerModel);
+        severitySpinnerModel.setEnabled(false);
 
         progressDialog = new SpotsDialog(this, R.style.progress_dialog_style);
 
@@ -576,11 +581,34 @@ public class DownTimeActivity extends BaseActivity {
             if(position > -1) {
                 HSpinner hSpinner = new HSpinner(spinner);
 
+
                 selectedSuspect1Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect1Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
 
                 loadSuspect2Models(selectedSuspect1Model.getSuspectId());
+
+
+                spc1=selectedSuspect1Model.getSuspectId().toString();
+                Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() + ";sp1="+selectedSuspect1Model.getSuspectId());
+                try {
+                    severityRslt = ApiClient.post(
+                            CommonsUtil.getAbsoluteUrl("cek_severity"),
+                            new FormBody.Builder()
+                                    .add("spc1",selectedSuspect1Model.getSuspectId().toString())
+                                    .build());
+                    JSONObject obj = null;
+                    try {
+                        obj = new JSONObject(severityRslt);
+                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 suspect2Spinner.setVisibility(View.VISIBLE);
+
             } else {
                 resetSuspect3Model();
                 resetSuspect2Model();
@@ -594,7 +622,26 @@ public class DownTimeActivity extends BaseActivity {
                 selectedSuspect2Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect2Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
                 loadSuspect3Models(selectedSuspect2Model.getSuspectId());
-
+                spc2=selectedSuspect2Model.getSuspectId().toString();
+                Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() +";sp1="+selectedSuspect1Model.getSuspectId()+"; sp2="+selectedSuspect2Model.getSuspectId());
+                try {
+                    severityRslt = ApiClient.post(
+                            CommonsUtil.getAbsoluteUrl("cek_severity"),
+                            new FormBody.Builder()
+                                    .add("spc1",spc1)
+                                    .add("spc2",selectedSuspect2Model.getSuspectId().toString())
+                                    .build());
+                    JSONObject obj = null;
+                    try {
+                        obj = new JSONObject(severityRslt);
+                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 resetSuspect3Model();
                 resetSuspect2Model();
@@ -605,6 +652,26 @@ public class DownTimeActivity extends BaseActivity {
                 HSpinner hSpinner = new HSpinner(spinner);
                 selectedSuspect3Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect3Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
+                spc3=selectedSuspect3Model.getSuspectId().toString();
+                try {
+                    severityRslt = ApiClient.post(
+                            CommonsUtil.getAbsoluteUrl("cek_severity"),
+                            new FormBody.Builder()
+                                    .add("spc1",spc1)
+                                    .add("spc2",spc2)
+                                    .add("spc3",selectedSuspect3Model.getSuspectId().toString())
+                                    .build());
+                    JSONObject obj = null;
+                    try {
+                        obj = new JSONObject(severityRslt);
+                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 resetSuspect3Model();
             }
@@ -614,6 +681,26 @@ public class DownTimeActivity extends BaseActivity {
 
                 selectedSeverityModel.setSeverityId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSeverityModel.setSeverityName(hSpinner.spinnerValueTV.getText().toString());
+//                try {
+//                    severityRslt = ApiClient.post(
+//                            CommonsUtil.getAbsoluteUrl("cek_severity"),
+//                            new FormBody.Builder()
+//                                    .add("spc1",spc1)
+//                                    .add("spc2",spc2)
+//                                    .add("spc3",spc3)
+//                                    .add("spc4",selectedSeverityModel.setSeverityId().getT)
+//                                    .build());
+//                    JSONObject obj = null;
+//                    try {
+//                        obj = new JSONObject(severityRslt);
+//                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
+//                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             } else {
                 resetSeverity();
             }

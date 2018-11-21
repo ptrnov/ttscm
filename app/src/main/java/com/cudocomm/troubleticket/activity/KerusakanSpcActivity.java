@@ -100,6 +100,7 @@ public class KerusakanSpcActivity extends AppCompatActivity {
     private Suspect2Adapter suspect2Adapter;
     private Suspect3Adapter suspect3Adapter;
     private Suspect4Adapter suspect4Adapter;
+    private EditText ambilSeverity;
 
     List<SeverityModel> severityModels;
     SeverityModel selectedSeverityModel;
@@ -208,7 +209,7 @@ public class KerusakanSpcActivity extends AppCompatActivity {
         suspect2Spinner = (MaterialSpinner) findViewById(R.id.suspect2Spinner);
         suspect3Spinner = (MaterialSpinner) findViewById(R.id.suspect3Spinner);
         suspect4Spinner = (MaterialSpinner) findViewById(R.id.suspect4Spinner);
-
+//        ambilSeverity   =      (EditText) findViewById(R.id.ambilSeverity);
         severitySpinnerModel = (MaterialSpinner) findViewById(R.id.severitySpinnerModel);
 
         progressDialog = new SpotsDialog(this, R.style.progress_dialog_style);

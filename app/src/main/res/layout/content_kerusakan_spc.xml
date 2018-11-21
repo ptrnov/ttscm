@@ -117,6 +117,14 @@
                 app:ms_errorColor="@color/color_btn_negative"
                 android:layout_below="@id/suspect4Spinner"
                 android:visibility="gone"/>
+            <!--<com.rengwuxian.materialedittext.MaterialEditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/ambilSeverity"-->
+                <!--android:hint="@string/label_ticket_severity"-->
+                <!--app:met_floatingLabel="normal"-->
+                <!--app:met_minCharacters="60"-->
+                <!--/>-->
             <!--
             <fr.ganfra.materialspinner.MaterialSpinner
                 android:id="@+id/suspectSpinner1"

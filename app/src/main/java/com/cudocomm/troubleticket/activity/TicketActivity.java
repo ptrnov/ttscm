@@ -119,7 +119,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     private PopupGuidanceTicket popupGuidanceTicket;
 
     public int closedType = 1;
-
+    public String assignType;
     private SpotsDialog progressDialog;
 
     private String additionalInfo;
@@ -1580,6 +1580,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                                     Date testDate1;
                                                     Date testDate3;
                                                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                                    assignType=popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItem().toString();
                                                     assignDate = popupReAssignmentTicket.getAssignmentDateET().getText().toString();
                                                     assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
                                                     reasonAssign = popupReAssignmentTicket.getReassignToSpinner().getSelectedItem().toString();
@@ -1661,6 +1662,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                                         e.printStackTrace();
                                                     };
                                             }else if(popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==1){
+                                                assignType=popupReAssignmentTicket.getAssignTypeSpinner().getSelectedItem().toString();
                                                 assignAction =popupReAssignmentTicket.getAssignmentActionET().getText().toString();
                                                 if (popupReAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
                                                     popupReAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
@@ -1766,6 +1768,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                                             assignDate = popupAssignmentTicket.getAssignmentDateET().getText().toString();
                                             assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
+                                            assignType=popupAssignmentTicket.getAssignTypeSpinner().getSelectedItem().toString();
                                             try{
                                                 testDate = df.parse(assignDate);
                                                 testDate1 = df.parse(tglNow);
@@ -1847,7 +1850,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
                                     } else if(popupAssignmentTicket.getAssignTypeSpinner().getSelectedItemPosition()==1){
                                         assignAction =popupAssignmentTicket.getAssignmentActionET().getText().toString();
-
+                                        assignType=popupAssignmentTicket.getAssignTypeSpinner().getSelectedItem().toString();
                                         if (popupAssignmentTicket.getAssignToSpinner().getSelectedItemPosition()== 0) {
                                             popupAssignmentTicket.getAssignToSpinner().getSelectedView().requestFocus();
                                             popupAssignmentTicket.getAssignToSpinner().setError(getResources().getString(R.string.error_assignment_to));
@@ -2158,7 +2161,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         .add("date", assignDate)
                         .add("action_id", String.valueOf(CommonsUtil.assignTypeToInt(popupAssignmentTicket.getSelectedAssignType())))
                         .add("info", assignAction)
-                        .add("onsite", "0")
+                        .add("onsite", assignType)
                         .add("req_remarks", "")
                         .build());
             } catch (IOException e) {
@@ -2217,7 +2220,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         .add("date", assignDate)
                         .add("action_id", String.valueOf(CommonsUtil.assignTypeToInt(popupReAssignmentTicket.getSelectedAssignType())))
                         .add("info", assignAction)
-                        .add("onsite", "0")
+                        .add("onsite", assignType)
+//                        .add("onsite", "0")
                         .add("req_remarks", "")
 //                        .add("reason_assign", "reasonAssign")
                         .add("reason_assign", reasonAssign)
