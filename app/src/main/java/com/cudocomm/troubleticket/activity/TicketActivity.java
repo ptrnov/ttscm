@@ -327,7 +327,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 if (preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.TECHNICIAN
                         || preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KST
                         || preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KORWIL){
-                            popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket","Process","Back");
+                            popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket1","Process","Back");
                             popupCloseTicket.setBackListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -598,7 +598,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
         } else if(view.getId() == R.id.closedAssignmentBtn) {
 
             // Kadep TS - ptr.nov
-            popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket1","Process","Back");
+            popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket","Process","Back");
 
             popupCloseTicketCustom.setBackListener(new View.OnClickListener() {
                 @Override

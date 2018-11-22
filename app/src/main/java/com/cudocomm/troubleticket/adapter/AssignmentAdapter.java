@@ -52,6 +52,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
             ticketStationTV = (TextView) v.findViewById(R.id.ticketStationTV);
             ticketRemarksTV = (TextView) v.findViewById(R.id.ticketRemarksTV);
             ticketAgingTV = (TextView) v.findViewById(R.id.ticketAgingTV);
+
         }
 
         public void bind(final Assignment assignment, final OnItemClickListener listener) {
@@ -75,6 +76,13 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
                 }
             }
 
+//            if (assignment.getTicket().getHasAssign().equals(0)){
+//                ticketAgingTV.setEnabled(true);
+//            }else{
+//                ticketAgingTV.setEnabled(false);
+//            }
+
+
             ticketStatusTV.setText(status);
             ticketAgingTV.setText(CommonsUtil.countAging(assignment.getTicket().getTicketDate()));
 
@@ -95,6 +103,8 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
                     listener.onItemClick(assignment);
                 }
             });
+
+
         }
     }
 

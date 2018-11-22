@@ -1,6 +1,7 @@
 package com.cudocomm.troubleticket.adapter;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,19 +18,23 @@ import com.cudocomm.troubleticket.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Intent.getIntent;
+
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
+// Job SIGNMENT TICKETS -ptr.nov
 
     private List<Ticket> mDataset = new ArrayList<>();
 
     private OnItemClickListener listener;
 
+    private Ticket selectedTicket;
     private int selectedPosition = 0;
 
     public interface OnItemClickListener {
         void onItemClick(Ticket ticket);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public View indicator;
         public TextView ticketNoTV;
@@ -42,6 +47,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         private StringBuilder suspect;
 
+
+
         public ViewHolder(View v) {
             super(v);
             indicator = v.findViewById(R.id.indicator);
@@ -52,6 +59,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             ticketStationTV = (TextView) v.findViewById(R.id.ticketStationTV);
             ticketRemarksTV = (TextView) v.findViewById(R.id.ticketRemarksTV);
             ticketAgingTV = (TextView) v.findViewById(R.id.ticketAgingTV);
+//            CommonsUtil.get
+
+
         }
 
         public void bind(final Ticket ticket, final OnItemClickListener listener) {
@@ -71,6 +81,17 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 } else if(ticket.getTicketPosition() == 7) {
                     status = status + " - ASG";
                 }
+            }
+
+            /*
+            * Agging Hidden
+            * 1.counter aging hidden tapi tetap conter
+            * 2.setelah close by PR, agging show dengan new counter sampai close ticket
+            * */
+            if(ticket.getHasAssign()=="0"){
+                ticketAgingTV.setVisibility(View.VISIBLE);
+            }else{
+                ticketAgingTV.setVisibility(View.GONE);
             }
 
             ticketStatusTV.setText(status);

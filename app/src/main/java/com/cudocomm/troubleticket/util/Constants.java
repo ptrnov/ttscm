@@ -17,7 +17,7 @@ public class Constants {
     public static final String IS_LEARNED = "islearned";
     public static final String DEFAULT_FILE_NAME = "tts.dat";
 
-    public static final String _VERSION = "2.3";
+    public static final String _VERSION = "2.4";
 
     /*public static final String BASE_URL = "http://202.58.124.112/TT_SCM_DEV/apiv6/";
     public static final String BASE_URL_IMAGE = "http://202.58.124.112/TT_SCM_DEV/";*/

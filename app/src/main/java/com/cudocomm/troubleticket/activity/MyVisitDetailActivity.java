@@ -1,6 +1,7 @@
 package com.cudocomm.troubleticket.activity;
 
 import android.Manifest;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -73,6 +74,8 @@ import okhttp3.FormBody;
 public class MyVisitDetailActivity extends AppCompatActivity implements BaseSliderView.OnSliderClickListener,
         ViewPagerEx.OnPageChangeListener , LocationListener {
 
+    private static final String TAG = "OnSIte";
+
     Preferences preferences;
     protected LocationManager locationManager;
     protected LocationListener locationListener;
@@ -112,6 +115,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private PopupEscalationTicket popupResponseTicket;
     private CustomPopConfirm confDialog;
 
+    private LocationManager mLocationManager = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,10 +134,20 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
 //        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         initComponent();
+//        initializeLocationManager();
 //        updateComponent();
-
+        new StationCheckPosisi().execute();
 
     }
+
+//    private void initializeLocationManager() {
+//        Log.e(TAG, "initializeLocationManager");
+//        if (mLocationManager == null) {
+//            mLocationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+//            Log.e(TAG, "stationGPS" + mLocationManager);
+//        }
+//    }
+
 
     private void initComponent() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -763,5 +777,66 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
             }
         }
     }
+
+    class StationCheckPosisi extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+        String url;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("get_lat_long_station_by_ticket"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .build());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            Logcat.i(result);
+            Log.d("Log123123",String.valueOf(result));
+            try {
+                JSONObject object = new JSONObject(result);
+//                Log.d(TAG, "stationGPS: " + String.valueOf(object));
+//                  Log.d(TAG, "stationGPS: " + String.valueOf(object.get("station_name")));
+//                  Log.d(TAG, "stationGPS: " + String.valueOf(object.get("lat")));
+//                  Log.d(TAG, "stationGPS: " + String.valueOf(object.get("long")));
+
+//                Log.d("stationGPS",String.valueOf(object.get(Constants.RESPONSE_STATUS)));
+//                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+//                    finish();
+//                    progressDialog.dismiss();
+//                }
+                LocationManager  locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+//                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    return;
+//                }
+        //        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+                Log.d(TAG, "stationGPS: " + String.valueOf(locationManager));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
+
 
 }

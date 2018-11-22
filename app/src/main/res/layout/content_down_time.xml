@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ticketRemarksET"
-                android:hint="@string/label_ticket_remarks"
+                android:hint="@string/label_ticket_title"
                 app:met_floatingLabel="normal"
                 android:layout_below="@id/ticketStationET"
                 app:met_minCharacters="60"/>

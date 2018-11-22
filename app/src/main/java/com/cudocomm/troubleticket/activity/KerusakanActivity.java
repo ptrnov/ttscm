@@ -100,6 +100,8 @@ public class KerusakanActivity extends BaseActivity {
     SeverityModel selectedSeverityModel;
     private MaterialSpinner severitySpinnerModel;
     private SeverityAdapter2 severityAdapter2;
+    private int severityMenu;
+    private int severityValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,10 @@ public class KerusakanActivity extends BaseActivity {
         setContentView(R.layout.activity_kerusakan);
 
         initComponent();
+        spc1="";
+        spc2="";
+        spc3="";
+        spc4="";
     }
 
     private void showConfirmSubmit() {
@@ -353,7 +359,21 @@ public class KerusakanActivity extends BaseActivity {
                             try {
                                 obj = new JSONObject(severityRslt);
                                 Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+
+//                              severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                severityValue=Integer.parseInt(obj.getString("severity"));
+                                severityMenu=Integer.parseInt(obj.getString("severity_menu"));
+                                if(severityMenu==0){
+                                    severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                    severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                    severitySpinnerModel.setEnabled(false);
+                                }else if (severityMenu==2){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }else if (severityMenu==3){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -400,7 +420,20 @@ public class KerusakanActivity extends BaseActivity {
                             try {
                                 obj = new JSONObject(severityRslt);
                                 Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+//                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                severityValue=Integer.parseInt(obj.getString("severity"));
+                                severityMenu=Integer.parseInt(obj.getString("severity_menu"));
+                                if(severityMenu==0){
+                                    severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                    severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                    severitySpinnerModel.setEnabled(false);
+                                }else if (severityMenu==2){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }else if (severityMenu==3){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -444,7 +477,20 @@ public class KerusakanActivity extends BaseActivity {
                             try {
                                 obj = new JSONObject(severityRslt);
                                 Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+//                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                severityValue=Integer.parseInt(obj.getString("severity"));
+                                severityMenu=Integer.parseInt(obj.getString("severity_menu"));
+                                if(severityMenu==0){
+                                    severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                    severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                    severitySpinnerModel.setEnabled(false);
+                                }else if (severityMenu==2){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }else if (severityMenu==3){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -485,7 +531,20 @@ public class KerusakanActivity extends BaseActivity {
                             try {
                                 obj = new JSONObject(severityRslt);
                                 Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+//                                severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                severityValue=Integer.parseInt(obj.getString("severity"));
+                                severityMenu=Integer.parseInt(obj.getString("severity_menu"));
+                                if(severityMenu==0){
+                                    severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
+                                    severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                    severitySpinnerModel.setEnabled(false);
+                                }else if (severityMenu==2){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }else if (severityMenu==3){
+                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                    severitySpinnerModel.setEnabled(true);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
