@@ -18,7 +18,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.cudocomm.troubleticket.R;
 import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.activity.DownTimeActivity;
@@ -31,13 +37,20 @@ import com.cudocomm.troubleticket.adapter.MenuAdapter;
 import com.cudocomm.troubleticket.database.dao.UserDAO;
 import com.cudocomm.troubleticket.database.model.UserLoginModel;
 import com.cudocomm.troubleticket.model.MenuModel;
+import com.cudocomm.troubleticket.model.MultiJabatanModel;
+import com.cudocomm.troubleticket.database.model.JabatanModel;
+import com.cudocomm.troubleticket.util.CommonsUtil;
 import com.cudocomm.troubleticket.util.Constants;
+import com.cudocomm.troubleticket.util.Logcat;
 import com.cudocomm.troubleticket.util.Preferences;
 import com.cudocomm.troubleticket.util.SessionManager;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NavDrawFragment extends BaseFragment {
 
@@ -48,8 +61,12 @@ public class NavDrawFragment extends BaseFragment {
     private DrawerLayout mDrawerLayout;
     private SessionManager sessionManager;
     private List<UserLoginModel> userLoginModels;
+
+    private List<MultiJabatanModel> multiJabatanModels;
+
     private Spinner userSpinner;
     private List<String> userList = new ArrayList<String>();
+    private List<String> userList2 = new ArrayList<String>();
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private TypedArray menuIcon;
@@ -75,6 +92,7 @@ public class NavDrawFragment extends BaseFragment {
             this.fromSavedInstantState = true;
         }
         sessionManager = new SessionManager(TTSApplication.getContext());
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -145,58 +163,171 @@ public class NavDrawFragment extends BaseFragment {
             }
         });
 
-        UserLoginModel userSession = sessionManager.getUserLoginModel();
 
-        int position = 0;
-        try {
-            userLoginModels = UserDAO.readAll(-11, -11);
-            for (int i = 0 ; i < userLoginModels.size(); i++) {
-                UserLoginModel userLoginModel = userLoginModels.get(i);
-                if (userLoginModel.getPositionId() == Constants.TECHNICIAN || userLoginModel.getPositionId() == Constants.KST) {
-                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getStationName());
-                } else if (userLoginModel.getPositionId() == Constants.KORWIL) {
-                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getRegionName());
-                } else if (userLoginModel.getPositionId() == Constants.KADEP_WIL) {
-                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getDepartmentName());
-                } else {
-                    userList.add(userLoginModel.getPositionName());
+        /*
+        * Update User list Jabatan
+        * create by ptr.nov
+        * Log.d(TAG, "lifesidemenu " + sessionManager.getUserLoginModel().getUserId().toString());
+        * */
+        Log.d(TAG, "lifesidemenu " + sessionManager.getUserLoginModel().getUserId().toString());
+        StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("get_total_ticket_per_jabatan"),
+                new Response.Listener<String>() {
+                    public void onResponse(String response) {
+                        MultiJabatanModel multiJabatanModels = gson.fromJson(response, MultiJabatanModel.class);
+//                        Log.d(TAG, "lifesidemenu " + multiJabatanModels.getJabatanModel());
+                        final List<JabatanModel> jabatanModels = multiJabatanModels.getJabatanModel();
+
+
+                            int position = 0;
+
+////
+//                            for (JabatanModel jabatanModel : jabatanModels) {
+//                                Log.d(TAG, "lifesidemenu " + jabatanModel.getPositionName());
+//                                if (jabatanModel.getPositionId() == Constants.TECHNICIAN || jabatanModel.getPositionId() == Constants.KST) {
+//                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getStationName());
+//                                } else if (jabatanModel.getPositionId() == Constants.KORWIL) {
+//                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getRegionName());
+//                                } else if (jabatanModel.getPositionId() == Constants.KADEP_WIL) {
+//                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getDepartmentName());
+//                                } else {
+//                                    userList2.add(jabatanModel.getPositionName());
+//                                }
+//                            }
+                            UserLoginModel userSession = sessionManager.getUserLoginModel();
+
+                            for (int i = 0 ; i < jabatanModels.size(); i++ ){
+                                JabatanModel jabatanModel = jabatanModels.get(i);
+                                Log.d(TAG, "lifesidemenu " + jabatanModel.getPositionName());
+                                if (jabatanModel.getPositionId() == Constants.TECHNICIAN || jabatanModel.getPositionId() == Constants.KST) {
+                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getStationName());
+                                } else if (jabatanModel.getPositionId() == Constants.KORWIL) {
+                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getRegionName());
+                                } else if (jabatanModel.getPositionId() == Constants.KADEP_WIL) {
+                                    userList2.add(jabatanModel.getPositionName() + " " + jabatanModel.getDepartmentName());
+                                } else {
+                                    userList2.add(jabatanModel.getPositionName());
+                                }
+                                if (userSession.getIdUpdrs().equals(jabatanModel.getIdUpdrs())) {
+                                    position = i;
+                                }
+                            }
+
+                        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity(),
+                                R.layout.support_simple_spinner_dropdown_item, userList2);
+                        userSpinner.setAdapter(adapterSpinner);
+                        userSpinner.setSelection(position);
+                        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                            boolean first_trigger = true;
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                // On selecting a spinner item
+                                String item = parent.getItemAtPosition(position).toString();
+                                if(first_trigger){
+                                    first_trigger = false;
+                                } else {
+
+//                                    UserLoginModel  newSession = userLoginModels.get(position);
+                                    JabatanModel newSession1 = jabatanModels.get(position);
+                                    sessionManager.createLoginSession1(newSession1);
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Logcat.e("Volley error: " + error.getMessage() + ", code: " + error.networkResponse);
+                        progressDialog.dismiss();
+                        Toast.makeText(getContext(), "Terjadi Kesalahan. Umumnya karena masalah jaringan.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                if (userSession.getIdUpdrs().equals(userLoginModel.getIdUpdrs())) {
-                    position = i;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        )
+        {
+            @Override
+            protected Map<String, String> getParams() {
+            Map<String, String> items = new HashMap<>();
+            items.put("user_id", sessionManager.getUserLoginModel().getUserId().toString());
+            Logcat.e("params: " + items.toString());
+            return items;
         }
-        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity(),
-                R.layout.support_simple_spinner_dropdown_item, userList);
-        userSpinner.setAdapter(adapterSpinner);
-        Log.d(TAG, "userList" + userLoginModels.size());
-        userSpinner.setSelection(position);
-        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            boolean first_trigger = true;
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // On selecting a spinner item
-                String item = parent.getItemAtPosition(position).toString();
-                if(first_trigger){
-                    first_trigger = false;
-                } else {
-                    UserLoginModel newSession = userLoginModels.get(position);
-                    sessionManager.createLoginSession(newSession);
-//                    getActivity().recreate();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-//                    getActivity().finish();
-                }
-            }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("Content-Type", "application/x-www-form-urlencoded");
+            return params;
+        }
+        };
+        TTSApplication.getInstance().addToRequestQueue(request);
 
-            }
-        });
+
+
+
+
+
+
+//        UserLoginModel userSession = sessionManager.getUserLoginModel();
+//        int position = 0;
+//        try {
+//            userLoginModels = UserDAO.readAll(-11, -11);
+//            for (int i = 0 ; i < userLoginModels.size(); i++) {
+//                UserLoginModel userLoginModel = userLoginModels.get(i);
+//                if (userLoginModel.getPositionId() == Constants.TECHNICIAN || userLoginModel.getPositionId() == Constants.KST) {
+//                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getStationName());
+//                } else if (userLoginModel.getPositionId() == Constants.KORWIL) {
+//                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getRegionName());
+//                } else if (userLoginModel.getPositionId() == Constants.KADEP_WIL) {
+//                    userList.add(userLoginModel.getPositionName() + " " + userLoginModel.getDepartmentName());
+//                } else {
+//                    userList.add(userLoginModel.getPositionName());
+//                }
+//                if (userSession.getIdUpdrs().equals(userLoginModel.getIdUpdrs())) {
+//                    position = i;
+//                }
+//            }
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(getActivity(),
+//                R.layout.support_simple_spinner_dropdown_item, userList);
+//        userSpinner.setAdapter(adapterSpinner);
+//        Log.d(TAG, "userList" + userLoginModels.size());
+//        userSpinner.setSelection(position);
+//        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//
+//            boolean first_trigger = true;
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                // On selecting a spinner item
+//                String item = parent.getItemAtPosition(position).toString();
+//                if(first_trigger){
+//                    first_trigger = false;
+//                } else {
+//                    UserLoginModel newSession = userLoginModels.get(position);
+//                    sessionManager.createLoginSession(newSession);
+////                    getActivity().recreate();
+//                    Intent intent = new Intent(getActivity(), MainActivity.class);
+//                    startActivity(intent);
+////                    getActivity().finish();
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerlayout, toolbar, 0, 0) {
             public void onDrawerSlide(View drawerView, float slideOffset) {

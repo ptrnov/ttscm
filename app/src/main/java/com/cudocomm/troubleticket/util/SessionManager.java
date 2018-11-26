@@ -7,6 +7,7 @@ import android.content.SharedPreferences.Editor;
 
 import com.cudocomm.troubleticket.activity.LoginActivity;
 import com.cudocomm.troubleticket.database.model.UserLoginModel;
+import com.cudocomm.troubleticket.database.model.JabatanModel;
 
 import java.util.HashMap;
 
@@ -23,6 +24,25 @@ public class SessionManager {
     }
 
     public void createLoginSession(UserLoginModel currentUser) {
+        editor.putBoolean(Constants.IS_LOGIN, true);
+        editor.putInt(Constants.USER_ID, currentUser.getUserId());
+        editor.putString(Constants.USER_NAME, currentUser.getUserName());
+        editor.putString(Constants.USER_EMAIL, currentUser.getUserEmail());
+        editor.putInt(Constants.POSITION_ID, currentUser.getPositionId());
+        editor.putString(Constants.POSITION_NAME, currentUser.getPositionName());
+        editor.putString(Constants.STATION_ID, currentUser.getStationId());
+        editor.putString(Constants.STATION_NAME, currentUser.getStationName());
+        editor.putString(Constants.REGION_ID, currentUser.getRegionId());
+        editor.putString(Constants.REGION_NAME, currentUser.getRegionName());
+        editor.putString(Constants.USER_PICTURE, currentUser.getUserPicture());
+        editor.putString(Constants.DEPARTMENT_ID, currentUser.getDepartmentId());
+        editor.putString(Constants.DEPARTMENT_NAME, currentUser.getDepartmentName());
+        editor.putInt(Constants.ID_UPDRS, currentUser.getIdUpdrs());
+
+        this.editor.commit();
+    }
+
+    public void createLoginSession1(JabatanModel currentUser) {
         editor.putBoolean(Constants.IS_LOGIN, true);
         editor.putInt(Constants.USER_ID, currentUser.getUserId());
         editor.putString(Constants.USER_NAME, currentUser.getUserName());

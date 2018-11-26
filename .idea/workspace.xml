@@ -16,24 +16,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b7e554-3a61-49e6-bb14-fb2f4405e821" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/SeverityUpdateAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/dao/SeverityUpdateDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/SeverityUpdateModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/SeverityUpdate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/JabatanModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MultiJabatanModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/ISuspectAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/ISuspectAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/DatabaseHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NexMediaFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NexMediaFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/ImportModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/ImportModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,8 +61,8 @@
       <file leaf-file-name="KerusakanActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="697" column="25" selection-start-line="632" selection-start-column="24" selection-end-line="704" selection-end-column="80" />
+            <state relative-caret-position="175">
+              <caret line="1051" column="58" selection-start-line="1051" selection-start-column="39" selection-end-line="1051" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,14 +70,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DownTimeActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java">
+      <file leaf-file-name="NavDrawFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="926" column="58" selection-start-line="926" selection-start-column="58" selection-end-line="926" selection-end-column="58" />
+            <state relative-caret-position="209">
+              <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2651#2659#0" expanded="true" />
+                <element signature="e#16117#16118#0" expanded="true" />
+                <element signature="e#16181#16182#0" expanded="true" />
+                <element signature="e#16277#16392#0" expanded="true" />
+                <element signature="e#16391#16392#0" expanded="true" />
+                <element signature="e#27221#27222#0" expanded="true" />
+                <element signature="e#27253#27254#0" expanded="true" />
+                <element signature="e#27301#27302#0" expanded="true" />
+                <element signature="e#27359#27360#0" expanded="true" />
+                <element signature="e#27392#27393#0" expanded="true" />
+                <element signature="e#27434#27435#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SessionManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="44" column="35" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiJabatanModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MultiJabatanModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JabatanModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/JabatanModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-13">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -101,36 +137,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>void</find>
-      <find>getSeverityModelUpdates</find>
-      <find>SeverityUpdateModel</find>
-      <find>SeverityModel</find>
-      <find>SeverityUpdateDAO</find>
-      <find>Suspect1DAO</find>
-      <find>TransactionManager</find>
-      <find>DatabaseHelper</find>
-      <find>Callable</find>
-      <find>severityUpdateAdapter</find>
-      <find>importMaster</find>
-      <find>severityDao</find>
-      <find>getSeverityDao</find>
-      <find>severitySize</find>
-      <find>severityModels</find>
-      <find>SubmitKerusakanTask</find>
-      <find>showConfirmSubmit</find>
-      <find>checkSuspect</find>
-      <find>KerusakanTask</find>
-      <find>initComponent</find>
-      <find>loadSuspect4Models</find>
       <find>selectedSuspect4Model</find>
       <find>loadSuspect3Models</find>
       <find>resetSeverity</find>
       <find>severitySpinnerModel</find>
       <find>selectedSeverityModel</find>
       <find>HSpinner</find>
-      <find>updateSeverity</find>
       <find>loadSuspect2Models</find>
       <find>resetSuspect4Model</find>
+      <find>importMaster</find>
+      <find>USER_ID</find>
+      <find>createLoginSession</find>
+      <find>user_</find>
+      <find>Updrs</find>
+      <find>IdUpdrs</find>
+      <find>user</find>
+      <find>currentUser</find>
+      <find>Toast</find>
+      <find>MultiJabatanModel</find>
+      <find>updateSeverity</find>
+      <find>JabatanModel</find>
+      <find>Listener</find>
+      <find>userList</find>
+      <find>userSession</find>
+      <find>add</find>
+      <find>userLoginModels</find>
+      <find>intent</find>
+      <find>SeverityUpdateModel</find>
+      <find>newSession</find>
+      <find>UserLoginModel</find>
+      <find>sessionManager</find>
     </findStrings>
     <dirStrings>
       <dir>E:\AndroidStudio\TT_PM\tt_scm_mobile\app</dir>
@@ -3584,9 +3620,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupConfirmTicketvisit.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupApprovalRequestVisitTicket.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_my_visit_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_close_ticket.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup_assignment_ticket.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java" />
@@ -3613,7 +3646,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/spiner_dropdown_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_nav_draw.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NexMediaFragment.java" />
@@ -3635,6 +3667,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/SeverityUpdateAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MultiJabatanModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/JabatanModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java" />
       </list>
     </option>
   </component>
@@ -3677,7 +3713,15 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="troubleticket" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="activity" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="troubleticket" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tt_scm_mobile" type="1abcf292:AndroidViewProjectNode" />
@@ -3708,22 +3752,22 @@
     <property name="size" value="48dp" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.cudocomm.troubleticket.component" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\AndroidStudio\TT_PM\tt_scm_mobile\app\src\main\res\drawable-xxxhdpi" />
+      <recent name="E:\AndroidStudio\TT_PM\tt_scm_mobile\app\src\main\res\layout" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.cudocomm.troubleticket.component" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cudocomm.troubleticket.database.model" />
+      <recent name="com.cudocomm.troubleticket.model" />
       <recent name="com.cudocomm.troubleticket.adapter" />
       <recent name="com.cudocomm.troubleticket.database.dao" />
-      <recent name="com.cudocomm.troubleticket.model" />
-      <recent name="com.cudocomm.troubleticket.database.model" />
       <recent name="com.cudocomm.troubleticket.component" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\AndroidStudio\TT_PM\tt_scm_mobile\app\src\main\res\drawable-xxxhdpi" />
-      <recent name="E:\AndroidStudio\TT_PM\tt_scm_mobile\app\src\main\res\layout" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.cudocomm.troubleticket.component" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -3897,7 +3941,7 @@
       <window_info id="Build Variants" order="2" sideWeight="0.42031872" side_tool="true" weight="0.2036336" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.12944739" side_tool="true" weight="0.31578946" />
       <window_info anchor="right" id="Viewer" order="3" side_tool="true" weight="0.329296" />
-      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.8705526" weight="0.31578946" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.8705526" visible="true" weight="0.31578946" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.81377745" weight="0.03565365" />
@@ -3996,91 +4040,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/androidSdk/sources/android-25/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-853">
-          <caret line="19484" column="16" selection-start-line="19484" selection-start-column="16" selection-end-line="19484" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/androidSdk/platforms/android-25/data/res/layout/simple_spinner_dropdown_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/component/PopupReAssignmentTicket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="135" column="56" selection-start-line="135" selection-start-column="43" selection-end-line="135" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/ApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/dao/UserDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Preferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-226">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/androidSdk/sources/android-25/java/io/Serializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="186" column="17" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/androidSdk/sources/android-25/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-71759">
-          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/Penyebab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-413">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/androidSdk/sources/android-25/android/view/LayoutInflater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="375" column="16" selection-start-line="375" selection-start-column="16" selection-end-line="375" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/UserAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="45" column="113" selection-start-line="45" selection-start-column="113" selection-end-line="45" selection-end-column="124" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/com/cudocomm/troubleticket/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="5426" column="32" selection-start-line="5426" selection-start-column="32" selection-end-line="5426" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/androidSdk/sources/android-25/android/view/ViewGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-130">
@@ -4102,24 +4061,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/ISuspectAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeSpcActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
           <caret line="389" column="71" selection-start-line="389" selection-start-column="71" selection-end-line="389" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17034">
-          <caret line="1094" selection-start-line="1094" selection-end-line="1094" />
         </state>
       </provider>
     </entry>
@@ -4150,13 +4095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MasterModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -4182,23 +4120,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/SeverityModelUpdate.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/ImportModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="199" column="4" selection-start-line="199" selection-start-column="4" selection-end-line="199" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/UserLoginModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2157">
-          <caret line="192" selection-start-line="12" selection-end-line="192" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/SeverityUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -4274,16 +4195,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="86" column="33" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/dao/SeverityUpdateDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -4298,13 +4209,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -4391,29 +4295,196 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/SeverityUpdateModel.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="697" column="25" selection-start-line="632" selection-start-column="24" selection-end-line="704" selection-end-column="80" />
+        <state relative-caret-position="168">
+          <caret line="926" column="58" selection-start-line="926" selection-start-column="58" selection-end-line="926" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/DownTimeActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="926" column="58" selection-start-line="926" selection-start-column="58" selection-end-line="926" selection-end-column="58" />
+        <state relative-caret-position="254">
+          <caret line="450" column="74" selection-start-line="450" selection-start-column="74" selection-end-line="450" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/ImportModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3022#3023#0" expanded="true" />
+            <element signature="e#3054#3055#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/ISuspectAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/AssignmentAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1944">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/TicketActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="200" column="64" lean-forward="true" selection-start-line="200" selection-start-column="15" selection-end-line="200" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/HomeKorwil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="109" column="82" selection-start-line="109" selection-start-column="82" selection-end-line="109" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/MenuAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/StationAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/Menu2Adapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-731">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/UserAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/adapter/ProgramAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-295">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/HomeKadepwil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="103" column="85" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/SeverityUpdateModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/activity/KerusakanActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="1051" column="58" selection-start-line="1051" selection-start-column="39" selection-end-line="1051" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="131" column="35" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/UserLoginModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/database/model/JabatanModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/model/MultiJabatanModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/util/SessionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="44" column="35" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cudocomm/troubleticket/fragment/NavDrawFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2651#2659#0" expanded="true" />
+            <element signature="e#16117#16118#0" expanded="true" />
+            <element signature="e#16181#16182#0" expanded="true" />
+            <element signature="e#16277#16392#0" expanded="true" />
+            <element signature="e#16391#16392#0" expanded="true" />
+            <element signature="e#27221#27222#0" expanded="true" />
+            <element signature="e#27253#27254#0" expanded="true" />
+            <element signature="e#27301#27302#0" expanded="true" />
+            <element signature="e#27359#27360#0" expanded="true" />
+            <element signature="e#27392#27393#0" expanded="true" />
+            <element signature="e#27434#27435#0" expanded="true" />
           </folding>
         </state>
       </provider>
