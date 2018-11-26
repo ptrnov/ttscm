@@ -26,22 +26,33 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.cudocomm.troubleticket.R;
+import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.adapter.SeverityAdapter2;
+import com.cudocomm.troubleticket.adapter.SeverityUpdateAdapter;
 import com.cudocomm.troubleticket.adapter.Suspect1Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect2Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect3Adapter;
 import com.cudocomm.troubleticket.adapter.holder.HSpinner;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
+import com.cudocomm.troubleticket.database.DatabaseHelper;
 import com.cudocomm.troubleticket.database.dao.SeverityDAO;
+import com.cudocomm.troubleticket.database.dao.SeverityUpdateDAO;
 import com.cudocomm.troubleticket.database.dao.Suspect1DAO;
 import com.cudocomm.troubleticket.database.dao.Suspect2DAO;
 import com.cudocomm.troubleticket.database.dao.Suspect3DAO;
 import com.cudocomm.troubleticket.database.model.SeverityModel;
+import com.cudocomm.troubleticket.database.model.SeverityUpdateModel;
 import com.cudocomm.troubleticket.database.model.Suspect1Model;
 import com.cudocomm.troubleticket.database.model.Suspect2Model;
 import com.cudocomm.troubleticket.database.model.Suspect3Model;
 import com.cudocomm.troubleticket.database.model.Suspect4Model;
+import com.cudocomm.troubleticket.model.SeverityUpdate;
 import com.cudocomm.troubleticket.model.Ticket;
 import com.cudocomm.troubleticket.model.penyebab.PenyebabNew;
 import com.cudocomm.troubleticket.model.program.ProgramNew;
@@ -55,6 +66,7 @@ import com.cudocomm.troubleticket.util.Constants;
 import com.cudocomm.troubleticket.util.Logcat;
 import com.ikovac.timepickerwithseconds.MyTimePickerDialog;
 import com.ikovac.timepickerwithseconds.TimePicker;
+import com.j256.ormlite.misc.TransactionManager;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -65,7 +77,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -161,6 +176,9 @@ public class DownTimeActivity extends BaseActivity {
 
     List<SeverityModel> severityModels;
     SeverityModel selectedSeverityModel;
+
+    List<SeverityUpdateModel> severityUpdateModels;
+
     private int severityMenu;
     private int severityValue;
     ObservableArrayList<String> listProgram= new ObservableArrayList<>();
@@ -656,45 +674,79 @@ public class DownTimeActivity extends BaseActivity {
                 selectedSuspect1Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect1Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
 
-                loadSuspect2Models(selectedSuspect1Model.getSuspectId());
-
                 spc1=selectedSuspect1Model.getSuspectId().toString();
-                Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() + ";sp1="+selectedSuspect1Model.getSuspectId());
-                try {
-                    severityRslt =
-                            ApiClient.post(
-                                    CommonsUtil.getAbsoluteUrl("cek_severity"),
-                                    new FormBody.Builder()
-                                            .add("spc1", selectedSuspect1Model.getSuspectId().toString())
-                                            .build());
 
-                    JSONObject obj = null;
-                    try {
-                        obj = new JSONObject(severityRslt);
-                        Log.d(TAG, "severity_check: " +obj.getString("severity"));
-                        Log.d(TAG, "severity_check: " + ";Menu=" + obj.getString("severity_menu"));
+                Log.d(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() + ";sp1="+selectedSuspect1Model.getSuspectId());
 
-                        severityValue=Integer.parseInt(obj.getString("severity"));
-                        severityMenu=Integer.parseInt(obj.getString("severity_menu"));
-                        if(severityMenu==0){
-                            severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
-                            severitySpinnerModel.setEnabled(false);
-                        }else if (severityMenu==2){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
-                        }else if (severityMenu==3){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
+                StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("cek_severityv2"),
+                        new Response.Listener<String>() {
+                            public void onResponse(String response) {
+                                try{
+                                    JSONObject Obj = new JSONObject(response);
+//                                  Object objSeveritas = Obj.getJSONObject("severities").get("severities");
+//                                  Object objSeveritas = Obj.getJSONObject("severities");
+                                    Log.d(TAG, "severity_check:" + "sp1=" + spc1 + ";Data=" + Obj.toString());
+//                                  SeverityUpdate severityUpdate = gson.fromJson(objSeveritas.toString(), SeverityUpdate.class);
+
+                                    SeverityUpdate severityUpdate = gson.fromJson(Obj.toString(), SeverityUpdate.class);
+//                                  Log.d(TAG, "ptr.severity" + severityUpdate.getSeverities().get(0).getSeverityName().toString());
+                                    updateSeverity(severityUpdate);
+                                    severitySpinnerModel.setVisibility(View.VISIBLE);
+                                    severityValue=Integer.parseInt(Obj.getString("severity"));
+                                    severityMenu=Integer.parseInt(Obj.getString("severity_menu"));
+
+                                    try {
+                                        loadSuspect2Models(selectedSuspect1Model.getSuspectId());
+                                        //sleep 5 seconds
+                                        Thread.sleep(1000);
+
+                                        if(severityMenu==0){
+                                            severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                            severitySpinnerModel.setEnabled(false);
+                                        }else if (severityMenu==1){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==2){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==3){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            public void onErrorResponse(VolleyError error) {
+                                Logcat.e("Volley error: " + error.getMessage() + ", code: " + error.networkResponse);
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Terjadi Kesalahan. Umumnya karena masalah jaringan.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                )
+                {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> items = new HashMap<>();
+                        items.put("spc1", selectedSuspect1Model.getSuspectId().toString());
+                        Logcat.e("params: " + items.toString());
+                        return items;
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                suspect2Spinner.setVisibility(View.VISIBLE);
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("Content-Type", "application/x-www-form-urlencoded");
+                        return params;
+                    }
+                };
+                TTSApplication.getInstance().addToRequestQueue(request);
             }else {
                 resetSuspect3Model();
                 resetSuspect2Model();
@@ -708,40 +760,80 @@ public class DownTimeActivity extends BaseActivity {
                 HSpinner hSpinner = new HSpinner(spinner);
                 selectedSuspect2Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect2Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
-                loadSuspect3Models(selectedSuspect2Model.getSuspectId());
+
                 spc2=selectedSuspect2Model.getSuspectId().toString();
                 Log.e(TAG, "kerusakan " + "modul="+ selectedSuspect1Model.getModuleId() +";sp1="+selectedSuspect1Model.getSuspectId()+"; sp2="+selectedSuspect2Model.getSuspectId());
-                try {
-                    severityRslt = ApiClient.post(
-                            CommonsUtil.getAbsoluteUrl("cek_severity"),
-                            new FormBody.Builder()
-                                    .add("spc1",spc1)
-                                    .add("spc2",selectedSuspect2Model.getSuspectId().toString())
-                                    .build());
-                    JSONObject obj = null;
-                    try {
-                        obj = new JSONObject(severityRslt);
-                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-//                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-                        severityValue=Integer.parseInt(obj.getString("severity"));
-                        severityMenu=Integer.parseInt(obj.getString("severity_menu"));
-                        if(severityMenu==0){
-                            severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
-                            severitySpinnerModel.setEnabled(false);
-                        }else if (severityMenu==2){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
-                        }else if (severityMenu==3){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
+
+                StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("cek_severityv2"),
+                        new Response.Listener<String>() {
+                            public void onResponse(String response) {
+                                try{
+                                    JSONObject Obj = new JSONObject(response);
+//                                  Object objSeveritas = Obj.getJSONObject("severities").get("severities");
+//                                  Object objSeveritas = Obj.getJSONObject("severities");
+//                                  Logcat.e("ptr.severity: " + severitas);
+                                    Log.d(TAG, "severity_check:" + "sp2=" + spc2 + ";Data=" + Obj.toString());
+//                                  SeverityUpdate severityUpdate = gson.fromJson(objSeveritas.toString(), SeverityUpdate.class);
+
+                                    SeverityUpdate severityUpdate = gson.fromJson(Obj.toString(), SeverityUpdate.class);
+//                                  Log.d(TAG, "ptr.severity" + severityUpdate.getSeverities().get(0).getSeverityName().toString());
+                                    updateSeverity(severityUpdate);
+                                    severitySpinnerModel.setVisibility(View.VISIBLE);
+                                    severityValue=Integer.parseInt(Obj.getString("severity"));
+                                    severityMenu=Integer.parseInt(Obj.getString("severity_menu"));
+                                    try {
+                                        loadSuspect3Models(selectedSuspect2Model.getSuspectId());
+                                        //sleep 5 seconds
+                                        Thread.sleep(1000);
+
+                                        if(severityMenu==0){
+                                            severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                            severitySpinnerModel.setEnabled(false);
+                                        }else if (severityMenu==1){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==2){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==3){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            public void onErrorResponse(VolleyError error) {
+                                Logcat.e("Volley error: " + error.getMessage() + ", code: " + error.networkResponse);
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Terjadi Kesalahan. Umumnya karena masalah jaringan.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                )
+                {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> items = new HashMap<>();
+                        items.put("spc1", spc1.toString());
+                        items.put("spc2", selectedSuspect2Model.getSuspectId().toString());
+                        Logcat.e("params: " + items.toString());
+                        return items;
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("Content-Type", "application/x-www-form-urlencoded");
+                        return params;
+                    }
+                };
+                TTSApplication.getInstance().addToRequestQueue(request);
             } else {
                 resetSuspect3Model();
                 resetSuspect2Model();
@@ -753,67 +845,88 @@ public class DownTimeActivity extends BaseActivity {
                 selectedSuspect3Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSuspect3Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
                 spc3=selectedSuspect3Model.getSuspectId().toString();
-                try {
-                    severityRslt = ApiClient.post(
-                            CommonsUtil.getAbsoluteUrl("cek_severity"),
-                            new FormBody.Builder()
-                                    .add("spc1",spc1)
-                                    .add("spc2",spc2)
-                                    .add("spc3",selectedSuspect3Model.getSuspectId().toString())
-                                    .build());
-                    JSONObject obj = null;
-                    try {
-                        obj = new JSONObject(severityRslt);
-                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-//                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-                        severityValue=Integer.parseInt(obj.getString("severity"));
-                        severityMenu=Integer.parseInt(obj.getString("severity_menu"));
-                        if(severityMenu==0){
-                            severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
-                            severitySpinnerModel.setEnabled(false);
-                        }else if (severityMenu==2){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
-                        }else if (severityMenu==3){
-                            severitySpinnerModel.setFloatingLabelText("Select Severity");
-                            severitySpinnerModel.setEnabled(true);
+
+                spc3=selectedSuspect3Model.getSuspectId().toString();
+
+                StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("cek_severityv2"),
+                        new Response.Listener<String>() {
+                            public void onResponse(String response) {
+                                try{
+                                    JSONObject Obj = new JSONObject(response);
+//                                          Object objSeveritas = Obj.getJSONObject("severities").get("severities");
+//                                            Object objSeveritas = Obj.getJSONObject("severities");
+//                                          Logcat.e("ptr.severity: " + severitas);
+                                    Log.d(TAG, "severity_check:" + "sp3=" + spc3 + ";Data=" + Obj.toString());
+//                                            SeverityUpdate severityUpdate = gson.fromJson(objSeveritas.toString(), SeverityUpdate.class);
+
+                                    SeverityUpdate severityUpdate = gson.fromJson(Obj.toString(), SeverityUpdate.class);
+//                                          Log.d(TAG, "ptr.severity" + severityUpdate.getSeverities().get(0).getSeverityName().toString());
+                                    updateSeverity(severityUpdate);
+                                    severitySpinnerModel.setVisibility(View.VISIBLE);
+                                    severityValue=Integer.parseInt(Obj.getString("severity"));
+                                    severityMenu=Integer.parseInt(Obj.getString("severity_menu"));
+                                    try {
+                                        //sleep 5 seconds
+                                        Thread.sleep(1000);
+
+                                        if(severityMenu==0){
+                                            severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            severitySpinnerModel.setFloatingLabelText("Auto Severity");
+                                            severitySpinnerModel.setEnabled(false);
+                                        }else if (severityMenu==1){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==2){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }else if (severityMenu==3){
+                                            severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                            severitySpinnerModel.setEnabled(true);
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            public void onErrorResponse(VolleyError error) {
+                                Logcat.e("Volley error: " + error.getMessage() + ", code: " + error.networkResponse);
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Terjadi Kesalahan. Umumnya karena masalah jaringan.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                )
+                {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> items = new HashMap<>();
+                        items.put("spc1", spc1.toString());
+                        items.put("spc2", spc2.toString());
+                        items.put("spc3", selectedSuspect3Model.getSuspectId().toString());
+                        Logcat.e("params: " + items.toString());
+                        return items;
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("Content-Type", "application/x-www-form-urlencoded");
+                        return params;
+                    }
+                };
+                TTSApplication.getInstance().addToRequestQueue(request);
+
             }else {
                 resetSuspect3Model();
             }
         } else if(spinner.getId() == R.id.severitySpinnerModel) {
             if(position > -1) {
                 HSpinner hSpinner = new HSpinner(spinner);
-
                 selectedSeverityModel.setSeverityId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                 selectedSeverityModel.setSeverityName(hSpinner.spinnerValueTV.getText().toString());
-//                try {
-//                    severityRslt = ApiClient.post(
-//                            CommonsUtil.getAbsoluteUrl("cek_severity"),
-//                            new FormBody.Builder()
-//                                    .add("spc1",spc1)
-//                                    .add("spc2",spc2)
-//                                    .add("spc3",spc3)
-//                                    .add("spc4",selectedSeverityModel.setSeverityId().getT)
-//                                    .build());
-//                    JSONObject obj = null;
-//                    try {
-//                        obj = new JSONObject(severityRslt);
-//                        Log.d(TAG, "severity_check: " +obj.getString("severity"));//                                totalSassign=Integer.parseInt(obj.getString("severity"));
-//                        severitySpinnerModel.setSelection(Integer.parseInt(obj.getString("severity")));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
             } else {
                 resetSeverity();
             }
@@ -992,7 +1105,13 @@ public class DownTimeActivity extends BaseActivity {
                 if(suspect2Models.size()>0) {
                     suspect2Adapter = new Suspect2Adapter(getApplicationContext(), suspect2Models);
                     suspect2Spinner.setAdapter(suspect2Adapter);
+                    suspect2Spinner.setVisibility(View.VISIBLE);
 
+                }else {
+                    resetSuspect3Model();
+                    resetSuspect2Model();
+                    suspect3Spinner.setVisibility(View.GONE);
+                    suspect2Spinner.setVisibility(View.GONE);
                 }
 
                 progressDialog.dismiss();
@@ -1016,6 +1135,9 @@ public class DownTimeActivity extends BaseActivity {
                     suspect3Adapter = new Suspect3Adapter(getApplicationContext(), suspect3Models);
                     suspect3Spinner.setAdapter(suspect3Adapter);
 
+                }else {
+                    resetSuspect3Model();
+                    suspect3Spinner.setVisibility(View.GONE);
                 }
 
                 progressDialog.dismiss();
@@ -1039,6 +1161,18 @@ public class DownTimeActivity extends BaseActivity {
         selectedSuspect3Model.setSuspectId(null);
         selectedSuspect3Model.setSuspectName(null);
         selectedSuspect3Model.setParentId(null);
+    }
+
+    /*
+     * Creted By Ptr.nov
+     *  Spinner For View Manipulation
+     * */
+    private void updateSeverity(final SeverityUpdate severityUpdate) {
+//        Log.d(TAG, "ptr.severity" + importModel.getSeverities().get(0).getSeverityName().toString());
+//        Log.d(TAG, "ptr.severity" + importModel.getSeverities().toArray().toString());//
+//        final List<Severity> severity = importModel.getSeverities();
+        final List<SeverityUpdateModel> severityUpdateModels = severityUpdate.getSeverityUpdateModels();
+        Log.d(TAG, "ptr.severity" + severityUpdateModels.get(0).getSeverityName().toString());
     }
 
 }

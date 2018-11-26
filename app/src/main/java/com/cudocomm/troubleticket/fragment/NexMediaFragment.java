@@ -94,18 +94,7 @@ public class NexMediaFragment extends BaseFragment  {
         });
     }
 
-    private void setupViewPager(ViewPager viewPager, List<TopTenActive> topTenActives, List<TopTenSuspect> topTenSuspects, List<Ticket> tickets,
-                                List<PieEntry> statusEntries, List<PieEntry> severityEntries, List<Entry> openEntries, List<Entry> closeEntries,
-                                List<BarEntry> barOpenEntries, List<BarEntry> barCloseEntries, List<BarEntry> barCriticalEntries, List<BarEntry> barMajorEntries, List<BarEntry> barMinorEntries) {
-//        adapter = new ViewPagerAdapter(getFragmentManager());
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(TTActiveTicketFragment.newInstance(topTenActives), "Top 10 Active");
-        adapter.addFragment(TTLongestFragment.newInstance(tickets), "Top 10 Longest");
-        adapter.addFragment(TTSuspectFragment.newInstance(topTenSuspects), "Top 10 Suspects");
-        adapter.addFragment(ACStatisticFragment.newInstance(
-                statusEntries, severityEntries, openEntries, closeEntries, barOpenEntries, barCloseEntries, barCriticalEntries, barMajorEntries, barMinorEntries, months), "Statistic");
-        viewPager.setAdapter(adapter);
-    }
+
 
     private class TopTenTask extends AsyncTask<Void, Void, Void> {
         List<PieEntry> statusEntries = new ArrayList<>();
@@ -235,5 +224,18 @@ public class NexMediaFragment extends BaseFragment  {
     public void onResume() {
         super.onResume();
         new NexMediaFragment.TopTenTask().execute();
+    }
+
+    private void setupViewPager(ViewPager viewPager, List<TopTenActive> topTenActives, List<TopTenSuspect> topTenSuspects, List<Ticket> tickets,
+                                List<PieEntry> statusEntries, List<PieEntry> severityEntries, List<Entry> openEntries, List<Entry> closeEntries,
+                                List<BarEntry> barOpenEntries, List<BarEntry> barCloseEntries, List<BarEntry> barCriticalEntries, List<BarEntry> barMajorEntries, List<BarEntry> barMinorEntries) {
+//        adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(TTActiveTicketFragment.newInstance(topTenActives), "Top 10 Active");
+        adapter.addFragment(TTLongestFragment.newInstance(tickets), "Top 10 Longest");
+        adapter.addFragment(TTSuspectFragment.newInstance(topTenSuspects), "Top 10 Suspects");
+        adapter.addFragment(ACStatisticFragment.newInstance(
+                statusEntries, severityEntries, openEntries, closeEntries, barOpenEntries, barCloseEntries, barCriticalEntries, barMajorEntries, barMinorEntries, months), "Statistic");
+        viewPager.setAdapter(adapter);
     }
 }

@@ -50,7 +50,7 @@ public class ISuspectAdapter extends BaseAdapter {
             holder = (HSpinner) view.getTag();
         }
         if (iSuspects != null) {
-            selectedISuspect = iSuspects.get(position);
+//            selectedISuspect = iSuspects.get(position);
             holder.spinnerKeyTV.setText(selectedISuspect.getSuspectId());
             holder.spinnerValueTV.setText(selectedISuspect.getSuspectName());
         }

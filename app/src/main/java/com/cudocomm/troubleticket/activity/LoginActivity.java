@@ -98,7 +98,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 //        dialogUpdate();
-        cekVersionApp();
+//        cekVersionApp();
         ButterKnife.bind(this);
 
         progressDialog = new SpotsDialog(this, R.style.progress_dialog_style);

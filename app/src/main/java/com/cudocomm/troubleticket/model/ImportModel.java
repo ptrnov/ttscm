@@ -1,6 +1,7 @@
 package com.cudocomm.troubleticket.model;
 
 import com.cudocomm.troubleticket.database.model.SeverityModel;
+import com.cudocomm.troubleticket.database.model.SeverityUpdateModel;
 import com.cudocomm.troubleticket.database.model.StationModel;
 import com.cudocomm.troubleticket.database.model.Suspect1Model;
 import com.cudocomm.troubleticket.database.model.Suspect2Model;

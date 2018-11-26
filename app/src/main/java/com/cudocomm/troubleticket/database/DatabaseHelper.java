@@ -8,6 +8,7 @@ import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.database.model.Penyebab;
 import com.cudocomm.troubleticket.database.model.Program;
 import com.cudocomm.troubleticket.database.model.SeverityModel;
+import com.cudocomm.troubleticket.database.model.SeverityUpdateModel;
 import com.cudocomm.troubleticket.database.model.StationModel;
 import com.cudocomm.troubleticket.database.model.Suspect1Model;
 import com.cudocomm.troubleticket.database.model.Suspect2Model;
@@ -40,6 +41,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private static final String PREFS_KEY_DATABASE_VERSION = "database_version";
 
 	private Dao<SeverityModel, Integer> severityDao = null;
+	private Dao<SeverityUpdateModel, Integer> severityUpdateDao = null;
 	private Dao<SuspectModel, Integer> suspectDao = null;
 
 	private Dao<Suspect1Model, Integer> suspect1Dao = null;
@@ -87,6 +89,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			Logcat.d("DatabaseHelper.onCreate()");
 			TableUtils.createTable(connectionSource, SeverityModel.class);
+			TableUtils.createTable(connectionSource, SeverityUpdateModel.class);
 			TableUtils.createTable(connectionSource, SuspectModel.class);
 
 			TableUtils.createTable(connectionSource, Suspect1Model.class);
@@ -139,6 +142,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void close() {
 		super.close();
 		severityDao = null;
+		severityUpdateDao = null;
 		suspectDao = null;
 
 		suspect1Dao = null;
@@ -171,6 +175,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		{
 			Logcat.d("DatabaseHelper.clearDatabase()");
 			TableUtils.createTableIfNotExists(getConnectionSource(), SeverityModel.class);
+			TableUtils.createTableIfNotExists(getConnectionSource(), SeverityUpdateModel.class);
 			TableUtils.createTableIfNotExists(getConnectionSource(), SuspectModel.class);
 
 			TableUtils.createTableIfNotExists(getConnectionSource(), Suspect1Model.class);
@@ -204,6 +209,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			Logcat.d("DatabaseHelper.clearDatabase()");
 
 			TableUtils.dropTable(getConnectionSource(), SeverityModel.class, true);
+			TableUtils.dropTable(getConnectionSource(), SeverityUpdateModel.class, true);
 			TableUtils.dropTable(getConnectionSource(), SuspectModel.class, true);
 
 			TableUtils.dropTable(getConnectionSource(), Suspect1Model.class, true);
@@ -223,6 +229,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			severityDao = getDao(SeverityModel.class);
 		}
 		return severityDao;
+	}
+
+	public synchronized Dao<SeverityUpdateModel, Integer> getSeverityUpdateDao() throws SQLException {
+		if(severityUpdateDao==null) {
+			severityUpdateDao = getDao(SeverityUpdateModel.class);
+		}
+		return severityUpdateDao;
 	}
 
 	public synchronized Dao<SuspectModel, Integer> getSuspectDao() throws SQLException {
