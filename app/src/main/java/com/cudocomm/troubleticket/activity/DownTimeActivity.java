@@ -39,6 +39,7 @@ import com.cudocomm.troubleticket.adapter.Suspect1Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect2Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect3Adapter;
 import com.cudocomm.troubleticket.adapter.holder.HSpinner;
+import com.cudocomm.troubleticket.adapter.holder.HSpinnerUpdate;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.database.DatabaseHelper;
 import com.cudocomm.troubleticket.database.dao.SeverityDAO;
@@ -178,6 +179,8 @@ public class DownTimeActivity extends BaseActivity {
     SeverityModel selectedSeverityModel;
 
     List<SeverityUpdateModel> severityUpdateModels;
+    private SeverityUpdateAdapter severityUpdateAdapter;
+//    SeverityUpdateModel selectedSeverityModel;
 
     private int severityMenu;
     private int severityValue;
@@ -188,7 +191,10 @@ public class DownTimeActivity extends BaseActivity {
     long idPenyebab;
 
     private String penyebab, program, startTime, duration;
-
+    String[] severity_ar1={"Severity","Critical","Major","Minor"};
+    String[] severity_ar2={"0","1","2","3"};
+    String SeverityId="0";
+    String SeverityNm="Severity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -572,7 +578,8 @@ public class DownTimeActivity extends BaseActivity {
                 String msg = "You will report \"DOWN TIME\" incident with detail : \nLocation : "+
                         preferences.getPreferencesString(Constants.STATION_NAME) +
                         "\nSuspect : " + selectedSuspect1Model.getSuspectName() + " - " + selectedSuspect2Model.getSuspectName() + " - " + selectedSuspect3Model.getSuspectName() +
-                        "\nSeverity : " + selectedSeverityModel.getSeverityName();
+//                        "\nSeverity : " + selectedSeverityModel.getSeverityName();
+                        "\nSeverity : " + SeverityNm;
                 confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
                 confDialog.setBackListener(new View.OnClickListener() {
                     @Override
@@ -702,6 +709,8 @@ public class DownTimeActivity extends BaseActivity {
 
                                         if(severityMenu==0){
                                             severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                            SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                             severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                             severitySpinnerModel.setEnabled(false);
                                         }else if (severityMenu==1){
@@ -788,6 +797,8 @@ public class DownTimeActivity extends BaseActivity {
 
                                         if(severityMenu==0){
                                             severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                            SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                             severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                             severitySpinnerModel.setEnabled(false);
                                         }else if (severityMenu==1){
@@ -870,7 +881,9 @@ public class DownTimeActivity extends BaseActivity {
                                         Thread.sleep(1000);
 
                                         if(severityMenu==0){
-                                            severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                            severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")),true);
+                                            SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                            SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                             severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                             severitySpinnerModel.setEnabled(false);
                                         }else if (severityMenu==1){
@@ -922,15 +935,36 @@ public class DownTimeActivity extends BaseActivity {
             }else {
                 resetSuspect3Model();
             }
-        } else if(spinner.getId() == R.id.severitySpinnerModel) {
-            if(position > -1) {
-                HSpinner hSpinner = new HSpinner(spinner);
-                selectedSeverityModel.setSeverityId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
-                selectedSeverityModel.setSeverityName(hSpinner.spinnerValueTV.getText().toString());
-            } else {
-                resetSeverity();
-            }
         }
+//        else if(spinner.getId() == R.id.severitySpinnerModel) {
+//            if(position > -1) {
+//                SeverityNm=severity_ar1[position];
+//                SeverityId=severity_ar2[position];
+////                HSpinner hSpinner = new HSpinner(spinner);
+////                HSpinnerUpdate hSpinnerUpdate = new HSpinnerUpdate(spinner);
+////                selectedSeverityModel.setSeverityId(Integer.valueOf(hSpinnerUpdate.spinnerKeyTV.getText().toString()));
+////                selectedSeverityModel.setSeverityName(hSpinnerUpdate.spinnerValueTV.getText().toString());
+//            } else {
+//                resetSeverity();
+//            }
+//        }
+
+        severitySpinnerModel.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (position > -1) {
+                            SeverityNm=severity_ar1[parent.getSelectedItemPosition()];
+                            SeverityId=severity_ar2[parent.getSelectedItemPosition()];
+
+                        } else {
+                            resetSeverity();
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {}
+                });
 
     }
 
@@ -1044,7 +1078,8 @@ public class DownTimeActivity extends BaseActivity {
                 if(photo3 != null)
                     builder.addFormDataPart("ticket_photo_3", photo3.getName(), RequestBody.create(MEDIA_TYPE_PNG, photo3));
 
-                builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
+//                builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
+                builder.addFormDataPart("ticket_severity", String.valueOf(SeverityId))
                         .addFormDataPart("ticket_status", "1");
 
 //                result = ApiClient.post2(CommonsUtil.getAbsoluteUrl("new_ticket2"), builder);
@@ -1173,6 +1208,9 @@ public class DownTimeActivity extends BaseActivity {
 //        final List<Severity> severity = importModel.getSeverities();
         final List<SeverityUpdateModel> severityUpdateModels = severityUpdate.getSeverityUpdateModels();
         Log.d(TAG, "ptr.severity" + severityUpdateModels.get(0).getSeverityName().toString());
+
+        severityUpdateAdapter =new SeverityUpdateAdapter(getApplicationContext(), severityUpdateModels);
+        severitySpinnerModel.setAdapter(severityUpdateAdapter);
     }
 
 }

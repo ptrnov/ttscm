@@ -86,6 +86,7 @@
         <item>Non-AC Nielsen</item>
         <item>O Channel</item>
         <item>Nexmedia</item>
+        <item>Send Reminder</item>
     </string-array>
 
     <!--<array name="menu_icon_array_engineer">
@@ -165,6 +166,7 @@
         <item>@drawable/ic_non_ac_nielsen</item>
         <item>@mipmap/ic_o_channel</item>
         <item>@mipmap/ic_nex_media</item>
+        <item>@drawable/ic_vinspection</item>
     </array>
 
     <!--<string-array name="menu_is_title">
@@ -245,12 +247,30 @@
         <item>false</item>
         <item>false</item>
         <item>false</item>
+        <item>false</item>
         <!--<item>false</item>-->
     </string-array>
 
     <array name="close_type_array">
         <item>Fix Closed</item>
         <item>Closed by PR</item>
+    </array>
+
+
+    <array name="close_type_array_fix_pr">
+        <item>Fix Closed</item>
+        <item>Closed by PR</item>
+    </array>
+
+    <array name="close_type_array_fic_pr_replacment">
+        <item>Fix Closed</item>
+        <item>Closed by PR</item>
+        <item>Closed by Replacment</item>
+    </array>
+
+    <array name="replacment_check">
+        <item>Items can be repaired</item>
+        <item>Unrepaired items</item>
     </array>
 
 </resources>

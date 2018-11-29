@@ -755,8 +755,8 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
                         .add("ticket_id", selectedTicket.getTicketId())
                         .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("additional_info", additionalInfo)
-                        .add("closed_type", String.valueOf(closedType))
-                        .add("pr_no", prNo)
+//                        .add("closed_type", String.valueOf(closedType))
+//                        .add("pr_no", prNo)
                         .build());
             } catch (IOException e) {
                 e.printStackTrace();

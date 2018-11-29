@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class HomeKadiv extends BaseFragment {
 
+    private static final String TAG = "HomeKadev";
     private View rootView;
 
     private LinearLayoutManager linearLayoutManager;
@@ -233,19 +235,23 @@ public class HomeKadiv extends BaseFragment {
             }
         }
 
-        menu2Adapter = new Menu2Adapter(getActivity(), menuModels, new Menu2Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(MenuModel menuModel) {
+    menu2Adapter =
+        new Menu2Adapter(
+            getActivity(),
+            menuModels,
+            new Menu2Adapter.OnItemClickListener() {
+              @Override
+              public void onItemClick(MenuModel menuModel) {
                 Fragment f;
                 String page;
                 Boolean flag = Boolean.FALSE;
-//                Bundle args = new Bundle();
+                //                Bundle args = new Bundle();
 
-                if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_STATISTICS)) {
-                    f = new StatisticFragment();
-                    page = Constants.TT_STATISTICS;
-                    preferences.savePreferences(Constants.ACTIVE_PAGE, page);
-                    mListener.onMenuSelected(page, f, flag);
+                if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_STATISTICS)) {
+                  f = new StatisticFragment();
+                  page = Constants.TT_STATISTICS;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
                 }
                 /*else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_TOP_TEN)) {
                     f = new TopTenFragment();
@@ -253,39 +259,45 @@ public class HomeKadiv extends BaseFragment {
                     preferences.savePreferences(Constants.ACTIVE_PAGE, page);
                     mListener.onMenuSelected(page, f, flag);
                 } */
-                else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_NEWEST_TICKET)) {
-                    f = new ToDoListFragment();
-                    page = Constants.TT_NEWEST_TICKET;
-                    preferences.savePreferences(Constants.ACTIVE_PAGE, page);
-                    mListener.onMenuSelected(page, f, flag);
-                } else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_AC_NIELASEN)) {
-                    f = new ACNielsenFragment();
-                    page = Constants.TT_AC_NIELASEN;
-                    preferences.savePreferences(Constants.ACTIVE_PAGE, page);
-                    mListener.onMenuSelected(page, f, flag);
-                } else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_NON_AC_NIELASEN)) {
-                    f = new NonACNielsenFragment();
-                    page = Constants.TT_NON_AC_NIELASEN;
-                    preferences.savePreferences(Constants.ACTIVE_PAGE, page);
-                    mListener.onMenuSelected(page, f, flag);
-                } else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_O_CHANNEL)) {
-                    f = new OchannelFragment();
-                    page = Constants.TT_O_CHANNEL;
-                    preferences.savePreferences(Constants.ACTIVE_PAGE, page);
-                    mListener.onMenuSelected(page, f, flag);
-                } else if(menuModel.getTitle().equalsIgnoreCase(Constants.TT_NEXMEDIA)) {
-                    f = new NexMediaFragment();
-                    page = Constants.TT_NEXMEDIA;
+                else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_NEWEST_TICKET)) {
+                  f = new ToDoListFragment();
+                  page = Constants.TT_NEWEST_TICKET;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
+                } else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_AC_NIELASEN)) {
+                  f = new ACNielsenFragment();
+                  page = Constants.TT_AC_NIELASEN;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
+                } else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_NON_AC_NIELASEN)) {
+                  f = new NonACNielsenFragment();
+                  page = Constants.TT_NON_AC_NIELASEN;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
+                } else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_O_CHANNEL)) {
+                  f = new OchannelFragment();
+                  page = Constants.TT_O_CHANNEL;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
+                } else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_NEXMEDIA)) {
+                  f = new NexMediaFragment();
+                  page = Constants.TT_NEXMEDIA;
+                  preferences.savePreferences(Constants.ACTIVE_PAGE, page);
+                  mListener.onMenuSelected(page, f, flag);
+                } else if (menuModel.getTitle().equalsIgnoreCase(Constants.TT_SEND_REMINDER)) {
+                    Log.d(TAG, "menu_test" + menuModel.getTitle().toString());;
+                    f = new SendReminder();
+                    page = Constants.TT_SEND_REMINDER;
                     preferences.savePreferences(Constants.ACTIVE_PAGE, page);
                     mListener.onMenuSelected(page, f, flag);
                 }
-
-
-            }
-        });
+              }
+            });
         homeMenuRV.setAdapter(menu2Adapter);
 
     }
+
+
 
     private void loadStatistics() {
 

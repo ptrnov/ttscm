@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.cudocomm.troubleticket.R;
 import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.adapter.SeverityUpdateAdapter;
+import com.cudocomm.troubleticket.adapter.SeverityUpdateAdapter2;
 import com.cudocomm.troubleticket.database.DatabaseHelper;
 import com.cudocomm.troubleticket.adapter.SeverityAdapter2;
 import com.cudocomm.troubleticket.adapter.Suspect1Adapter;
@@ -31,6 +32,7 @@ import com.cudocomm.troubleticket.adapter.Suspect2Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect3Adapter;
 import com.cudocomm.troubleticket.adapter.Suspect4Adapter;
 import com.cudocomm.troubleticket.adapter.holder.HSpinner;
+import com.cudocomm.troubleticket.adapter.holder.HSpinnerUpdate;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.database.dao.SeverityDAO;
 import com.cudocomm.troubleticket.database.dao.SeverityUpdateDAO;
@@ -116,19 +118,28 @@ public class KerusakanActivity extends BaseActivity {
     private Suspect4Adapter suspect4Adapter;
     private EditText ambilSeverity;
 
-    //Load Data from API checkV2, just for View Spinner
-    List<SeverityUpdateModel> severityUpdateModels;
-    private int severitySize = 0;
-
-    //Load data severity [Critical,major,Minor] from database from login
     List<SeverityModel> severityModels;
     SeverityModel selectedSeverityModel;
 
+    //Load Data from API checkV2, just for View Spinner
+    List<SeverityUpdateModel> severityUpdateModels;
+//    SeverityUpdateModel selectedSeverityModel;
+
+    private int severitySize = 0;
+
+    //Load data severity [Critical,major,Minor] from database from login
+
+
     private MaterialSpinner severitySpinnerModel;
     private SeverityAdapter2 severityAdapter2;
+    private SeverityUpdateAdapter2 severityUpdateAdapter2;
     private SeverityUpdateAdapter severityUpdateAdapter;
     private int severityMenu;
     private int severityValue;
+    String[] severity_ar1={"Severity","Critical","Major","Minor"};
+    String[] severity_ar2={"0","1","2","3"};
+    String SeverityId="0";
+    String SeverityNm="Severity";
 //    https://stackoverflow.com/questions/11343570/android-create-a-spinner-with-items-that-have-a-hidden-value-and-display-some-te
 
     @Override
@@ -158,7 +169,8 @@ public class KerusakanActivity extends BaseActivity {
         if(selectedSuspect3Model.getSuspectName() != null)
             builder.append(" - ").append(selectedSuspect3Model.getSuspectName());
 
-        builder.append("\nSeverity : ").append(selectedSeverityModel.getSeverityName());
+//        builder.append("\nSeverity : ").append(selectedSeverityModel.getSeverityName());
+        builder.append("\nSeverity : ").append(SeverityNm);
 
         String msg = builder.toString();
         confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
@@ -362,6 +374,7 @@ public class KerusakanActivity extends BaseActivity {
                 suspect1Spinner.setVisibility(View.VISIBLE);
             }
 
+
             suspect1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -402,7 +415,8 @@ public class KerusakanActivity extends BaseActivity {
 
                                                 if(severityMenu==0){
                                                     severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
-//                                    selectedSeverityModel.setSeverityId(Integer.parseInt(Obj.getString("severity")));
+                                                    SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                                    SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                                     severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                                     severitySpinnerModel.setEnabled(false);
                                                 }else if (severityMenu==1){
@@ -415,6 +429,11 @@ public class KerusakanActivity extends BaseActivity {
                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItemPosition());
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItem().toString());
+//                                                Log.d(TAG, "severity_check212:" + Integer.parseInt(Obj.getString("severity")));
+                                                Log.d(TAG, "severity_check212:" + severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
+                                                Log.d(TAG, "severity_check212:" + severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
@@ -472,7 +491,7 @@ public class KerusakanActivity extends BaseActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if(position > -1) {
-                        HSpinner hSpinner = new HSpinner(view);
+                        HSpinner hSpinner= new HSpinner(view);
                         selectedSuspect2Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                         selectedSuspect2Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
 
@@ -503,9 +522,10 @@ public class KerusakanActivity extends BaseActivity {
                                                 loadSuspect3Models(selectedSuspect2Model.getSuspectId());
                                                 //sleep 5 seconds
                                                 Thread.sleep(1000);
-
                                                 if(severityMenu==0){
                                                     severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                                    SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                                    SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                                     severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                                     severitySpinnerModel.setEnabled(false);
                                                 }else if (severityMenu==1){
@@ -518,6 +538,11 @@ public class KerusakanActivity extends BaseActivity {
                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }
+                                                Log.d(TAG, "severity_check212:" + severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
+                                                Log.d(TAG, "severity_check212:" + severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItemPosition());
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItem().toString());
+//                                                Log.d(TAG, "severity_check212:" + Integer.parseInt(Obj.getString("severity")));
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
@@ -538,7 +563,7 @@ public class KerusakanActivity extends BaseActivity {
                             @Override
                             protected Map<String, String> getParams() {
                                 Map<String, String> items = new HashMap<>();
-                                items.put("spc1", spc1.toString());
+//                                items.put("spc1", spc1.toString());
                                 items.put("spc2", selectedSuspect2Model.getSuspectId().toString());
                                 Logcat.e("params: " + items.toString());
                                 return items;
@@ -654,8 +679,11 @@ public class KerusakanActivity extends BaseActivity {
                                                 //sleep 5 seconds
                                                 Thread.sleep(1000);
 
+
                                                 if(severityMenu==0){
                                                     severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                                    SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                                    SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                                     severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                                     severitySpinnerModel.setEnabled(false);
                                                 }else if (severityMenu==1){
@@ -668,6 +696,11 @@ public class KerusakanActivity extends BaseActivity {
                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItemPosition());
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItem().toString());
+//                                                Log.d(TAG, "severity_check212:" + Integer.parseInt(Obj.getString("severity")));
+                                                Log.d(TAG, "severity_check212:" + severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
+                                                Log.d(TAG, "severity_check212:" + severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
@@ -688,8 +721,8 @@ public class KerusakanActivity extends BaseActivity {
                             @Override
                             protected Map<String, String> getParams() {
                                 Map<String, String> items = new HashMap<>();
-                                items.put("spc1", spc1.toString());
-                                items.put("spc2", spc2.toString());
+//                                items.put("spc1", spc1.toString());
+//                                items.put("spc2", spc2.toString());
                                 items.put("spc3", selectedSuspect3Model.getSuspectId().toString());
                                 Logcat.e("params: " + items.toString());
                                 return items;
@@ -723,8 +756,7 @@ public class KerusakanActivity extends BaseActivity {
                         HSpinner hSpinner = new HSpinner(view);
                         selectedSuspect4Model.setSuspectId(new Integer(hSpinner.spinnerKeyTV.getText().toString()));
                         selectedSuspect4Model.setSuspectName(hSpinner.spinnerValueTV.getText().toString());
-                        severitySpinnerModel.setSelection(1);
-
+//
                         spc4=selectedSuspect4Model.getSuspectId().toString();
 
                         StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("cek_severityv2"),
@@ -747,21 +779,27 @@ public class KerusakanActivity extends BaseActivity {
                                             try {
 //                                              //sleep 5 seconds
                                                 Thread.sleep(1000);
-
                                                 if(severityMenu==0){
                                                     severitySpinnerModel.setSelection(Integer.parseInt(Obj.getString("severity")));
+                                                    SeverityNm=severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
+                                                    SeverityId=severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString();
                                                     severitySpinnerModel.setFloatingLabelText("Auto Severity");
                                                     severitySpinnerModel.setEnabled(false);
                                                 }else if (severityMenu==1){
                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }else if (severityMenu==2){
-                                                    severitySpinnerModel.setFloatingLabelText("Select Severity");
+                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }else if (severityMenu==3){
                                                     severitySpinnerModel.setFloatingLabelText("Select Severity");
                                                     severitySpinnerModel.setEnabled(true);
                                                 }
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItemPosition());
+//                                                Log.d(TAG, "severity_check212:" + severitySpinnerModel.getSelectedItem().toString());
+//                                                Log.d(TAG, "severity_check212:" + Integer.parseInt(Obj.getString("severity")));
+                                                Log.d(TAG, "severity_check212:" + severity_ar1[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
+                                                Log.d(TAG, "severity_check212:" + severity_ar2[Integer.valueOf(Integer.parseInt(Obj.getString("severity")))].toString());
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
@@ -782,9 +820,9 @@ public class KerusakanActivity extends BaseActivity {
                             @Override
                             protected Map<String, String> getParams() {
                                 Map<String, String> items = new HashMap<>();
-                                items.put("spc1", spc1.toString());
-                                items.put("spc2", spc2.toString());
-                                items.put("spc3", spc3.toString());
+//                                items.put("spc1", spc1.toString());
+//                                items.put("spc2", spc2.toString());
+//                                items.put("spc3", spc3.toString());
                                 items.put("spc4", selectedSuspect4Model.getSuspectId().toString());
                                 Logcat.e("params: " + items.toString());
                                 return items;
@@ -810,33 +848,55 @@ public class KerusakanActivity extends BaseActivity {
                 }
             });
 
-            if(severityUpdateModels.size()>0) {
-                severityUpdateAdapter = new SeverityUpdateAdapter(getApplicationContext(), severityUpdateModels);
-                severitySpinnerModel.setAdapter(severityUpdateAdapter);
-                severitySpinnerModel.setVisibility(View.VISIBLE);
+      //            if(severityUpdateModels.size()>0) {
+      //                severityUpdateAdapter2 = new SeverityUpdateAdapter2(getApplicationContext(),
+      // severityUpdateModels);
+      //                severitySpinnerModel.setAdapter(severityUpdateAdapter2);
+      //                severitySpinnerModel.setVisibility(View.VISIBLE);
+      //
+      //            }
 
+      severitySpinnerModel.setOnItemSelectedListener(
+          new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              if (position > -1) {
+                  SeverityNm=severity_ar1[parent.getSelectedItemPosition()];
+                  SeverityId=severity_ar2[parent.getSelectedItemPosition()];
+
+//                  Object item = parent.getItemAtPosition(position);
+//                  HSpinnerUpdate hSpinnerUpdate = new HSpinnerUpdate(view);
+
+//                  SeverityId=severity_ar2[selectedSeverityModel.getSeverityId()].toString();
+//                  Log.d(
+//                    TAG,
+//                    "caritau:" + ";Data=" + severitySpinnerModel.getAdapter().getItemViewType(position) );
+////                                       try {
+//
+//                                severityModels = SeverityDAO.readAll(-11, -11);
+//
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                HSpinnerUpdate hSpinnerUpdate = new HSpinnerUpdate(view);
+//                  selectedSeverityModel.setSeverityId(1);
+//                  selectedSeverityModel.setSeverityName("piter streess");
+//                selectedSeverityModel.setSeverityId(
+//                    Integer.valueOf(hSpinnerUpdate.spinnerKeyTV.getText().toString()));
+//                selectedSeverityModel.setSeverityName(
+//                    hSpinnerUpdate.spinnerValueTV.getText().toString());
+//                Log.d(
+//                    TAG,
+//                    "caritau:" + ";Data=" + hSpinnerUpdate.spinnerValueTV.getText().toString());
+
+              } else {
+                                        resetSeverity();
+              }
             }
 
-
-            severitySpinnerModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(position > -1) {
-                        HSpinner hSpinner = new HSpinner(view);
-                        selectedSeverityModel.setSeverityId(Integer.valueOf(hSpinner.spinnerKeyTV.getText().toString()));
-                        selectedSeverityModel.setSeverityName(hSpinner.spinnerValueTV.getText().toString());
-                        Log.d(TAG, "caritau:" +";Data=" + hSpinner.spinnerValueTV.getText().toString());
-
-                    } else {
-                        resetSeverity();
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+          });
 
             progressDialog.dismiss();
         }
@@ -848,6 +908,17 @@ public class KerusakanActivity extends BaseActivity {
         selectedSeverityModel.setSeverityName(null);
         selectedSeverityModel.setSeverityTime(null);
     }
+
+
+
+
+
+
+
+
+
+
+
 
     class SubmitKerusakanTask extends AsyncTask<Void, Void, Void> {
 
@@ -885,7 +956,8 @@ public class KerusakanActivity extends BaseActivity {
                 if(photo3 != null)
                     builder.addFormDataPart("ticket_photo_3", photo3.getName(), RequestBody.create(MEDIA_TYPE_PNG, photo3));
 
-                builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
+//                builder.addFormDataPart("ticket_severity", String.valueOf(selectedSeverityModel.getSeverityId()))
+                builder.addFormDataPart("ticket_severity", String.valueOf(SeverityId))
                         .addFormDataPart("ticket_status", "1");
 
                 result = ApiClient.post2(CommonsUtil.getAbsoluteUrl("new_ticket2"), builder);
@@ -1044,17 +1116,21 @@ public class KerusakanActivity extends BaseActivity {
         final List<SeverityUpdateModel> severityUpdateModels = severityUpdate.getSeverityUpdateModels();
         Log.d(TAG, "ptr.severity" + severityUpdateModels.get(0).getSeverityName().toString());
 
-        try {
-      TransactionManager.callInTransaction(
-          DatabaseHelper.getInstance().getConnectionSource(),
-          new Callable<Object>() {
-            public Void call() throws Exception {
-              for (SeverityUpdateModel severityUpdateModel : severityUpdateModels) {
-                Log.d(TAG, "ptr.severity: " + severityUpdateModel.getSeverityName().toString());
 
-                try {
-                  Log.d(TAG,"ptr.severity: " + severityUpdateModel.getSeverityName().toString()+ "masuk");
-                  severitySize = SeverityUpdateDAO.readAll(-11, -11).size();
+
+
+
+//        try {
+//      TransactionManager.callInTransaction(
+//          DatabaseHelper.getInstance().getConnectionSource(),
+//          new Callable<Object>() {
+//            public Void call() throws Exception {
+//              for (SeverityUpdateModel severityUpdateModel : severityUpdateModels) {
+//                Log.d(TAG, "ptr.severity: " + severityUpdateModel.getSeverityName().toString());
+//
+//                try {
+//                  Log.d(TAG,"ptr.severity: " + severityUpdateModel.getSeverityName().toString()+ "masuk");
+//                  severitySize = SeverityUpdateDAO.readAll(-11, -11).size();
 //                  if (severitySize == 0) {
 //                    TransactionManager.callInTransaction(
 //                        DatabaseHelper.getInstance().getConnectionSource(),
@@ -1080,20 +1156,24 @@ public class KerusakanActivity extends BaseActivity {
 //                          }
 //                        });
 //                  }
+//
+//
+//
+//                } catch (SQLException e) {
+//                  e.printStackTrace();
+//                }
+//              }
+//
+//              return null;
+//            }
+//          });
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
-                    severityUpdateAdapter =new SeverityUpdateAdapter(getApplicationContext(), severityUpdateModels);
-                    severitySpinnerModel.setAdapter(severityUpdateAdapter);
-                    severitySpinnerModel.setVisibility(View.VISIBLE);
 
-                } catch (SQLException e) {
-                  e.printStackTrace();
-                }
-              }
-              return null;
-            }
-          });
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        severityUpdateAdapter =new SeverityUpdateAdapter(getApplicationContext(), severityUpdateModels);
+        severitySpinnerModel.setAdapter(severityUpdateAdapter);
+        severitySpinnerModel.setVisibility(View.VISIBLE);
     }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.cudocomm.troubleticket.R;
 import com.cudocomm.troubleticket.activity.MyVisitDetailActivity;
@@ -32,6 +33,7 @@ import okhttp3.FormBody;
 
 public class MyVisit extends BaseFragment {
 
+    private static final String TAG = "OnSiteEngineer";
     private View rootView;
     private SwipeRefreshLayout assignmentSwiper;
     private RecyclerView assignmentRV;
@@ -127,6 +129,7 @@ public class MyVisit extends BaseFragment {
                 if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
                     Type type = new TypeToken<List<Assignment>>(){}.getType();
                     assignments = gson.fromJson(object.getString("new_tickets"), type);
+                    Log.d(TAG,"onvisit_new" + object.getString("new_tickets"));
                     if(assignments.size() > 0) {
                         assignmentAdapter = new AssignmentAdapter(assignments, new AssignmentAdapter.OnItemClickListener() {
                             @Override

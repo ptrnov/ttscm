@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,13 +21,16 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.cudocomm.troubleticket.R;
+import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.adapter.ViewPagerAdapter;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupAssignToTicket;
 import com.cudocomm.troubleticket.component.PopupAssignmentTicket;
 import com.cudocomm.troubleticket.component.PopupReAssignmentTicket;
+import com.cudocomm.troubleticket.component.PopupApprovalReplacment;
 import com.cudocomm.troubleticket.component.PopupCloseTicket;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
+import com.cudocomm.troubleticket.component.PopupCloseTicketCustomReplacment;
 import com.cudocomm.troubleticket.component.PopupCloseTicketV2;
 import com.cudocomm.troubleticket.component.PopupEscalationTicket;
 import com.cudocomm.troubleticket.component.PopupGuidanceTicket;
@@ -90,6 +94,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     @BindView(R.id.actionKadepTSLL)
     LinearLayout actionKadepTSLL;
     @BindView(R.id.actionAssign)
+//     LinearLayout actionApprovedRep;
+//    @BindView(R.id.actionApprovedRep)
     LinearLayout actionAssign;
     @BindView(R.id.escalatedBtn)
     Button escalatedBtn;
@@ -107,11 +113,15 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     Button guidanceBtn;
     @BindView(R.id.guidanceBtnKadepTs)
     Button guidanceBtnKadepTs;
+    @BindView(R.id.replacemmentApprovedBtn)
+    Button replacemmentApprovedBtn;
 
     private CustomPopConfirm popConfirm;
+    private PopupApprovalReplacment popupApprovalReplacment;
     private PopupCloseTicket popupCloseTicket;
     private PopupCloseTicketV2 popupCloseTicketV2;
     private PopupCloseTicketCustom popupCloseTicketCustom;
+    private PopupCloseTicketCustomReplacment popupCloseTicketCustomReplacment;
     private PopupEscalationTicket popupEscalationTicket;
     private PopupAssignmentTicket popupAssignmentTicket;
     private PopupReAssignmentTicket popupReAssignmentTicket;
@@ -124,6 +134,9 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
     private String additionalInfo;
     String prNo;
+    String replacmentNo;
+    String partNo;
+    String serialNo;
     private String actionDescribe;
     private String requireSupport;
     private String assignDate, assignAction;
@@ -133,6 +146,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     private int totalSassign;
     private String sassignSerializer;
     private String reasonAssign;
+    private String prNoomor;
 //    private String ticketInfoET;
     private EditText ticketInfoET;
 
@@ -197,6 +211,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     }
 
     private void updateComponent() {
+        Logcat.d("chk_status : " + selectedTicket.getTicketStatus());
         if(selectedTicket.getTicketStatus() == 1) {
             if(preferences.getPreferencesInt(Constants.ID_UPDRS) == selectedTicket.getTicketPosition()) {
 //                if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS || preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_INFRA) {
@@ -205,6 +220,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                     actionLL.setVisibility(View.GONE);
                     actionKadepTSLL.setVisibility(View.GONE);
                     actionAssign.setVisibility(View.VISIBLE);
+                    assignmentToBtn.setVisibility(View.VISIBLE);
+                    replacemmentApprovedBtn.setVisibility(View.GONE);
 //                    guidanceBtn.setVisibility(View.GONE);
                 }else {
                     if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
@@ -237,7 +254,34 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
             }  else {
                 actionLayout.setVisibility(View.GONE);
             }
-        } else {
+        } else if (selectedTicket.getTicketStatus() == 2){
+            actionLayout.setVisibility(View.VISIBLE);
+            actionAssign.setVisibility(View.VISIBLE);
+            if (selectedTicket.getAssetNno()!=null){
+                if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
+                    replacemmentApprovedBtn.setVisibility(View.VISIBLE);
+                    assignmentToBtn.setVisibility(View.GONE);
+                } else if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_INFRA) {
+                    replacemmentApprovedBtn.setVisibility(View.VISIBLE);
+                    assignmentToBtn.setVisibility(View.GONE);
+                }else{
+                    assignmentToBtn.setVisibility(View.GONE);
+                    replacemmentApprovedBtn.setVisibility(View.GONE);
+                }
+            }else{
+                if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
+                    assignmentToBtn.setVisibility(View.VISIBLE);
+                    replacemmentApprovedBtn.setVisibility(View.GONE);
+                } else if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_INFRA) {
+                    assignmentToBtn.setVisibility(View.VISIBLE);
+                    replacemmentApprovedBtn.setVisibility(View.GONE);
+                }else{
+                    assignmentToBtn.setVisibility(View.GONE);
+                    replacemmentApprovedBtn.setVisibility(View.GONE);
+                }
+            }
+
+        }else {
             actionLayout.setVisibility(View.GONE);
         }
 
@@ -320,14 +364,14 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
     }
 
     @Optional
-    @OnClick({R.id.closedBtn, R.id.escalatedBtn, R.id.assignmentBtn, R.id.closedAssignmentBtn, R.id.assignmentToBtn, R.id.assignmentToBtn2,R.id.guidanceBtn, R.id.guidanceBtnKadepTs})
+    @OnClick({R.id.closedBtn, R.id.escalatedBtn, R.id.assignmentBtn, R.id.closedAssignmentBtn, R.id.assignmentToBtn, R.id.assignmentToBtn2,R.id.guidanceBtn, R.id.guidanceBtnKadepTs, R.id.replacemmentApprovedBtn})
     public void onActionPage(View view) {
         if(view.getId() == R.id.closedBtn) {
             if(selectedTicket.getTicketType() == 1 || selectedTicket.getTicketType() == 2) {
                 if (preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.TECHNICIAN
                         || preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KST
                         || preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KORWIL){
-                            popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket1","Process","Back");
+                            popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket","Process","Back");
                             popupCloseTicket.setBackListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -387,11 +431,78 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 //                                    program = String.valueOf(popupCloseTicketV2.getProgramET());
 //                                    closedTypes = String.valueOf(popupCloseTicketV2.getPrNoET());
                                     prNo = popupCloseTicketCustom.getPrNoET().getText().toString();
-//
-                                    String regexStr = "^[0-9]*$";
+                                    replacmentNo = popupCloseTicketCustom.getReplacmentNo().getText().toString();
+                                    partNo = popupCloseTicketCustom.getPartNo().getText().toString();
+                                    serialNo = popupCloseTicketCustom.getSerialNo().getText().toString();
                                     Log.d("addt11111",String.valueOf(prNo));
-//                                    if (closedTypes.equals("Closed by PR")) {
-                                    if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==2) {
+//                                    String[] closeTypes;
+//                                    if (preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS ||
+//                                            preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_INFRA){
+//                                        closeTypes = getResources().getStringArray(R.array.close_type_array_fic_pr_replacment);
+//                                    }else{
+//                                        closeTypes = getResources().getStringArray(R.array.close_type_array_fix_pr);
+//                                    }
+//                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(TTSApplication.getContext(), R.layout.spiner_dropdown_item, closeTypes);
+//                                    popupCloseTicketCustom.fixTypeSpinner.setAdapter(adapter);
+
+                                    String regexStr = "^[0-9]*$";
+                                    if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==3) {
+                                        if (additionalInfo.equals("")) {
+                                            popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                                        }else if(replacmentNo.length()==0){
+                                            popupCloseTicketCustom.getReplacmentNo().requestFocus();
+                                            popupCloseTicketCustom.getReplacmentNo().setError(getResources().getString(R.string.error_replacmentNo_action_requered));
+                                        }else if(partNo.length()==0){
+                                            popupCloseTicketCustom.getPartNo().requestFocus();
+                                            popupCloseTicketCustom.getPartNo().setError(getResources().getString(R.string.error_partNo_action_requered));
+                                        }else if(serialNo.length()==0){
+                                            popupCloseTicketCustom.getSerialNo().requestFocus();
+                                            popupCloseTicketCustom.getSerialNo().setError(getResources().getString(R.string.error_serialNo_action_requered));
+                                        }else{
+                                            String title = "Submission Confirmation";
+                                            String msg =
+                                                    "You will Close \""
+                                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                                            + "\" ticket with detail : \nLocation : "
+                                                            + selectedTicket.getStationName()
+                                                            + "\nSuspect : "
+                                                            + selectedTicket.getSuspect1Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect2Name()
+                                                            + " - "
+                                                            + selectedTicket.getSuspect3Name()
+                                                            + "\nSeverity : "
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                            + "\nAsset.No : "
+                                                            + replacmentNo.toString()
+                                                            + "\nPart.No : "
+                                                            + partNo.toString()
+                                                            + "\nSerial.No : "
+                                                            + serialNo.toString();
+
+                                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                            popConfirm.setBackListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popConfirm.dismiss();
+                                                        }
+                                                    });
+                                            popConfirm.setProcessListener(
+                                                    new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            popupCloseTicketCustom.dismiss();
+                                                            popConfirm.dismiss();
+
+                                                            new ClosedTicketByReplacment().execute();
+                                                        }
+                                                    });
+                                            popConfirm.show(getFragmentManager(), null);
+
+                                        }
+//                                   //Close By PR
+                                    }else if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==2) {
                                         if (additionalInfo.equals("")) {
                                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                                         }else if(prNo.length()!=9){
@@ -420,7 +531,9 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                                             + " - "
                                                             + selectedTicket.getSuspect3Name()
                                                             + "\nSeverity : "
-                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                                            + "\nPR.No : "
+                                                            + prNo.toString();
 
                                             popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
                                             popConfirm.setBackListener(
@@ -443,7 +556,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                             popConfirm.show(getFragmentManager(), null);
 
                                         }
-//                                    }else if (closedTypes.equals("Fix Closed")) {
+//                                    //CLOSE BIASA
                                     }else if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==1) {
                                         if (additionalInfo.equals("")) {
                                             popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
@@ -598,40 +711,98 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
         } else if(view.getId() == R.id.closedAssignmentBtn) {
 
             // Kadep TS - ptr.nov
-            popupCloseTicketCustom = PopupCloseTicketCustom.newInstance("Close Ticket","Process","Back");
+            popupCloseTicketCustomReplacment = PopupCloseTicketCustomReplacment.newInstance("Close Ticket" + " [" + selectedTicket.getTicketNo().toString() +"]","Process","Back");
 
-            popupCloseTicketCustom.setBackListener(new View.OnClickListener() {
+            popupCloseTicketCustomReplacment.setBackListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    popupCloseTicketCustom.dismiss();
+                    popupCloseTicketCustomReplacment.dismiss();
                 }
             });
-            popupCloseTicketCustom.setProcessListener(new View.OnClickListener() {
+            popupCloseTicketCustomReplacment.setProcessListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    additionalInfo = popupCloseTicketCustom.getTicketInfoET().getText().toString();
+                    additionalInfo = popupCloseTicketCustomReplacment.getTicketInfoET().getText().toString();
 //                    closedTypes = popupCloseTicketCustom.getStringSpinnerItem();
 //                                    penyebab = String.valueOf(popupCloseTicketV2.getPenyebabET());
 //                                    program = String.valueOf(popupCloseTicketV2.getProgramET());
 //                                    closedTypes = String.valueOf(popupCloseTicketV2.getPrNoET());
-                    prNo = popupCloseTicketCustom.getPrNoET().getText().toString();
+                    prNo = popupCloseTicketCustomReplacment.getPrNoET().getText().toString();
+                    replacmentNo = popupCloseTicketCustomReplacment.getReplacmentNo().getText().toString();
+                    partNo = popupCloseTicketCustomReplacment.getPartNo().getText().toString();
+                    serialNo = popupCloseTicketCustomReplacment.getSerialNo().getText().toString();
                     Log.d("addt11111",String.valueOf(prNo));
 
                     String regexStr = "^[0-9]*$";
 
 //                    if (closedTypes.equals("Closed by PR")) {
-
-                    if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==2) {
+                    if (popupCloseTicketCustomReplacment.getStringSpinnerItem().getSelectedItemPosition()==3) {
                         if (additionalInfo.equals("")) {
-                            popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                            popupCloseTicketCustomReplacment.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                        }else if(replacmentNo.length()==0){
+                            popupCloseTicketCustomReplacment.getReplacmentNo().requestFocus();
+                            popupCloseTicketCustomReplacment.getReplacmentNo().setError(getResources().getString(R.string.error_replacmentNo_action_requered));
+                        }else if(partNo.length()==0){
+                            popupCloseTicketCustomReplacment.getPartNo().requestFocus();
+                            popupCloseTicketCustomReplacment.getPartNo().setError(getResources().getString(R.string.error_partNo_action_requered));
+                        }else if(serialNo.length()==0){
+                            popupCloseTicketCustomReplacment.getSerialNo().requestFocus();
+                            popupCloseTicketCustomReplacment.getSerialNo().setError(getResources().getString(R.string.error_serialNo_action_requered));
+                        }else{
+                            String title = "Submission Confirmation";
+                            String msg =
+                                    "You will Close \""
+                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                                            + "\" ticket with detail : \nLocation : "
+                                            + selectedTicket.getStationName()
+                                            + "\nSuspect : "
+                                            + selectedTicket.getSuspect1Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect2Name()
+                                            + " - "
+                                            + selectedTicket.getSuspect3Name()
+                                            + "\nSeverity : "
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                            + "\nAsset.No : "
+                                            + replacmentNo.toString()
+                                            + "\nPart.No : "
+                                            + partNo.toString()
+                                            + "\nSerial.No : "
+                                            + serialNo.toString();
+
+                            popConfirm = CustomPopConfirm.newInstance(title  + " [" + selectedTicket.getTicketNo().toString() +"]", msg, "Yes", "No");
+                            popConfirm.setBackListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popConfirm.dismiss();
+                                        }
+                                    });
+                            popConfirm.setProcessListener(
+                                    new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            popupCloseTicketCustomReplacment.dismiss();
+                                            popConfirm.dismiss();
+
+                                            new ClosedTicketByReplacment().execute();
+                                        }
+                                    });
+                            popConfirm.show(getFragmentManager(), null);
+
+                        }
+//                                   //Close By PR
+                    }else if (popupCloseTicketCustomReplacment.getStringSpinnerItem().getSelectedItemPosition()==2) {
+                        if (additionalInfo.equals("")) {
+                            popupCloseTicketCustomReplacment.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         }else if (prNo.equals("")) {
-                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
+                            popupCloseTicketCustomReplacment.getPrNoET().setError(getResources().getString(R.string.error_pr_no));
                         }else if(prNo.length()!=9){
-                            popupCloseTicketCustom.getPrNoET().requestFocus();
-                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
+                            popupCloseTicketCustomReplacment.getPrNoET().requestFocus();
+                            popupCloseTicketCustomReplacment.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_digit));
                         }else if(!prNo.trim().matches(regexStr)){
-                            popupCloseTicketCustom.getPrNoET().requestFocus();
-                            popupCloseTicketCustom.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
+                            popupCloseTicketCustomReplacment.getPrNoET().requestFocus();
+                            popupCloseTicketCustomReplacment.getPrNoET().setError(getResources().getString(R.string.error_prNo_action_number));
                         }else{
 //                           popupCloseTicketCustom.dismiss();
 //                            Log.d("berhasil", "close");
@@ -652,9 +823,11 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                             + " - "
                                             + selectedTicket.getSuspect3Name()
                                             + "\nSeverity : "
-                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity())
+                                            + "\nPR.No : "
+                                            + prNo.toString();
 
-                                    popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                                    popConfirm = CustomPopConfirm.newInstance(title + " [" + selectedTicket.getTicketNo().toString() +"]" , msg, "Yes", "No");
                             popConfirm.setBackListener(
                                     new View.OnClickListener() {
                                         @Override
@@ -666,7 +839,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                     new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            popupCloseTicketCustom.dismiss();
+                                            popupCloseTicketCustomReplacment.dismiss();
                                             popConfirm.dismiss();
 
                                             new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
@@ -675,9 +848,9 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                             popConfirm.show(getFragmentManager(), null);
 
                         }
-                    }else if (popupCloseTicketCustom.getStringSpinnerItem().getSelectedItemPosition()==1) {
+                    }else if (popupCloseTicketCustomReplacment.getStringSpinnerItem().getSelectedItemPosition()==1) {
                         if (additionalInfo.equals("")) {
-                            popupCloseTicketCustom.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                            popupCloseTicketCustomReplacment.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         }else {
 //                            popupCloseTicketCustom.dismiss();
 //                            Log.d("berhasil", "close");
@@ -700,7 +873,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                             + "\nSeverity : "
                                             + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
 
-                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                            popConfirm = CustomPopConfirm.newInstance(title + " [" + selectedTicket.getTicketNo().toString() +"]", msg, "Yes", "No");
                             popConfirm.setBackListener(
                                     new View.OnClickListener() {
                                         @Override
@@ -712,7 +885,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                                     new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            popupCloseTicketCustom.dismiss();
+                                            popupCloseTicketCustomReplacment.dismiss();
                                             popConfirm.dismiss();
 
                                             new ClosedTicketTaskKERUSAKAN_WITHPR().execute();
@@ -721,12 +894,12 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                             popConfirm.show(getFragmentManager(), null);
                         }
                     }else {
-                        popupCloseTicketCustom.getFixTypeSpinner().requestFocus();
-                        popupCloseTicketCustom.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
+                        popupCloseTicketCustomReplacment.getFixTypeSpinner().requestFocus();
+                        popupCloseTicketCustomReplacment.getFixTypeSpinner().setError(getResources().getString(R.string.error_close_type));
                     }
                 }
             });
-            popupCloseTicketCustom.show(getFragmentManager(), null);
+            popupCloseTicketCustomReplacment.show(getFragmentManager(), null);
 
 //            if (selectedTicket.getTicketType() == 1 && preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
 //                Log.d(TAG, "onActionPage: " + "INI KADEP_TS 1");
@@ -971,6 +1144,125 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 }
             });
             popupGuidanceTicket.show(getFragmentManager(), null);
+
+
+        }else if(view.getId() == R.id.replacemmentApprovedBtn){
+            if (Integer.valueOf(selectedTicket.getItemCondition())==2){
+                Log.d(TAG, "respon.001=" + Integer.valueOf(selectedTicket.getItemCondition()));
+               String[] ar1={"no-data","item has been repaired","items cannot be repaired"};
+               String msgLabel ="\n"
+                        + "\nTicket.No : " + selectedTicket.getTicketNo()
+                        + "\nAsset.No : " + selectedTicket.getAssetNno()
+                        + "\nPart.No : " + ""
+                        + "\nSerial.No : " + ""
+                        + "\nEngineer Check : " + ar1[Integer.valueOf(selectedTicket.getItemCondition())]
+               ;
+
+                popupApprovalReplacment = PopupApprovalReplacment.newInstance("Approved Assets"+ " [" + selectedTicket.getTicketNo().toString() +"]","Process","Back","Ticket Info  : " + msgLabel);
+
+                popupApprovalReplacment.setBackListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupApprovalReplacment.dismiss();
+                    }
+                });
+                popupApprovalReplacment.setProcessListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        additionalInfo = popupApprovalReplacment.getTicketInfoET().getText().toString();
+                        prNoomor = popupApprovalReplacment.getPrNomor().getText().toString();
+                        String regexStr = "^[0-9]*$";
+
+                        if(TextUtils.isEmpty(additionalInfo)) {
+                            popupApprovalReplacment.getTicketInfoET().requestFocus();
+                            popupApprovalReplacment.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                        }else if (prNoomor.equals("")) {
+                            popupApprovalReplacment.getPrNomor().setError(getResources().getString(R.string.error_pr_no));
+                        }else if(prNoomor.length()!=9){
+                            popupApprovalReplacment.getPrNomor().requestFocus();
+                            popupApprovalReplacment.getPrNomor().setError(getResources().getString(R.string.error_prNo_action_digit));
+                        }else if(!prNoomor.trim().matches(regexStr)){
+                            popupApprovalReplacment.getPrNomor().requestFocus();
+                            popupApprovalReplacment.getPrNomor().setError(getResources().getString(R.string.error_prNo_action_number));
+                        } else {
+                            String title = "Submission Confirmation";
+                            String msg = "You will Approved  : "
+                                    + "\nLocation : "
+                                    + selectedTicket.getStationName()
+                                    + "\nSuspect : " + selectedTicket.getSuspect1Name()
+                                    + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name()
+                                    +"\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+//                                    +"\nItemCondition : " + selectedTicket.getItemCondition().toString();
+                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
+                            confDialog.setBackListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    confDialog.dismiss();
+                                }
+                            });
+                            confDialog.setProcessListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    popupApprovalReplacment.dismiss();
+                                    confDialog.dismiss();
+                                    new ApprovedAssetReplacmentTask().execute();
+                                }
+                            });
+                            confDialog.show(getFragmentManager(), null);
+                        }
+
+                    }
+                });
+                popupApprovalReplacment.show(getFragmentManager(), null);
+            }else{
+                popupCloseTicket = PopupCloseTicket.newInstance("Approved Assets","Process","Back");
+
+                popupCloseTicket.setBackListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupCloseTicket.dismiss();
+                    }
+                });
+                popupCloseTicket.setProcessListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        additionalInfo = popupCloseTicket.getTicketInfoET().getText().toString();
+                        if(TextUtils.isEmpty(additionalInfo)) {
+                            popupCloseTicket.getTicketInfoET().requestFocus();
+                            popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
+                        } else {
+                            String title = "Submission Confirmation";
+                            String msg = "You will Approved  : "
+                                    + "\nLocation : "
+                                    + selectedTicket.getStationName()
+                                    + "\nSuspect : " + selectedTicket.getSuspect1Name()
+                                    + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name()
+                                    +"\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+//                                    +"\nItemCondition : " + selectedTicket.getItemCondition().toString();
+                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
+                            confDialog.setBackListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    confDialog.dismiss();
+                                }
+                            });
+                            confDialog.setProcessListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    popupCloseTicket.dismiss();
+                                    confDialog.dismiss();
+                                    new ApprovedAssetReplacmentTask2().execute();
+                                }
+                            });
+                            confDialog.show(getFragmentManager(), null);
+                        }
+
+                    }
+                });
+                popupCloseTicket.show(getFragmentManager(), null);
+
+            }
+
         }
     }
 
@@ -1092,6 +1384,114 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
             }
         }
     }
+
+    class ApprovedAssetReplacmentTask extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("approve_condition_item"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("ticket_confirmby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+                        .add("pr_no", prNoomor.toString())
+                        .add("approve_item_info", additionalInfo)
+                        .build());
+                progressDialog.dismiss();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            try {
+                JSONObject object = new JSONObject(result);
+                Logcat.e("response: " + result);
+//                if (object.getString("status").equalsIgnoreCase("success")) {
+//                    finish();
+//                }
+
+//                progressDialog.dismiss();
+
+//                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+//                    returnTicket = gsona.fromJson(object.getString("data").toString(), Ticket.class);
+////                    returnTicket = gson.fromJson(object.getString("data"), Ticket.class);
+////                    String title = returnTicket.getTicketId() + " - " + CommonsUtil.severityToString(returnTicket.getTicketSeverity()) + " - " + CommonsUtil.ticketTypeToString(returnTicket.getTicketType());
+////                    String content = "Down Time on site " + returnTicket.getStationName() + " has been solved.";
+////                    NotificationManager mgr=
+////                            (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+////                    NotificationCompat.Builder mBuilder =
+////                            new NotificationCompat.Builder(getApplicationContext())
+////                                    .setSmallIcon(R.mipmap.ic_launcher)
+////                                    .setContentTitle(title)
+////                                    .setContentText(content);
+////
+////                    Notification note = mBuilder.build();
+//
+//                    mgr.notify(NotificationManager.IMPORTANCE_HIGH, note);
+
+
+//                    finish();
+
+//                    if (progressDialog != null && progressDialog.isShowing())
+//                        progressDialog.dismiss();
+
+//                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class ApprovedAssetReplacmentTask2 extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("approve_condition_item"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("ticket_confirmby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+                        .add("approve_item_info", additionalInfo)
+                        .build());
+                progressDialog.dismiss();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            try {
+                JSONObject object = new JSONObject(result);
+                Logcat.e("response: " + result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     class ClosedTicketTaskDD extends AsyncTask<Void, Void, Void> {
 
@@ -1387,6 +1787,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
 
 
+
+
     class EscalatedTicketTask extends AsyncTask<Void, Void, Void> {
 
         String result = "";
@@ -1429,6 +1831,79 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                 if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
                     finish();
                     progressDialog.dismiss();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    class ClosedTicketByReplacment extends AsyncTask<Void, Void, Void> {
+
+        String result = "";
+        JSONObject jsonObject;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_kerusakan_with_input_pr_no_v2"), new FormBody.Builder()
+                        .add("ticket_id", selectedTicket.getTicketId())
+                        .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
+                        .add("additional_info", additionalInfo)
+//                        .add("closed_type", closedTypes)
+                        .add("asset_no", replacmentNo)
+                        .add("part_no", partNo)
+                        .add("serial_no", serialNo)
+                        .build());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            try {
+                Logcat.e("RESULT_CLOSE_DT::" + result);
+                JSONObject object = new JSONObject(result);
+                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
+//                    returnTicket = gsona.fromJson(object.getString("data").toString(), Ticket.class);
+                    returnTicket = gson.fromJson(object.getString("data"), Ticket.class);
+                    String title = returnTicket.getTicketId() + " - " + CommonsUtil.severityToString(returnTicket.getTicketSeverity()) + " - " + CommonsUtil.ticketTypeToString(returnTicket.getTicketType());
+                    String content = "Down Time on site " + returnTicket.getStationName() + " has been solved.";
+                    NotificationManager mgr=
+                            (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle(title)
+                                    .setContentText(content);
+
+                    Notification note = mBuilder.build();
+
+                    mgr.notify(NotificationManager.IMPORTANCE_HIGH, note);
+
+                    /*ComponentName componentName = getCallingActivity();
+
+                    RecyclerView ticketListRV = (RecyclerView) findViewById(R.id.ticketListRV);
+                    ((TicketAdapter) ticketListRV.getAdapter()).getmDataset().remove(ticket);
+                    ((TicketAdapter) ticketListRV.getAdapter()).notifyDataSetChanged();*/
+
+
+
+
+                    finish();
+
+                    if (progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

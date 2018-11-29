@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.cudocomm.troubleticket.R;
-import com.cudocomm.troubleticket.adapter.holder.HSpinner;
+import com.cudocomm.troubleticket.adapter.holder.HSpinnerUpdate;
 import com.cudocomm.troubleticket.database.model.SeverityUpdateModel;
 
 import java.util.List;
@@ -40,14 +40,14 @@ public class SeverityUpdateAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        HSpinner holder;
+        HSpinnerUpdate holder;
         View view = convertView;
         if (view == null) {
-            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.row_spinner, null);
-            holder = new HSpinner(view);
+            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.row_spinner_update, null);
+            holder = new HSpinnerUpdate(view);
             view.setTag(holder);
         } else {
-            holder = (HSpinner) view.getTag();
+            holder = (HSpinnerUpdate) view.getTag();
         }
         if (severities != null) {
             selectedSeverity = severities.get(position);

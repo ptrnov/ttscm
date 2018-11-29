@@ -47,6 +47,7 @@ public class Constants {
     public static final String URL_GET_ESCALATION_TICKET = "getescalationticket";
     public static final String URL_GET_ASSIGNMENT_TICKET = "getassignmentticket";
     public static final String URL_GET_REQUEST_VISIT = "getrequestvisit";
+    public static final String URL_GET_SEND_REMINDER_KADIV = "remainder_open_ticket_by_kadiv";
     public static final String URL_REJECT_REQUEST_VISIT = "rejectrequestvisit";
     public static final String URL_APPROVE_REQUEST_VISIT = "approverequestvisit";
     public static final String URL_REQUEST_APPROVE_CLOSE = "getrequestapproval";
@@ -97,6 +98,7 @@ public class Constants {
     public static String TT_AC_NIELASEN = "AC Nielsen";
     public static String TT_O_CHANNEL = "O Channel";
     public static String TT_NEXMEDIA = "Nexmedia";
+    public static String TT_SEND_REMINDER = "Send Reminder";
     public static String TICKET_INFO_PAGE = "Ticket Information";
     public static String ASSIGNMENT_PAGE = "Job Assignment";
     public static String MY_TASK_PAGE = "My Task";
@@ -167,6 +169,7 @@ public class Constants {
     //    popup
 
     public static String ARGS_TITLE = "argsTitle";
+    public static String ARGS_INFO_LABEL = "argsLabelInfo";
     public static String ARGS_DESC = "argsDesc";
     public static String ARGS_BACK = "argsBack";
     public static String ARGS_PROCESS = "argsProcess";

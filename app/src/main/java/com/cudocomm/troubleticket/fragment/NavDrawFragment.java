@@ -577,6 +577,11 @@ public class NavDrawFragment extends BaseFragment {
                     pageFragment = new NexMediaFragment();
                     page = Constants.TT_NEXMEDIA;
                     break;
+                case 8:
+                    Log.d(TAG, "menu_test");
+                    pageFragment = new SendReminder();
+                    page = Constants.TT_SEND_REMINDER;
+                    break;
                 default:
                     break;
             }

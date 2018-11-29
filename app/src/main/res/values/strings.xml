@@ -85,6 +85,8 @@
     <string name="label_info">Alert description here</string>
     <string name="label_back">Back</string>
     <string name="label_process">Process</string>
+    <string name="label_send">Send</string>
+    <string name="label_send_required">Message is required</string>
     <!--dialog-->
 
     <!--ticket detail-->
@@ -93,6 +95,7 @@
     <string name="label_action_be_done">Action to be done</string>
     <string name="label_escalation">Escalation</string>
     <string name="label_assignment">Assignment</string>
+    <string name="label_replacment_approved">Approved Replacment Assets</string>
     <string name="label_closed">Close Ticket</string>
     <string name="label_req_onsite">Request Visit</string>
     <string name="label_response">Response</string>
@@ -101,12 +104,17 @@
     <string name="label_return">Return</string>
     <string name="label_guidance">Guidance</string>
     <string name="label_report">Report</string>
+    <string name="label_report_checkitem">Check-Item</string>
     <!--ticket detail-->
 
+    <!-- send reminder-->
+    <string name="label_writemessage">Write Message</string>
+    <!-- send reminder-->
     <!--close ticket popup-->
     <string name="label_close_info">Information</string>
     <!--<string name="label_close_info">Information title and description PR </string>-->
     <string name="label_close_info_pr">PR TITLE</string>
+    <string name="label_close_info_replacment">REPLACMENT TITLE</string>
     <string name="error_close_info">Information is required</string>
     <string name="error_close_type">Close Type is required</string>
     <string name="error_close_program">Program is required</string>
@@ -133,10 +141,16 @@
     <!--escalation ticket popup-->
     <string name="label_guidance_action">Please insert your guidance.</string>
     <string name="error_prNo_action_digit">Please insert your PR.No. (min and max. 9 digit)</string>
+    <string name="error_replacmentNo_action_digit">Please insert your Replacment.No. (min and max. 9 digit)</string>
     <string name="error_prNo_action_digit_min">Please insert your PR.No. (min. 9 digit)</string>
+    <string name="error_replacmentNo_action_digit_min">Please insert your Replacment.No. (min. 9 digit)</string>
     <string name="error_prNo_action_digit_max">Please insert your PR.No. (max. 9 digit)</string>
+    <string name="error_replacmentNo_action_digit_max">Please insert your Replacment.No. (max. 9 digit)</string>
     <string name="error_prNo_action_number">Please insert Number.</string>
     <string name="error_prNo_action_requered">PR.No is required</string>
+    <string name="error_replacmentNo_action_requered">Asset.No is required</string>
+    <string name="error_partNo_action_requered">Part.No is required</string>
+    <string name="error_serialNo_action_requered">Serial.No is required</string>
     <string name="error_prNo_action_empty"></string>
     <string name="error_guidance_action">Please insert your guidance. (min. 60 characters)</string>
     <string name="label_guidance_require">Explain what you need from your superiors</string>
@@ -169,6 +183,7 @@
     <string name="error_notes_for_engineer">Notes is required</string>
     <string name="label_date_visit">Visit date</string>
     <string name="error_label_date_visit">Visit date is required</string>
+    <string name="error_replacment_inf_empty">Info Replacment is required</string>
     <!--appreqvisit ticket popup-->
 
     <!--approval popup-->
@@ -197,6 +212,13 @@
     <string name="label_fix_type">Close Type</string>
     <string name="error_pr_no">PR No. is required</string>
     <string name="label_pr_no">PR No.</string>
+    <string name="label_replacment_no">Asset No. (Please insert damage asset number)</string>
+    <string name="label_serial_no">Part No. (Please insert serial asset number )</string>
+    <string name="label_part_no">Serial No. (Please insert parts number)</string>
+
+    <string name="label_replacment_condition">Item Condition</string>
+    <string name="label_replacment_info">Item Info</string>
+    <string name="label_replacment_action_empty"></string>
 
 
 </resources>

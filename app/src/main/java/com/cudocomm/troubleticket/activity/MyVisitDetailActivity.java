@@ -37,6 +37,7 @@ import com.cudocomm.troubleticket.TTSApplication;
 import com.cudocomm.troubleticket.adapter.ViewPagerAdapter;
 import com.cudocomm.troubleticket.component.CustomPopConfirm;
 import com.cudocomm.troubleticket.component.PopupCloseTicketCustom;
+import com.cudocomm.troubleticket.component.PopupReplacment;
 import com.cudocomm.troubleticket.component.PopupCloseTicket;
 import com.cudocomm.troubleticket.component.PopupEscalationTicket;
 import com.cudocomm.troubleticket.component.PopupGuidanceTicket;
@@ -100,8 +101,10 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
     private Button closedBtn;
     private Button responseBtn;
     private Button reportBtn;
+    private Button itemChecktBtn;
 
     private PopupCloseTicket popupCloseTicket;
+    private PopupReplacment popupReplacment;
     private PopupGuidanceTicket popupGuidanceTicket;
     private SpotsDialog progressDialog;
 
@@ -111,6 +114,11 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
 
     private Toolbar toolbar;
     private String actionDescribe;
+    private String itemReplacment;
+    private int id_Replacment;
+
+    private String itemInfo;
+    String[] ar2={"1","2"};
 
     private PopupEscalationTicket popupResponseTicket;
     private CustomPopConfirm confDialog;
@@ -163,183 +171,187 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         closedBtn = (Button) findViewById(R.id.closedBtn);
         responseBtn = (Button) findViewById(R.id.responseBtn);
         reportBtn = (Button) findViewById(R.id.reportBtn);
+        itemChecktBtn = (Button) findViewById(R.id.itemChecktBtn);
 
+        if (selectedTicket.getTicketStatus()==1 && selectedTicket.getAssetNno()!=null  && !selectedTicket.getOriginalTicket().equals(0)){
+            closedBtn.setVisibility(View.GONE);
+            responseBtn.setVisibility(View.GONE);
+            reportBtn.setVisibility(View.GONE);
+            itemChecktBtn.setVisibility(View.VISIBLE);
+        }else{
+            closedBtn.setVisibility(View.VISIBLE);
+            responseBtn.setVisibility(View.VISIBLE);
+            reportBtn.setVisibility(View.VISIBLE);
+            itemChecktBtn.setVisibility(View.GONE);
+        }
         new MyAssignmentDetailTask().execute();
     }
 
-    private void updateComponent() {
-        if(!selectedTicket.getTicketPhoto1().isEmpty() && !selectedTicket.getTicketPhoto1().equals("") && !selectedTicket.getTicketPhoto1().equals("null")) {
-            TextSliderView textSliderView = new TextSliderView(getApplicationContext());
-            String desc = "Photo 1 - " + selectedTicket.getTicketNo();
-            textSliderView
-                    .description(desc)
-                    .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto1()))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+  private void updateComponent() {
+    if (!selectedTicket.getTicketPhoto1().isEmpty()
+        && !selectedTicket.getTicketPhoto1().equals("")
+        && !selectedTicket.getTicketPhoto1().equals("null")) {
+      TextSliderView textSliderView = new TextSliderView(getApplicationContext());
+      String desc = "Photo 1 - " + selectedTicket.getTicketNo();
+      textSliderView
+          .description(desc)
+          .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto1()))
+          .setScaleType(BaseSliderView.ScaleType.Fit)
+          .setOnSliderClickListener(this);
 
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra", desc);
+      // add your extra information
+      textSliderView.bundle(new Bundle());
+      textSliderView.getBundle().putString("extra", desc);
 
-            photoPreviewLayout.addSlider(textSliderView);
-        }
+      photoPreviewLayout.addSlider(textSliderView);
+    }
 
-        if(!selectedTicket.getTicketPhoto2().isEmpty() && !selectedTicket.getTicketPhoto2().equals("") && !selectedTicket.getTicketPhoto2().equals("null")) {
-            TextSliderView textSliderView = new TextSliderView(getApplication());
-            String desc = "Photo 2 - " + selectedTicket.getTicketNo();
-            textSliderView
-                    .description(desc)
-                    .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto2()))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+    if (!selectedTicket.getTicketPhoto2().isEmpty()
+        && !selectedTicket.getTicketPhoto2().equals("")
+        && !selectedTicket.getTicketPhoto2().equals("null")) {
+      TextSliderView textSliderView = new TextSliderView(getApplication());
+      String desc = "Photo 2 - " + selectedTicket.getTicketNo();
+      textSliderView
+          .description(desc)
+          .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto2()))
+          .setScaleType(BaseSliderView.ScaleType.Fit)
+          .setOnSliderClickListener(this);
 
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra", desc);
+      // add your extra information
+      textSliderView.bundle(new Bundle());
+      textSliderView.getBundle().putString("extra", desc);
 
-            photoPreviewLayout.addSlider(textSliderView);
-        }
+      photoPreviewLayout.addSlider(textSliderView);
+    }
 
-        if(!selectedTicket.getTicketPhoto3().isEmpty() && !selectedTicket.getTicketPhoto3().equals("") && !selectedTicket.getTicketPhoto3().equals("null")) {
-            TextSliderView textSliderView = new TextSliderView(getApplicationContext());
-            String desc = "Photo 3 - " + selectedTicket.getTicketNo();
-            textSliderView
-                    .description(desc)
-                    .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto3()))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+    if (!selectedTicket.getTicketPhoto3().isEmpty()
+        && !selectedTicket.getTicketPhoto3().equals("")
+        && !selectedTicket.getTicketPhoto3().equals("null")) {
+      TextSliderView textSliderView = new TextSliderView(getApplicationContext());
+      String desc = "Photo 3 - " + selectedTicket.getTicketNo();
+      textSliderView
+          .description(desc)
+          .image(CommonsUtil.getAbsoluteUrlImage(selectedTicket.getTicketPhoto3()))
+          .setScaleType(BaseSliderView.ScaleType.Fit)
+          .setOnSliderClickListener(this);
 
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra", desc);
+      // add your extra information
+      textSliderView.bundle(new Bundle());
+      textSliderView.getBundle().putString("extra", desc);
 
-            photoPreviewLayout.addSlider(textSliderView);
-        }
+      photoPreviewLayout.addSlider(textSliderView);
+    }
 
+    photoPreviewLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+    photoPreviewLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+    photoPreviewLayout.setCustomAnimation(new DescriptionAnimation());
+    photoPreviewLayout.setDuration(8000);
+    photoPreviewLayout.addOnPageChangeListener(this);
 
+    tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.color_btn_negative));
+    tabLayout.setTabTextColors(
+        getResources().getColor(R.color.color_white),
+        getResources().getColor(R.color.color_home_header));
 
-        photoPreviewLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        photoPreviewLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        photoPreviewLayout.setCustomAnimation(new DescriptionAnimation());
-        photoPreviewLayout.setDuration(8000);
-        photoPreviewLayout.addOnPageChangeListener(this);
+    viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.color_btn_negative));
-        tabLayout.setTabTextColors(getResources().getColor(R.color.color_white), getResources().getColor(R.color.color_home_header));
+    Map<String, Object> maps = new HashMap<>();
+    maps.put(Constants.SELECTED_TICKET, selectedTicket);
+    maps.put(Constants.TICKET_LOGS, ticketLogs);
 
+    viewPagerAdapter.addFragment(
+        new TicketInfoFragment().newInstance(selectedTicket), "Ticket Info");
+    viewPagerAdapter.addFragment(new TicketHistoryFragment().newInstance(maps), "History");
 
+    contentPager.setAdapter(viewPagerAdapter);
+    tabLayout.setupWithViewPager(contentPager);
+    /*
+    if(isResume)
+        actionLayout.setVisibility(View.VISIBLE);*/
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        Map<String, Object> maps = new HashMap<>();
-        maps.put(Constants.SELECTED_TICKET, selectedTicket);
-        maps.put(Constants.TICKET_LOGS, ticketLogs);
-
-        viewPagerAdapter.addFragment(new TicketInfoFragment().newInstance(selectedTicket), "Ticket Info");
-        viewPagerAdapter.addFragment(new TicketHistoryFragment().newInstance(maps), "History");
-
-
-        contentPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(contentPager);
-/*
-        if(isResume)
-            actionLayout.setVisibility(View.VISIBLE);*/
-
-        responseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupResponseTicket = PopupEscalationTicket.newInstance("Response Engineer","Process","Back");
-                popupResponseTicket.setBackListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupResponseTicket.dismiss();
-                    }
+    responseBtn.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            popupResponseTicket =
+                PopupEscalationTicket.newInstance("Response Engineer", "Process", "Back");
+            popupResponseTicket.setBackListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    popupResponseTicket.dismiss();
+                  }
                 });
-                popupResponseTicket.setProcessListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        actionEng = popupResponseTicket.getActionET().getText().toString();
-                        remarksEng = popupResponseTicket.getRequireET().getText().toString();
-                        if(TextUtils.isEmpty(actionEng)) {
-                            popupResponseTicket.getActionET().requestFocus();
-                            popupResponseTicket.getActionET().setError(getResources().getString(R.string.error_escalation_action));
-                        } else if(TextUtils.isEmpty(remarksEng)) {
-                            popupResponseTicket.getRequireET().requestFocus();
-                            popupResponseTicket.getRequireET().setError(getResources().getString(R.string.error_remarks_eng));
-                        } else {
-                            String title = "Submission Confirmation";
-                            String msg = "You will response ticket " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
-                                    selectedTicket.getStationName() +
-                                    "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
-                                    "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
-                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
-                            confDialog.setBackListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    confDialog.dismiss();
-                                }
-                            });
-                            confDialog.setProcessListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    popupResponseTicket.dismiss();
-                                    confDialog.dismiss();
-                                    postEngineerResponse();
-//                                    new SubmitRequestVisitTask().execute();
+            popupResponseTicket.setProcessListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    actionEng = popupResponseTicket.getActionET().getText().toString();
+                    remarksEng = popupResponseTicket.getRequireET().getText().toString();
+                    if (TextUtils.isEmpty(actionEng)) {
+                      popupResponseTicket.getActionET().requestFocus();
+                      popupResponseTicket
+                          .getActionET()
+                          .setError(getResources().getString(R.string.error_escalation_action));
+                    } else if (TextUtils.isEmpty(remarksEng)) {
+                      popupResponseTicket.getRequireET().requestFocus();
+                      popupResponseTicket
+                          .getRequireET()
+                          .setError(getResources().getString(R.string.error_remarks_eng));
+                    } else {
+                      String title = "Submission Confirmation";
+                      String msg =
+                          "You will response ticket "
+                              + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                              + " incident with detail : \nLocation : "
+                              + selectedTicket.getStationName()
+                              + "\nSuspect : "
+                              + selectedTicket.getSuspect1Name()
+                              + " - "
+                              + selectedTicket.getSuspect2Name()
+                              + " - "
+                              + selectedTicket.getSuspect3Name()
+                              + "\nSeverity : "
+                              + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                      confDialog = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                      confDialog.setBackListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              confDialog.dismiss();
+                            }
+                          });
+                      confDialog.setProcessListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              popupResponseTicket.dismiss();
+                              confDialog.dismiss();
+                              postEngineerResponse();
+                              //                                    new
+                              // SubmitRequestVisitTask().execute();
 
-                                }
-                            });
-                            confDialog.show(getFragmentManager(), null);
-
-                        }
-//                        actionDescribe = popupEscalationTicket.getActionET().getText().toString();
-//                        requireSupport = popupEscalationTicket.getRequireET().getText().toString();
-//                        new TicketActivity.EscalatedTicketTask().execute();
+                            }
+                          });
+                      confDialog.show(getFragmentManager(), null);
                     }
+                    //                        actionDescribe =
+                    // popupEscalationTicket.getActionET().getText().toString();
+                    //                        requireSupport =
+                    // popupEscalationTicket.getRequireET().getText().toString();
+                    //                        new TicketActivity.EscalatedTicketTask().execute();
+                  }
                 });
-                popupResponseTicket.show(getFragmentManager(), null);
-            }
+            popupResponseTicket.show(getFragmentManager(), null);
+          }
         });
 
-        /*closedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(distance > 100) {
-                    Toast.makeText(getApplicationContext(), "Your distance > 100m from site.", Toast.LENGTH_LONG).show();
-                } else {
-                    popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket","Process","Back");
-                    popupCloseTicket.setBackListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            popupCloseTicket.dismiss();
-                        }
-                    });
-                    popupCloseTicket.setProcessListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            additionalInfo = popupCloseTicket.getTicketInfoET().getText().toString();
-                            if(TextUtils.isEmpty(additionalInfo)) {
-                                popupCloseTicket.getTicketInfoET().requestFocus();
-                                popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
-                            } else {
-                                popupCloseTicket.dismiss();
-                                new ClosedTicketTask().execute();
-                            }
-
-
-                        }
-                    });
-                    popupCloseTicket.show(getFragmentManager(), null);
-                }
-            }
-        });*/
-
-        closedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    /*closedBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(distance > 100) {
+                Toast.makeText(getApplicationContext(), "Your distance > 100m from site.", Toast.LENGTH_LONG).show();
+            } else {
                 popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket","Process","Back");
                 popupCloseTicket.setBackListener(new View.OnClickListener() {
                     @Override
@@ -355,99 +367,216 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
                             popupCloseTicket.getTicketInfoET().requestFocus();
                             popupCloseTicket.getTicketInfoET().setError(getResources().getString(R.string.error_close_info));
                         } else {
-
-                            String title = "Submission Confirmation";
-                            String msg =
-                                    "You will Close \""
-                                            + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
-                                            + "\" ticket with detail : \nLocation : "
-                                            + selectedTicket.getStationName() //Location station
-                                            + "\nSuspect : "
-                                            + selectedTicket.getSuspect1Name()  //suspect
-                                            + " - "
-                                            + selectedTicket.getSuspect2Name()
-                                            + " - "
-                                            + selectedTicket.getSuspect3Name()
-                                            + "\nSeverity : "
-                                            + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
-
-                            popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
-                            popConfirm.setBackListener(
-                                    new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            popConfirm.dismiss();
-                                        }
-                                    });
-                            popConfirm.setProcessListener(
-                                    new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            popupCloseTicket.dismiss();
-                                            popConfirm.dismiss();
-
-                                            new ClosedTicketTask().execute();
-                                        }
-                                    });
-                            popConfirm.show(getFragmentManager(), null);
+                            popupCloseTicket.dismiss();
+                            new ClosedTicketTask().execute();
                         }
+
 
                     }
                 });
                 popupCloseTicket.show(getFragmentManager(), null);
             }
+        }
+    });*/
+
+    closedBtn.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            popupCloseTicket = PopupCloseTicket.newInstance("Close Ticket", "Process", "Back");
+            popupCloseTicket.setBackListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    popupCloseTicket.dismiss();
+                  }
+                });
+            popupCloseTicket.setProcessListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    additionalInfo = popupCloseTicket.getTicketInfoET().getText().toString();
+                    if (TextUtils.isEmpty(additionalInfo)) {
+                      popupCloseTicket.getTicketInfoET().requestFocus();
+                      popupCloseTicket
+                          .getTicketInfoET()
+                          .setError(getResources().getString(R.string.error_close_info));
+                    } else {
+
+                      String title = "Submission Confirmation";
+                      String msg =
+                          "You will Close \""
+                              + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                              + "\" ticket with detail : \nLocation : "
+                              + selectedTicket.getStationName() // Location station
+                              + "\nSuspect : "
+                              + selectedTicket.getSuspect1Name() // suspect
+                              + " - "
+                              + selectedTicket.getSuspect2Name()
+                              + " - "
+                              + selectedTicket.getSuspect3Name()
+                              + "\nSeverity : "
+                              + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+
+                      popConfirm = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                      popConfirm.setBackListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              popConfirm.dismiss();
+                            }
+                          });
+                      popConfirm.setProcessListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              popupCloseTicket.dismiss();
+                              popConfirm.dismiss();
+
+                              new ClosedTicketTask().execute();
+                            }
+                          });
+                      popConfirm.show(getFragmentManager(), null);
+                    }
+                  }
+                });
+            popupCloseTicket.show(getFragmentManager(), null);
+          }
         });
 
-        reportBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupGuidanceTicket = PopupGuidanceTicket.newInstance("Report Ticket","Process","Back");
-                popupGuidanceTicket.setBackListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupGuidanceTicket.dismiss();
-                    }
+    reportBtn.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            popupGuidanceTicket =
+                PopupGuidanceTicket.newInstance("Report Ticket", "Process", "Back");
+            popupGuidanceTicket.setBackListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                    popupGuidanceTicket.dismiss();
+                  }
                 });
-                popupGuidanceTicket.setProcessListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+            popupGuidanceTicket.setProcessListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
 
-                        actionDescribe = popupGuidanceTicket.getActionET().getText().toString();
-                        if(TextUtils.isEmpty(actionDescribe) || actionDescribe.length() < 60) {
-                            popupGuidanceTicket.getActionET().requestFocus();
-                            popupGuidanceTicket.getActionET().setError(getResources().getString(R.string.error_guidance_action));
-                        } else {
-                            String title = "Submission Confirmation";
-                            String msg = "You will Report " + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType()) +" incident with detail : \nLocation : "+
-                                    selectedTicket.getStationName() +
-                                    "\nSuspect : " + selectedTicket.getSuspect1Name() + " - " + selectedTicket.getSuspect2Name() + " - " + selectedTicket.getSuspect3Name() +
-                                    "\nSeverity : " + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
-                            confDialog = CustomPopConfirm.newInstance(title,msg,"Yes","No");
-                            confDialog.setBackListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    confDialog.dismiss();
-                                }
-                            });
-                            confDialog.setProcessListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    popupGuidanceTicket.dismiss();
-                                    confDialog.dismiss();
-                                    new GuidanceTicketTask().execute();
-
-                                }
-                            });
-                            confDialog.show(getFragmentManager(), null);
-
-                        }
+                    actionDescribe = popupGuidanceTicket.getActionET().getText().toString();
+                    if (TextUtils.isEmpty(actionDescribe) || actionDescribe.length() < 60) {
+                      popupGuidanceTicket.getActionET().requestFocus();
+                      popupGuidanceTicket
+                          .getActionET()
+                          .setError(getResources().getString(R.string.error_guidance_action));
+                    } else {
+                      String title = "Submission Confirmation";
+                      String msg =
+                          "You will Report "
+                              + CommonsUtil.ticketTypeToString(selectedTicket.getTicketType())
+                              + " incident with detail : \nLocation : "
+                              + selectedTicket.getStationName()
+                              + "\nSuspect : "
+                              + selectedTicket.getSuspect1Name()
+                              + " - "
+                              + selectedTicket.getSuspect2Name()
+                              + " - "
+                              + selectedTicket.getSuspect3Name()
+                              + "\nSeverity : "
+                              + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                      confDialog = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                      confDialog.setBackListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              confDialog.dismiss();
+                            }
+                          });
+                      confDialog.setProcessListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              popupGuidanceTicket.dismiss();
+                              confDialog.dismiss();
+                              new GuidanceTicketTask().execute();
+                            }
+                          });
+                      confDialog.show(getFragmentManager(), null);
                     }
+                  }
                 });
-                popupGuidanceTicket.show(getFragmentManager(), null);
-            }
+            popupGuidanceTicket.show(getFragmentManager(), null);
+          }
         });
 
+    itemChecktBtn.setOnClickListener(
+
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            popupReplacment = PopupReplacment.newInstance("Update Assets Items", "Process", "Back");
+            popupReplacment.setBackListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      popupReplacment.dismiss();
+                  }
+                });
+            popupReplacment.setProcessListener(
+                new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      itemReplacment =popupReplacment.getItemConditionSpinner().getSelectedItem().toString();
+//                      idReplacment =Integer.valueOf(ar2[popupReplacment.getItemConditionSpinner().getSelectedItemPosition()]);
+                      id_Replacment =popupReplacment.getItemConditionSpinner().getSelectedItemPosition();
+//                    itemReplacment =popupReplacment.getItemConditionSpinner().toString();
+                    itemInfo = popupReplacment.getItemInfo().getText().toString();
+                    if (popupReplacment.getItemConditionSpinner().getSelectedItemPosition()==0) {
+                         popupReplacment.getItemConditionSpinner().requestFocus();
+                         popupReplacment.getItemConditionSpinner().setError(getResources().getString(R.string.error_replacmentNo_action_requered));
+                    }else if (TextUtils.isEmpty(itemInfo)) {
+                          popupReplacment.getItemInfo().requestFocus();
+                          popupReplacment.getItemInfo().setError(getResources().getString(R.string.error_replacmentNo_action_requered));
+                    } else {
+                      String title = "Submission Confirmation";
+                      String msg =
+                          "Detail Information  item assets"
+                              + " incident with detail : \nLocation : "
+                              + selectedTicket.getStationName()
+                              + "\nItems Conditions : "
+                              + itemReplacment
+//                              + "\nItems Conditions id: "
+//                              + idReplacment
+                              + "\nItems Information  "
+                              + itemInfo
+                              + "\nSeverity : "
+                              + CommonsUtil.severityToString(selectedTicket.getTicketSeverity());
+                      confDialog = CustomPopConfirm.newInstance(title, msg, "Yes", "No");
+                      confDialog.setBackListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              confDialog.dismiss();
+                            }
+                          });
+                      confDialog.setProcessListener(
+                          new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                              popupReplacment.dismiss();
+                              confDialog.dismiss();
+                              submitReplacmentTask();
+
+                            }
+                          });
+                      confDialog.show(getFragmentManager(), null);
+                    }
+                  }
+                });
+            popupReplacment.show(getFragmentManager(), null);
+          }
+        });
     }
+
 
     class GuidanceTicketTask extends AsyncTask<Void, Void, Void> {
 
@@ -567,6 +696,62 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
                 items.put("action_eng", actionEng);
                 items.put("remarks_eng", remarksEng);
                 items.put("user_id", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)));
+                Logcat.e("params: " + items.toString());
+                return items;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        TTSApplication.getInstance().addToRequestQueue(request);
+    }
+
+    private void submitReplacmentTask() {
+        progressDialog.show();
+        final JSONObject items = new JSONObject();
+        try {
+            items.put("ticket_id", selectedTicket.getTicketId());
+            items.put("item_condition", String.valueOf(id_Replacment));
+            items.put("item_info", itemInfo.toString());
+            items.put("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        StringRequest request = new StringRequest(Request.Method.POST, CommonsUtil.getAbsoluteUrl("cek_condition_item"),
+                new Response.Listener<String>() {
+                    public void onResponse(String response) {
+                        Logcat.e("response: " + response);
+                        try {
+                            JSONObject jObj = new JSONObject(response);
+                            if (jObj.getString("status").equalsIgnoreCase("success")) {
+                                finish();
+                            }
+
+                            progressDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Logcat.e("Volley error: " + error.getMessage() + ", code: " + error.networkResponse);
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Terjadi Kesalahan. Umumnya karena masalah jaringan.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> items = new HashMap<>();
+                items.put("ticket_id", selectedTicket.getTicketId());
+                items.put("item_condition", String.valueOf(id_Replacment));
+                items.put("item_info", itemInfo.toString());
+                items.put("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)));
                 Logcat.e("params: " + items.toString());
                 return items;
             }
@@ -735,6 +920,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
             try {
                 result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_engineer"), new FormBody.Builder()
                         .add("ticket_id", selectedTicket.getTicketId())
+
                         .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("additional_info", additionalInfo)
 //                        .add("closed_type", String.valueOf(closedType))

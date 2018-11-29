@@ -39,6 +39,33 @@
             android:layout_margin="@dimen/global_spacing_xxs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/replacmentNo"
+            android:hint="@string/label_replacment_no"
+            app:met_floatingLabel="normal"
+            android:maxLength="9"
+            android:textSize="12sp" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="@dimen/global_spacing_xxs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/partNo"
+            android:hint="@string/label_part_no"
+            app:met_floatingLabel="normal"
+            android:maxLength="9"
+            android:textSize="12sp" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="@dimen/global_spacing_xxs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/serialNo"
+            android:hint="@string/label_serial_no"
+            app:met_floatingLabel="normal"
+            android:maxLength="9"
+            android:textSize="12sp" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="@dimen/global_spacing_xxs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/ticketInfoET"
             android:hint="@string/label_close_info"
             app:met_floatingLabel="normal"

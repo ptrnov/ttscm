@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:background="#ffffffff"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textAppearance="?android:textAppearanceMedium" android:textSize="18.0sp" android:textStyle="bold" android:textColor="#ff333333" android:gravity="center|left" android:id="@+id/titledata" android:paddingLeft="15.0dip" android:paddingTop="5.0dip" android:paddingRight="5.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:text="@string/heading_info" android:layout_height="50.0dip" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/colorAccent"/>
+    <LinearLayout android:orientation="vertical" android:padding="4.0dip" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tilisMessage"
+            android:hint="@string/label_writemessage"
+            app:met_floatingLabel="normal"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:divider="@drawable/custom_border" android:showDividers="middle" android:dividerPadding="5.0dip">
+        <Button android:id="@+id/btnDone" android:visibility="visible" android:layout_margin="0.0dip" android:text="@string/label_send" android:layout_weight="1.0" style="@style/default_button" android:clickable="false" />
+    </LinearLayout>
+
+</LinearLayout>

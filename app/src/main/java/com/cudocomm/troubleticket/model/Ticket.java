@@ -64,6 +64,13 @@ public class Ticket implements Serializable {
     private String stationLong;
     @SerializedName("has_assign")
     private String hasAssign;
+    //update data
+    @SerializedName("asset_no")
+    private String assetNo;
+    @SerializedName("original_ticket")
+    private String originalTicket;
+    @SerializedName("item_condition")
+    private String itemCondition;
 
     public String getTicketId() {
         return ticketId;
@@ -212,6 +219,30 @@ public class Ticket implements Serializable {
 
     public void setTicketNo(String ticketNo) {
         this.ticketNo = ticketNo;
+    }
+
+    public String getAssetNno() {
+        return assetNo;
+    }
+
+    public void setAssetNno(String assetNo) {
+        this.assetNo = assetNo;
+    }
+
+    public String getItemCondition() {
+        return itemCondition;
+    }
+
+    public void setItemCondition(String itemCondition) {
+        this.itemCondition = itemCondition;
+    }
+
+    public String getOriginalTicket() {
+        return originalTicket;
+    }
+
+    public void setOriginalTicket(String originalTicket) {
+        this.originalTicket = originalTicket;
     }
 
     /*public String getCloseInfo() {

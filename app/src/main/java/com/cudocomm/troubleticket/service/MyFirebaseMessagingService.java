@@ -78,9 +78,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String path1 = RESOURCE_PATH + getPackageName() + "/raw/udivice_login";         //Login
         String path2 = RESOURCE_PATH + getPackageName() + "/raw/remainder_ticket";      //
         String path3 = RESOURCE_PATH + getPackageName() + "/raw/emergency_alert";
+        String path4 = RESOURCE_PATH + getPackageName() + "/raw/kadiv_remainder";
         Uri defaultSoundUri1 = Uri.parse(path1);
         Uri defaultSoundUri2 = Uri.parse(path2);
         Uri defaultSoundUri3 = Uri.parse(path3);
+        Uri defaultSoundUri4 = Uri.parse(path4);
 
         if (title.equals("Notification of new Device Login")) {
             notificationBuilder = new Builder(this)
@@ -115,6 +117,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentText(messageBody)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri2)
+                    .setContentIntent(pendingIntent);
+        }else if(title.equals("message from Kadiv")){
+            notificationBuilder = new Builder(this)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri4)
                     .setContentIntent(pendingIntent);
         }else{
             notificationBuilder = new Builder(this)
