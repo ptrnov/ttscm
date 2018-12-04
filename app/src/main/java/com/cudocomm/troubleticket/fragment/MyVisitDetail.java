@@ -52,7 +52,7 @@ import okhttp3.FormBody;
 public class MyVisitDetail extends BaseFragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     private View rootView;
-
+    public static final String TAG = MyVisitDetail.class.getSimpleName();
     private SliderLayout photoPreviewLayout;
     private TabLayout tabLayout;
     private ViewPager contentPager;
@@ -178,6 +178,8 @@ public class MyVisitDetail extends BaseFragment implements BaseSliderView.OnSlid
         Map<String, Object> maps = new HashMap<>();
         maps.put(Constants.SELECTED_TICKET, selectedTicket);
         maps.put(Constants.TICKET_LOGS, ticketLogs);
+        Log.d(TAG,"ptr212" + ticketLogs);
+
 
         viewPagerAdapter.addFragment(new TicketInfoFragment().newInstance(selectedTicket), "Ticket Info");
         viewPagerAdapter.addFragment(new TicketHistoryFragment().newInstance(maps), "History");

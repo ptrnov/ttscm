@@ -751,7 +751,7 @@ public class EngineerAssignmentActivity extends AppCompatActivity implements Bas
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_kerusakan_with_input_pr_no"), new FormBody.Builder()
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_kerusakan_with_input_pr_no_v2"), new FormBody.Builder()
                         .add("ticket_id", selectedTicket.getTicketId())
                         .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("additional_info", additionalInfo)

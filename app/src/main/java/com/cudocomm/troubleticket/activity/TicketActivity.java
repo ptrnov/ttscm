@@ -257,7 +257,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
         } else if (selectedTicket.getTicketStatus() == 2){
             actionLayout.setVisibility(View.VISIBLE);
             actionAssign.setVisibility(View.VISIBLE);
-            if (selectedTicket.getAssetNno()!=null){
+//            if (selectedTicket.getAssetNno()!=null){
+            if(!String.valueOf(selectedTicket.getAssetNno()).isEmpty()){
                 if(preferences.getPreferencesInt(Constants.POSITION_ID) == Constants.KADEP_TS) {
                     replacemmentApprovedBtn.setVisibility(View.VISIBLE);
                     assignmentToBtn.setVisibility(View.GONE);
@@ -1197,14 +1198,34 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
 
 
         }else if(view.getId() == R.id.replacemmentApprovedBtn){
-            if (Integer.valueOf(selectedTicket.getItemCondition())==2){
+//            String itemCon=selectedTicket.getItemCondition().toString();
+//            if(!String.valueOf(selectedTicket.getItemCondition()).isEmpty()){
+//            if (itemCon==null) {
+//                String title = "Submission Confirmation";
+//                String msg = "Your data is invalid, please contact the administrator.";
+//                confDialog = CustomPopConfirm.newInstance(title,msg,"Send","Close");
+//                confDialog.setBackListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        confDialog.dismiss();
+//                    }
+//                });
+//                confDialog.setProcessListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        confDialog.dismiss();
+//                    }
+//                });
+//                confDialog.show(getFragmentManager(), null);
+//            }else
+                if (Integer.valueOf(selectedTicket.getItemCondition())==2){
                 Log.d(TAG, "respon.001=" + Integer.valueOf(selectedTicket.getItemCondition()));
                String[] ar1={"no-data","item has been repaired","items cannot be repaired"};
                String msgLabel ="\n"
                         + "\nTicket.No : " + selectedTicket.getTicketNo()
                         + "\nAsset.No : " + selectedTicket.getAssetNno()
-                        + "\nPart.No : " + ""
-                        + "\nSerial.No : " + ""
+                        + "\nPart.No : " + selectedTicket.getPartNo()
+                        + "\nSerial.No : " + selectedTicket.getSerialNo()
                         + "\nEngineer Check : " + ar1[Integer.valueOf(selectedTicket.getItemCondition())]
                ;
 
@@ -1455,7 +1476,8 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         .add("pr_no", prNoomor.toString())
                         .add("approve_item_info", additionalInfo)
                         .build());
-                progressDialog.dismiss();
+//                finish();
+//                progressDialog.dismiss();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -1468,11 +1490,12 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
             try {
                 JSONObject object = new JSONObject(result);
                 Logcat.e("response: " + result);
-//                if (object.getString("status").equalsIgnoreCase("success")) {
-//                    finish();
-//                }
+                if (object.getString("status").equalsIgnoreCase("success")) {
+                    finish();
+                    progressDialog.dismiss();
+                }
 
-//                progressDialog.dismiss();
+//
 
 //                if(object.get(Constants.RESPONSE_STATUS).equals(Constants.RESPONSE_SUCCESS)) {
 //                    returnTicket = gsona.fromJson(object.getString("data").toString(), Ticket.class);
@@ -1523,6 +1546,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
                         .add("ticket_confirmby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("approve_item_info", additionalInfo)
                         .build());
+                finish();
                 progressDialog.dismiss();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -1778,7 +1802,7 @@ public class TicketActivity extends BaseActivity implements BaseSliderView.OnSli
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_kerusakan_with_input_pr_no"), new FormBody.Builder()
+                result = ApiClient.post(CommonsUtil.getAbsoluteUrl("close_ticket_kerusakan_with_input_pr_no_v2"), new FormBody.Builder()
                         .add("ticket_id", selectedTicket.getTicketId())
                         .add("ticket_closedby", String.valueOf(preferences.getPreferencesInt(Constants.ID_UPDRS)))
                         .add("additional_info", additionalInfo)

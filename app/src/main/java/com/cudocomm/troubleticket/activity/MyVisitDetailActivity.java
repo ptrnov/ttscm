@@ -173,7 +173,8 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         reportBtn = (Button) findViewById(R.id.reportBtn);
         itemChecktBtn = (Button) findViewById(R.id.itemChecktBtn);
 
-        if (selectedTicket.getTicketStatus()==1 && selectedTicket.getAssetNno()!=null  && !selectedTicket.getOriginalTicket().equals(0)){
+//        if (selectedTicket.getTicketStatus()==1 && !selectedTicket.getAssetNno().equals(0) && !selectedTicket.getOriginalTicket().equals(0)){
+        if(!String.valueOf(selectedTicket.getAssetNno()).isEmpty()){
             closedBtn.setVisibility(View.GONE);
             responseBtn.setVisibility(View.GONE);
             reportBtn.setVisibility(View.GONE);
@@ -870,7 +871,10 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
         protected Void doInBackground(Void... params) {
             try {
                 result = ApiClient.post(CommonsUtil.getAbsoluteUrl("is_visit_ready"),
-                        new FormBody.Builder().add(Constants.PARAM_TICKET_NO, selectedTicket.getTicketNo()).build());
+                        new FormBody.Builder().add(Constants.PARAM_TICKET_NO, selectedTicket.getTicketNo()).build()
+
+                )
+                ;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -887,7 +891,7 @@ public class MyVisitDetailActivity extends AppCompatActivity implements BaseSlid
             try {
                 JSONObject object = new JSONObject(result);
                 ticketLogs = gson.fromJson(object.getString("data"), type);
-
+                Log.d(TAG,"ptr212" + ticketLogs);
                 if (object.getInt("resume") == 1)
                     isResume = true;
 

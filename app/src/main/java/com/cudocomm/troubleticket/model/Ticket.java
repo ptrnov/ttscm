@@ -71,6 +71,10 @@ public class Ticket implements Serializable {
     private String originalTicket;
     @SerializedName("item_condition")
     private String itemCondition;
+    @SerializedName("part_no")
+    private String partNo;
+    @SerializedName("serial_no")
+    private String serialNo;
 
     public String getTicketId() {
         return ticketId;
@@ -243,6 +247,21 @@ public class Ticket implements Serializable {
 
     public void setOriginalTicket(String originalTicket) {
         this.originalTicket = originalTicket;
+    }
+
+    public String getPartNo() {
+        return partNo;
+    }
+
+    public void setPartNo(String serialNo) {
+        this.partNo = partNo;
+    }
+    public String getSerialNo() {
+        return serialNo;
+    }
+
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo;
     }
 
     /*public String getCloseInfo() {
